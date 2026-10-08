@@ -1,5 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# indoor_yolic.py  -  TRAINING script for YOLIC on the Indoor Obstacle Avoidance dataset
+# ========================================================================================
+# Same method and training loop as outdoor_yolic.py, with a different problem size:
+#   30 cells x (6 object classes + 1 background/'Road' bit) = 210 outputs per image.
+#   The cells are irregular POLYGONS (perspective-shaped regions of floor and walls) defined in
+#   pixel coordinates of an 848x480 frame in indoor_pred.py.
+#   Bit order inside each cell (see indoor_eval.py):
+#     0 Sofa, 1 Wall, 2 Pillar, 3 People, 4 Door, 5 Others, 6 Road (background)
+#
+# Expected data layout:  images/ (frames)  and  labels/ (xxx.txt with 210 integers each)
+# Outputs: mobilenet_indoor.pth.tar (best weights on val) and mobilenet_indoor.csv
+#
+# Differences from outdoor_yolic.py:
+#   - the Dataset has a 'train' flag, so the flip is applied to the training set only;
+#   - no unused shufflenet import.
+# ========================================================================================
 import random
 
 from PIL import Image
@@ -17,6 +34,8 @@ import pandas as pd
 import os
 from torchvision.models import mobilenet_v2, MobileNet_V2_Weights
 
+# ---- Command-line options (same as outdoor_yolic.py) ----
+# --test_batch and --resume are parsed but never used.
 parser = argparse.ArgumentParser(description='PyTorch Training Script')
 parser.add_argument('--batch_size', type=int, default=32, metavar='N',
                     help='input batch size for training (default: 64)')
@@ -33,9 +52,12 @@ parser.add_argument('--log-interval', type=int, default=25, metavar='N',
 parser.add_argument('--resume', type=bool, default=True, metavar='N',
                     help='resume from the last weights')
 
+# 30 polygon cells x (6 object classes + 1 background bit) = 210 outputs per image.
 NumCell = 30  # number of cells
 NumClass = 6  # number of classes
 save_name = 'mobilenet_indoor'  # name of the model
+# ImageNet-pretrained MobileNetV2 with its last Linear widened to 210 outputs: the global-average-
+# pooled 1280-d feature is mapped to one logit per (cell, class) bit.
 model = mobilenet_v2(weights=MobileNet_V2_Weights.DEFAULT)  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
 optimizer = optim.Adam(model.parameters(), lr=0.001)  # optimizer and learning rate
@@ -43,11 +65,16 @@ torch.cuda.empty_cache()
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
+# Seeds torch (and, through it, the DataLoader workers). cuDNN is not forced to be deterministic.
 torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
 
+# ---- Left-right flip augmentation (same function as in outdoor_yolic.py) ----
+# Flips the image and re-orders the per-cell label groups (7 bits per cell) so they still match.
+# NOTE (bug): 'image' is a C x H x W tensor here, so image.flip(1) flips the HEIGHT axis (upside-
+# down) while the labels are mirrored LEFT-RIGHT. image.flip(2) would be a horizontal flip.
 def random_augmentation(image, label_list, seq_list):
     # flip image horizontally
     image = image.flip(1)
@@ -66,6 +93,7 @@ def random_augmentation(image, label_list, seq_list):
         start_idx = end_idx
 
     # create a new label_list based on seq_list
+    # new cell i receives the bits of old cell seq_list[i] (its mirror cell)
     new_label_list = []
     for group_idx in seq_list:
         group = label_groups[group_idx]
@@ -74,6 +102,8 @@ def random_augmentation(image, label_list, seq_list):
     return image, new_label_list
 
 
+# ---- Dataset: returns (image_tensor 3x224x224, label_tensor[210], filename) ----
+# train=1 enables the random flip (training set); train=0 disables it (validation / test).
 class MultiLabelRGBataSet(torch.utils.data.Dataset):
     def __init__(self, imgspath, imgslist, annotationpath, transforms=None, train=1):
         self.imgslist = imgslist
@@ -88,13 +118,17 @@ class MultiLabelRGBataSet(torch.utils.data.Dataset):
 
     def __getitem__(self, index):
         ipath = os.path.join(self.imgspath, self.imgslist[index])
+        # PIL loads RGB; the transform resizes to 224x224 and converts to a float tensor in [0, 1].
         img = Image.open(ipath)
         if self.transform is not None:
             img = self.transform(img)
         (filename, extension) = os.path.splitext(ipath)
         filename = os.path.basename(filename)
         annotation = os.path.join(self.annotationpath, filename + ".txt")
+        # 210 integers (0/1) from labels/<name>.txt: cell 0 bits 0..6, cell 1 bits 0..6, ...
         label = np.loadtxt(annotation, dtype=np.int64)
+        # Mirror permutation of the 30 polygon cells: rows of 8, 8, 6, 4 and 4 cells, each row reversed
+        # (geometry in indoor_pred.py; the layout is symmetric about x = 424).
         if self.train == 1:
             if random.random() > 0.5:
                 img, label = random_augmentation(img, label,
@@ -104,6 +138,8 @@ class MultiLabelRGBataSet(torch.utils.data.Dataset):
         return img, label, filename
 
 
+# Same transforms as outdoor: 224x224 squash, strong colour jitter (hue=0.5 is the maximum),
+# no ImageNet mean/std normalisation.
 train_trans = transforms.Compose(([
 
     transforms.Resize((224, 224)),
@@ -115,6 +151,8 @@ val_test_trans = transforms.Compose(([
     transforms.ToTensor()  # divides by 255
 ]))
 
+# 70 / 10 / 20 random per-frame split (see outdoor_yolic.py for the caveats: neighbouring video
+# frames can fall into both train and test, and os.listdir order is OS-dependent).
 img_dir = 'images'
 label_dir = 'labels'
 img_list = os.listdir(img_dir)
@@ -125,6 +163,7 @@ train = MultiLabelRGBataSet(img_dir, train_img, label_dir, train_trans, train=1)
 valid = MultiLabelRGBataSet(img_dir, val_img, label_dir, val_test_trans, train=0)
 test = MultiLabelRGBataSet(img_dir, test_img, label_dir, val_test_trans, train=0)
 
+# num_workers=8 can use a lot of RAM on Windows (each worker re-imports this script).
 train_loader = torch.utils.data.DataLoader(train,
                                            batch_size=args.batch_size,
                                            shuffle=True, num_workers=8)
@@ -139,10 +178,14 @@ test_loader = torch.utils.data.DataLoader(test,
 if args.cuda:
     model.cuda()
 
+# Sigmoid + binary cross-entropy over all 210 bits; LR x0.1 at epochs 100 and 125.
 criterion = nn.BCEWithLogitsLoss()
 scheduler = MultiStepLR(optimizer, milestones=[100, 125], gamma=0.1)
 
 
+# ---- Per-image accuracy (same definition as outdoor_yolic.py) ----
+# Returns fractions in [0, 1]: (share of cells with all 7 bits right, share of cells where the
+# safe / hazard decision is right). 'normal' = only the Road bit set.
 def pred_acc(original, predicted):
     pred = torch.round(predicted).detach().numpy().astype(np.int64)
     orig = original.detach().numpy()
@@ -161,6 +204,7 @@ def pred_acc(original, predicted):
     return num / NumCell, (num + enum) / NumCell
 
 
+# ---- One training epoch: forward -> BCE loss -> backward -> Adam step ----
 def train(epoch, model):
     model.train()
     for batch_idx, (data, target, filenames) in enumerate(train_loader):
@@ -178,9 +222,12 @@ def train(epoch, model):
                        100. * batch_idx / len(train_loader), loss.item()))
 
 
+# Best validation exact-cell accuracy so far.
 best_correct = -999
 
 
+# ---- Loss and accuracies on a loader; with save_mode=True also saves the best weights ----
+# save_mode=True is used only for the validation loader -> checkpoint selection.
 def evaluate(model, data_loader, save_mode=False):
     model.eval()
     running_loss = []
@@ -220,6 +267,8 @@ def evaluate(model, data_loader, save_mode=False):
     return total_batch_loss, total_batch_acc
 
 
+# ---- Main loop: train, then evaluate on train / val (saves best) / test every epoch ----
+# Test numbers are only logged. The curves are written to <save_name>.csv at the end.
 if __name__ == '__main__':
 
     import datetime

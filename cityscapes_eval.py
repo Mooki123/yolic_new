@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# cityscapes_eval.py  -  EVALUATION of a trained Cityscapes YOLIC model on the val split
+# ========================================================================================
+# Loads ./weights/mobilenet_cityscapes_new300.pth.tar (the name suggests a 300-epoch run, while the
+# paper reports 150 epochs; the training script saves cityscapes_mobilenet.pth.tar).
+# Runs on the CPU over all 500 val images and all 256 cells, then prints:
+#   1) a per-class report for People / Vehicle / Other / Road (+ the 'Background' dummy row),
+#   2) a binary Risk / Road report on the Road bit,
+# each with a confusion-matrix plot.
+# Bookkeeping: TP -> (k, k), FP -> (Background, k), FN -> (k, Background), TN -> nothing, so the
+# per-class precision / recall are ordinary cell-level values pooled over all cells and images.
+# The paper's 'All' column = mean of the object classes' P and R (Road excluded), F1 from those.
+# ========================================================================================
 from matplotlib import pyplot as plt
 import itertools
 import argparse
@@ -12,6 +25,7 @@ from cityscapes import Cityscapes
 from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 
+# Options; only --batch_size and --seed matter. The model is never moved to the GPU.
 parser = argparse.ArgumentParser(description='PyTorch Training Script')
 parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
@@ -30,6 +44,8 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
+# Same 256-cell layout as cityscapes_yolic.py (copied): 160 cells of 64x32 px in the central band
+# x 512-1536, y 320-640, then 96 cells of 128x64 px over the full width, y 640-1024.
 cell_list = [[[512, 320], [576, 352]], [[576, 320], [640, 352]], [[640, 320], [704, 352]], [[704, 320], [768, 352]],
              [[768, 320], [832, 352]], [[832, 320], [896, 352]], [[896, 320], [960, 352]], [[960, 320], [1024, 352]],
              [[1024, 320], [1088, 352]], [[1088, 320], [1152, 352]], [[1152, 320], [1216, 352]],
@@ -104,16 +120,19 @@ cell_list = [[[512, 320], [576, 352]], [[576, 320], [640, 352]], [[640, 320], [7
              [[896, 960], [1024, 1024]], [[1024, 960], [1152, 1024]], [[1152, 960], [1280, 1024]],
              [[1280, 960], [1408, 1024]], [[1408, 960], [1536, 1024]], [[1536, 960], [1664, 1024]],
              [[1664, 960], [1792, 1024]], [[1792, 960], [1920, 1024]], [[1920, 960], [2048, 1024]]]
+# Same class groups as training: People, Vehicle, Other, Road (background bit).
 interested_classes = [(11, 12), (13, 14, 15, 16, 17, 18),
                       (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 21, 20, 19), (0, 23, 22, 24)]
 NumCell = 256  # number of cells
 NumClass = 3  # number of classes except background class
 root = 'Datasets/Cityscapes'
+# Build the architecture and load the trained weights (CPU).
 model = mobilenet_v2()  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
 save_name = 'Cityscapes'  # name of the model
 train_weights = torch.load("./weights/mobilenet_cityscapes_new300.pth.tar")
 title_name = 'Confusion Matrix'
+# 0 People, 1 Vehicle, 2 Other, 3 Road (background bit), 4 'Background' = FP/FN dummy.
 class_names = ["People", "Vehicle", "Other", "Road", "Background"]
 binary_class_names = ["Risk", "Road"]
 model.load_state_dict(train_weights)
@@ -122,16 +141,20 @@ val_test_trans = transforms.Compose(([
     transforms.ToTensor(),  # divides by 255
 ]))
 
+# Official val split with the test-time transform only (no flip / crop).
 val_dataset = Cityscapes(root, cell_list=cell_list, interested_classes=interested_classes, split='val',
                          target_type='semantic', transform=val_test_trans)
 valid_loader = torch.utils.data.DataLoader(val_dataset,
                                            batch_size=args.batch_size,
                                            shuffle=False, num_workers=0)
+# Report entries collected by pred_cm() (see the header).
 Gt = []
 Pred = []
 binary_Gt = []
 binary_Pred = []
 
+# Threshold one image's probabilities at 0.5 and record every (cell, class) bit in Gt / Pred.
+# Bits are scored independently; no 'background wins' rule is applied.
 def pred_cm(original, predicted):
     global Gt
     global Pred
@@ -153,6 +176,7 @@ def pred_cm(original, predicted):
             if prediction == 0 and ground_truth == 1:
                 Pred.append(NumClass+1)
                 Gt.append(index)
+            # Binary report on the Road bit: 1 = safe road, 0 = Risk.
             if index == NumClass:
                 if prediction == 0 and ground_truth == 0:
                     binary_Pred.append(0)
@@ -170,6 +194,7 @@ def pred_cm(original, predicted):
 
 
 
+# Run over the val loader on the CPU and collect entries for every image.
 def test(model):
     model.eval()
     with torch.no_grad():
@@ -181,6 +206,7 @@ def test(model):
                 pred_cm(torch.Tensor.cpu(target[i]), torch.Tensor.cpu(output[i]))
 
 
+# Row-normalised confusion matrix showing fractions and raw counts.
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -214,6 +240,7 @@ def plot_confusion_matrix(cm, classes,
 
 
 # from shutil import copyfile
+# ---- Run the evaluation and print the reports ----
 test(model)
 print(metrics.classification_report(Gt, Pred, target_names=class_names, digits=4))
 matrix = confusion_matrix(Gt, Pred)

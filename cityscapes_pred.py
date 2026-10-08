@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# cityscapes_pred.py  -  QUALITATIVE visualisation on Cityscapes val
+# ========================================================================================
+# Draws a coloured rectangle on every cell with a predicted People / Vehicle / Other and saves the
+# frames to ./Cityscapes_mobilenet/<name>.jpg. Weights: Models/Cityscapes_mobilenet.pth.
+# NOTE: it imports 'cityscapes2', which is NOT in this repository. That module was presumably a
+# variant of cityscapes.py whose __getitem__ returns (image array, cell label, file name); the
+# released cityscapes.py returns only (image, label), so this script does not run as released.
+# ========================================================================================
 import os
 
 import cv2
@@ -25,6 +34,14 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
+# ---- Cell geometry, in pixels of the 2048x1024 Cityscapes frame ----
+# Each cell is [[x1, y1], [x2, y2]] (top-left, bottom-right), listed row by row, left to right:
+#   cells   0-159 : 10 rows x 16 cells of 64x32 px covering x 512-1536, y 320-640
+#                   (the central band where distant objects appear)
+#   cells 160-255 : 6 rows x 16 cells of 128x64 px covering the full width, y 640-1024
+#                   (the road close to the car)
+# After the frame is squashed to 224x224, a small cell is only about 7x7 px and a large one
+# about 14x14 px. The sky above y=320 and the sides of the central band have no cells.
 cell_list = [[[512, 320], [576, 352]], [[576, 320], [640, 352]], [[640, 320], [704, 352]], [[704, 320], [768, 352]],
              [[768, 320], [832, 352]], [[832, 320], [896, 352]], [[896, 320], [960, 352]], [[960, 320], [1024, 352]],
              [[1024, 320], [1088, 352]], [[1088, 320], [1152, 352]], [[1152, 320], [1216, 352]],
@@ -99,23 +116,33 @@ cell_list = [[[512, 320], [576, 352]], [[576, 320], [640, 352]], [[640, 320], [7
              [[896, 960], [1024, 1024]], [[1024, 960], [1152, 1024]], [[1152, 960], [1280, 1024]],
              [[1280, 960], [1408, 1024]], [[1408, 960], [1536, 1024]], [[1536, 960], [1664, 1024]],
              [[1664, 960], [1792, 1024]], [[1792, 960], [1920, 1024]], [[1920, 960], [2048, 1024]]]
+# Same class groups as training: People, Vehicle, Other, Road (background bit).
 interested_classes = [(11, 12), (13, 14, 15, 16, 17, 18),
                       (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 21, 20, 19), (0, 23, 22, 24)]
 NumCell = 256  # number of cells
 NumClass = 3  # number of classes except background class
 root = "Datasets/Cityscapes"
 save_name = 'Cityscapes_mobilenet'  # name of the model
+# Architecture + trained weights; runs on the CPU.
 model = mobilenet_v2()  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
 model.load_state_dict(torch.load('Models/' + save_name + '.pth'))  # load the model
 
+# Names per bit; color_box = one BGR colour per object group (People, Vehicle, Other).
 class_names = ["People", "Vehicle", "Other", "Road", "Background"]
 color_box = [(31, 112, 255), (151, 157, 255), (56, 56, 255)]
+# No transform: the (missing) cityscapes2 dataset is expected to return a full-size numpy image
+# that cv2 can resize.
 val_dataset = Cityscapes(root, cell_list=cell_list, interested_classes=interested_classes, split='val',
                          target_type='semantic')
 
 
 
+# ---- Draw one frame ----
+# The frame is converted BGR -> RGB first, but cv2.imwrite later expects BGR, so the colour order of
+# the saved picture depends on what cityscapes2 returns. For each cell that is not 'normal' (only
+# the Road bit set), draw its rectangle in the colour of the first predicted group. The text
+# drawing is commented out, so only rectangles appear.
 def pred_plot(frame, original, output):
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     output = output.detach().numpy()
@@ -134,8 +161,12 @@ def pred_plot(frame, original, output):
                 index.append(eachScore.argmax())
                 if eachScore.argmax() == NumClass:
                     continue
+            # English: centre of the rectangle and (next line) its area in pixels.
             center_x, center_y = (x1 + x2) // 2, (y1 + y2) // 2  # 计算矩形中心点
             poly_area = (x2 - x1) * (y2 - y1)  # 计算矩形面积
+            # English for the Chinese comments below: default font size (tune as needed); 'texts' collects
+            # (text, pixel size, scale) for each label; max_text_len = number of labels to write. The
+            # font is shrunk when several labels must share one cell.
             default_text_scale = 0.4  # 这是默认的字体大小，可以根据你的需要进行调整
             texts = []  # 用于存储所有的文本和对应的大小
             max_text_len = len(index)  # 计算最长的文本长度
@@ -147,6 +178,8 @@ def pred_plot(frame, original, output):
                 text_size, _ = cv2.getTextSize(class_names[i], cv2.FONT_HERSHEY_SIMPLEX, text_scale, 2)
                 texts.append((class_names[i], text_size, text_scale))
             text_origin = [center_x, center_y - sum(text[1][1] for text in texts) // 2]
+            # English: line spacing between label lines. In the loop, x is recomputed per line so the
+            # text stays centred, and y advances by part of the text height before and after each line.
             line_spacing = 0.7  # 行间距，可以根据需要调整
             color = color_box[index[0]]
             for text, text_size, text_scale in texts:
@@ -159,9 +192,11 @@ def pred_plot(frame, original, output):
     return frame
 
 
+# ToTensor only; resizing to 224x224 is done with cv2 in test().
 preprocess = transforms.Compose([transforms.ToTensor()])
 
 
+# For each val image: resize to 224x224, predict, draw on the full-size frame, save a JPEG.
 def test():
     model.eval()
     with torch.no_grad():
@@ -177,6 +212,7 @@ def test():
             cv2.imwrite(os.path.join(path, filename + ".jpg"), frame)
 
 
+# Create ./Cityscapes_mobilenet if needed and process the val set.
 current_path = os.getcwd()
 path = os.path.join(current_path, save_name)
 if not os.path.exists(path):

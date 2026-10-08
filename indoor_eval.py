@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# indoor_eval.py  -  EVALUATION script for a trained indoor YOLIC model
+# ========================================================================================
+# Loads model.pth.tar (training saves mobilenet_indoor.pth.tar - rename it or change the path),
+# rebuilds the same test split as training, runs on the CPU and prints:
+#   1) a per-class report over all 30 cells (Sofa ... Others, Road), and
+#   2) a binary Risk / Road report on the Road bit,
+# each followed by a confusion-matrix plot.
+# Same Gt/Pred bookkeeping as outdoor_eval.py: TP -> (k, k), FP -> (Background, k),
+# FN -> (k, Background), TN -> nothing. So per-class precision / recall are ordinary cell-level
+# precision / recall pooled over all cells and test images.
+# ========================================================================================
 
 import itertools
 from torchvision.models import mobilenet_v2
@@ -17,6 +29,7 @@ import os.path
 import matplotlib.pyplot as plt
 import os
 
+# Options copied from training; only --batch_size and --seed matter. Evaluation runs on the CPU.
 parser = argparse.ArgumentParser(description='PyTorch Training Script')
 parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
@@ -39,12 +52,15 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
+# 30 polygon cells x (6 classes + 1 Road bit) = 210 outputs.
 NumCell = 30  # number of cells
 NumClass = 6  # number of classes except background class
+# Same architecture as training; the trained weights are loaded from model.pth.tar.
 model = mobilenet_v2()  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
 save_name = 'Indoor'  # name of the model
 title_name = 'Confusion Matrix'
+# 0-5 objects, 6 = Road (background bit), 7 = 'Background' dummy for FP/FN bookkeeping.
 class_names = ["Sofa", "Wall", "Pillar", "People", "Door", "Others", "Road", "Background"]
 binary_class_names = ["Risk", "Road"]
 model.load_state_dict(torch.load("model.pth.tar"))
@@ -53,6 +69,7 @@ val_test_trans = transforms.Compose(([
     transforms.ToTensor(),  # divides by 255
 ]))
 
+# Flip helper copied from training; unused here (test set uses train=0). Same flip(1) bug.
 def random_augmentation(image, label_list, seq_list):
     image = image.flip(1)
     n_groups = len(seq_list)
@@ -73,6 +90,7 @@ def random_augmentation(image, label_list, seq_list):
     return image, new_label_list
 
 
+# Dataset returning (image_tensor, label_tensor[210]); train=0 -> no flip.
 class MultiLabelRGBataSet(torch.utils.data.Dataset):
     def __init__(self, imgspath, imgslist, annotationpath, transforms=None, train=1):
         self.imgslist = imgslist
@@ -100,6 +118,8 @@ class MultiLabelRGBataSet(torch.utils.data.Dataset):
         label = torch.tensor(label, dtype=torch.float32)
         return img, label
 
+# Rebuilds the training script's split (same calls, same random_state). It only matches if
+# os.listdir returns the same files in the same order as during training.
 img_dir = 'images'
 label_dir = 'labels'
 img_list = os.listdir(img_dir)
@@ -112,11 +132,14 @@ test = MultiLabelRGBataSet(img_dir, test_img, label_dir, val_test_trans, train=0
 test_loader = torch.utils.data.DataLoader(test,
                                            batch_size=args.batch_size,
                                            shuffle=False, num_workers=0)
+# Report entries collected by pred_cm() (see the header for their meaning).
 Gt = []
 Pred = []
 binary_Gt = []
 binary_Pred = []
 
+# Threshold one image's probabilities at 0.5 and turn every (cell, class) bit into Gt/Pred entries.
+# All 30 cells are scored. No 'background wins' rule is applied.
 def pred_cm(original, predicted):
     global Gt
     global Pred
@@ -138,6 +161,7 @@ def pred_cm(original, predicted):
             if prediction == 0 and ground_truth == 1:
                 Pred.append(NumClass+1)
                 Gt.append(index)
+            # Binary report on the Road bit: 1 = safe road, 0 = Risk.
             if index == NumClass:
                 if prediction == 0 and ground_truth == 0:
                     binary_Pred.append(0)
@@ -155,6 +179,7 @@ def pred_cm(original, predicted):
 
 
 
+# Run the model over the test set on the CPU and collect the entries.
 def test(model):
     model.eval()
     with torch.no_grad():
@@ -166,6 +191,7 @@ def test(model):
                 pred_cm(torch.Tensor.cpu(target[i]), torch.Tensor.cpu(output[i]))
 
 
+# Row-normalised confusion matrix showing fractions and raw counts.
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -199,6 +225,9 @@ def plot_confusion_matrix(cm, classes,
 
 
 # from shutil import copyfile
+# ---- Run and print the reports ----
+# sklearn's report also prints the 'Background' dummy row and macro / weighted averages over ALL
+# rows; the paper's 'All' column is the mean over the object classes only.
 test(model)
 print(metrics.classification_report(Gt, Pred, target_names=class_names, digits=4))
 matrix = confusion_matrix(Gt, Pred)

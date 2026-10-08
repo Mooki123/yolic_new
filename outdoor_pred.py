@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# outdoor_pred.py  -  QUALITATIVE visualisation for the outdoor model
+# ========================================================================================
+# For every test image: run the model, draw a coloured rectangle on each cell where something was
+# predicted, write the predicted class names inside it, and save the picture to
+# ./Outdoor_mobilenet/<name>.jpg. No metrics are computed.
+# This file is also the only place where the outdoor cell geometry (points_list / cell_list,
+# pixel coordinates of the 848x480 frame) is written down.
+# NOTE: images are read with cv2 (BGR channel order) and fed to the model without conversion to
+# RGB, while training used PIL (RGB), so predictions here can be a little worse than in eval.
+# ========================================================================================
 
 import itertools
 
@@ -19,6 +30,7 @@ import os.path
 import matplotlib.pyplot as plt
 import os
 
+# Options copied from training; only --seed has an effect here.
 parser = argparse.ArgumentParser(description='PyTorch Training Script')
 parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
@@ -41,12 +53,23 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
+# Same problem size as training: 104 cells x 12 bits.
 NumCell = 104  # number of cells
 NumClass = 11  # number of classes except background class
 model = mobilenet_v2()  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
+# Weights expected at ./weights/mobilenet_outdoor.pth.tar. The model stays on the CPU.
 model.load_state_dict(torch.load("./weights/mobilenet_outdoor.pth.tar"))
 save_name = 'Outdoor_mobilenet'  # name of the model
+# ---- Cell geometry (pixels of the original 848x480 frame) ----
+# points_list holds grid corner points; each entry of cell_list is a rectangle
+# [top-left point, bottom-right point]. The 104 cells, in label order, are:
+#   cells   0-7   : 8 cells of 34x34 px,  y 166-200 (far away, near the horizon)
+#   cells   8-19  : 12 cells of 34x34 px, y 200-234
+#   cells  20-31  : 12 cells of 34x34 px, y 234-268
+#   cells  32-95  : 4 rows x 16 cells of 53x53 px, y 268-480 (full width, the nearest road)
+#   cells  96-103 : 8 cells of 60x60 px at the top, y 0-60, x 184-664 (for traffic signs)
+# The layout is left-right symmetric about x = 424, which the flip permutation in training uses.
 points_list = [(288, 166), (322, 166), (356, 166), (390, 166), (424, 166), (458, 166), (492, 166), (526, 166),
                (220, 200), (254, 200), (288, 200), (322, 200), (356, 200), (390, 200), (424, 200), (458, 200),
                (492, 200), (526, 200), (560, 200), (594, 200),
@@ -114,10 +137,13 @@ cell_list = [[points_list[0], points_list[11]], [points_list[1], points_list[12]
             [points_list[132], points_list[140]],
             [points_list[133], points_list[141]], [points_list[134], points_list[142]],
             [points_list[135], points_list[143]], [points_list[136], points_list[144]]]
+# Names of bits 0-10; index 11 (the Road / background bit) is called 'Background' here.
+# color_box: one BGR drawing colour per object class.
 class_names = ["Bump", "Column", "Dent", "Fence", "Creature", "Vehicle", "Wall", "Weed", "ZebraCrossing", "TrafficCone",
                "TrafficSign", "Background"]
 color_box = [(10, 249, 72), (151, 157, 255), (134, 219, 61), (52, 147, 26), (29, 178, 255), (31, 112, 255), (49, 210, 207),
          (23, 204, 146), (56, 56, 255), (187, 212, 0), (168, 153, 44)]
+# Flip helper copied from training; not used in this script.
 def random_augmentation(image, label_list, seq_list):
     # flip image horizontally
     image = image.flip(1)
@@ -142,6 +168,8 @@ def random_augmentation(image, label_list, seq_list):
         new_label_list.extend(group)
 
     return image, new_label_list
+# Dataset for visualisation: returns the ORIGINAL full-size frame as a cv2 array (BGR, H x W x 3,
+# uint8), its label tensor and the file name. No transforms are applied here.
 class MultiLabelRGBataSet(torch.utils.data.Dataset):
     def __init__(self, imgspath, imgslist, annotationpath, transforms=None, train=1):
         self.imgslist = imgslist
@@ -163,12 +191,19 @@ class MultiLabelRGBataSet(torch.utils.data.Dataset):
         label = torch.tensor(label, dtype=torch.float32)
         return img, label, filename
 
+# Same split as training -> only the test images are visualised.
 img_dir = 'images'
 label_dir = 'yoliclabel'
 img_list = os.listdir(img_dir)
 train_img, Val_Test = train_test_split(img_list, test_size=0.3, random_state=2)
 val_img, test_img = train_test_split(Val_Test, test_size=0.6666, random_state=2)
 test_dataset = MultiLabelRGBataSet(img_dir, test_img, label_dir, train=0)
+# ---- Draw the predictions for one frame ----
+# frame: full-size BGR image   original: GT labels (unused)   output: probabilities (1248,)
+# For each cell: threshold at 0.5. If the cell is not 'normal' (only the Road bit set), draw its
+# rectangle in the colour of the first predicted class and write the class names in it.
+# If no bit at all is above 0.5, fall back to the highest-scoring bit, and skip the cell if that
+# is the background bit.
 def pred_plot(frame, original, output):
     orig = original.detach().numpy()
     output = output.detach().numpy()
@@ -179,6 +214,7 @@ def pred_plot(frame, original, output):
         x1, y1 = rect[0]
         x2, y2 = rect[1]
         # cv2.rectangle(frame, tuple(rect[0]), tuple(rect[1]), color=(0, 0, 0), thickness=3)
+        # Predicted bits of this cell. The commented line below would draw the ground truth instead.
         each = pred[cell:cell + NumClass + 1]
         eachScore = output[cell:cell + NumClass + 1]
         # each = orig[cell:cell + NumClass + 1]
@@ -188,8 +224,12 @@ def pred_plot(frame, original, output):
                 index.append(eachScore.argmax())
                 if eachScore.argmax() == NumClass:
                     continue
+            # English: centre of the rectangle and (next line) its area in pixels.
             center_x, center_y = (x1 + x2) // 2, (y1 + y2) // 2  # 计算矩形中心点
             poly_area = (x2 - x1) * (y2 - y1)  # 计算矩形面积
+            # English for the Chinese comments below: default font size (tune as needed); 'texts' collects
+            # (text, pixel size, scale) for each label; max_text_len = number of labels to write. The
+            # font is shrunk when several labels must share one cell.
             default_text_scale = 0.4  # 这是默认的字体大小，可以根据你的需要进行调整
             texts = []  # 用于存储所有的文本和对应的大小
             max_text_len = len(index)  # 计算最长的文本长度
@@ -197,12 +237,15 @@ def pred_plot(frame, original, output):
                 text_scale = default_text_scale * min(1, np.sqrt(poly_area) / max_text_len)
             else:
                 text_scale = min(max(poly_area / 10000, 0.3), 0.6)
+            # Skip the background bit; collect each class name with its rendered text size.
             for i in index:
                 if i == NumClass:
                     continue
                 text_size, _ = cv2.getTextSize(class_names[i], cv2.FONT_HERSHEY_SIMPLEX, text_scale, 2)
                 texts.append((class_names[i], text_size, text_scale))
             text_origin = [center_x, center_y - sum(text[1][1] for text in texts) // 2]
+            # English: line spacing between label lines. In the loop, x is recomputed per line so the
+            # text stays centred, and y advances by part of the text height before and after each line.
             line_spacing = 0.7  # 行间距，可以根据需要调整
             color = color_box[index[0]]
             for text, text_size, text_scale in texts:
@@ -210,14 +253,19 @@ def pred_plot(frame, original, output):
                 text_origin[1] += int(text_size[1] * line_spacing)  # y坐标加上当前行文本的高度的一部分
                 cv2.putText(frame, text, tuple(text_origin), cv2.FONT_HERSHEY_SIMPLEX, text_scale, (255, 255, 255), 1)
                 text_origin[1] += int(text_size[1] * line_spacing)  # y坐标再加上当前行文本的高度的一部分，为下一行文本做准备
+            # Draw the cell outline (thickness 3) in the class colour.
             cv2.rectangle(frame, tuple(rect[0]), tuple(rect[1]), color=color, thickness=3)
+        # Move on to the next cell's 12 bits.
         cell += NumClass + 1
     return frame
 
 
+# Only ToTensor (H x W x C uint8 -> C x H x W float in [0, 1]); resizing happens in test().
 preprocess = transforms.Compose([transforms.ToTensor()])
 
 
+# For each test image: resize to 224x224 with cv2 (still BGR), run the model, draw the predictions
+# on the full-size frame and save it as a JPEG.
 def test():
     model.eval()
     with torch.no_grad():
@@ -231,6 +279,7 @@ def test():
             cv2.imwrite(os.path.join(path, filename + ".jpg"), frame)
 
 
+# Create the output folder ./Outdoor_mobilenet if needed, then process every test image.
 current_path = os.getcwd()
 path = os.path.join(current_path, save_name)
 if not os.path.exists(path):

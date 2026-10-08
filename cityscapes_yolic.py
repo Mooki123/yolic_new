@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# cityscapes_yolic.py  -  TRAINING script for YOLIC on Cityscapes (public benchmark)
+# ========================================================================================
+# Labels are not hand-made here: cityscapes.py converts the pixel masks into cell labels.
+#   256 rectangular cells x 4 bits (People, Vehicle, Other, Road/background) = 1024 outputs.
+# Same network and recipe as the in-house datasets: MobileNetV2 + widened Linear layer,
+# sigmoid + BCE, Adam 1e-3, 150 epochs, LR x0.1 at epochs 100 and 125, 224x224 input.
+# Expected data: Datasets/Cityscapes/leftImg8bit/{train,val} and gtFine/{train,val}.
+# Outputs: cityscapes_mobilenet.pth.tar (best weights) and cityscapes_mobilenet.csv.
+# NOTE: the official val split is used as the TEST set, and the 'best' checkpoint is chosen by
+# accuracy on the (augmented) TRAINING set; there is no separate validation set.
+# ========================================================================================
 from torch.optim.lr_scheduler import MultiStepLR
 import argparse
 import numpy as np
@@ -14,6 +26,7 @@ import os
 from torchvision.models import mobilenet_v2, MobileNet_V2_Weights
 from cityscapes import Cityscapes
 
+# Command-line options; --resume is parsed but never used.
 parser = argparse.ArgumentParser(description='PyTorch Training Script')
 parser.add_argument('--batch_size', type=int, default=32, metavar='N',
                     help='input batch size for training (default: 64)')
@@ -28,8 +41,17 @@ parser.add_argument('--log-interval', type=int, default=25, metavar='N',
 parser.add_argument('--resume', type=bool, default=True, metavar='N',
                     help='resume from the last weights')
 
+# 256 cells x (3 object groups + 1 background bit) = 1024 outputs per image.
 NumCell = 256  # number of cells
 NumClass = 3  # number of classes
+# ---- Cell geometry, in pixels of the 2048x1024 Cityscapes frame ----
+# Each cell is [[x1, y1], [x2, y2]] (top-left, bottom-right), listed row by row, left to right:
+#   cells   0-159 : 10 rows x 16 cells of 64x32 px covering x 512-1536, y 320-640
+#                   (the central band where distant objects appear)
+#   cells 160-255 : 6 rows x 16 cells of 128x64 px covering the full width, y 640-1024
+#                   (the road close to the car)
+# After the frame is squashed to 224x224, a small cell is only about 7x7 px and a large one
+# about 14x14 px. The sky above y=320 and the sides of the central band have no cells.
 cell_list = [[[512, 320], [576, 352]], [[576, 320], [640, 352]], [[640, 320], [704, 352]], [[704, 320], [768, 352]],
              [[768, 320], [832, 352]], [[832, 320], [896, 352]], [[896, 320], [960, 352]], [[960, 320], [1024, 352]],
              [[1024, 320], [1088, 352]], [[1088, 320], [1152, 352]], [[1152, 320], [1216, 352]],
@@ -104,10 +126,18 @@ cell_list = [[[512, 320], [576, 352]], [[576, 320], [640, 352]], [[640, 320], [7
              [[896, 960], [1024, 1024]], [[1024, 960], [1152, 1024]], [[1152, 960], [1280, 1024]],
              [[1280, 960], [1408, 1024]], [[1408, 960], [1536, 1024]], [[1536, 960], [1664, 1024]],
              [[1664, 960], [1792, 1024]], [[1792, 960], [1920, 1024]], [[1920, 960], [2048, 1024]]]
+# One tuple of (custom) train ids per output bit - see the table in cityscapes.py:
+#   People  = (11 person, 12 rider)
+#   Vehicle = (13 car, 14 truck, 15 bus, 16 train, 17 motorcycle, 18 bicycle - and polegroup!)
+#   Other   = (1 sidewalk, 2 building, 3 wall, 4 fence, 5 pole, 6 traffic light, 7 traffic sign,
+#              8 vegetation, 9 terrain, 10 sky, 25 dynamic, 21 guard rail, 20 bridge, 19 tunnel)
+#   Road    = (0 road, 23 parking, 22 rail track, 24 ground) - the background bit; in practice it
+#             means 'no object in this cell' (see encode_cell in cityscapes.py).
 interested_classes = [(11, 12), (13, 14, 15, 16, 17, 18),
                       (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 21, 20, 19), (0, 23, 22, 24)]
 
 save_name = 'cityscapes_mobilenet'  # name of the model
+# ImageNet-pretrained MobileNetV2 with the last Linear widened to 1024 outputs (one per cell bit).
 model = mobilenet_v2(weights=MobileNet_V2_Weights.DEFAULT)  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
 optimizer = optim.Adam(model.parameters(), lr=0.001)  # optimizer and learning rate
@@ -115,10 +145,13 @@ torch.cuda.empty_cache()
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
+# Seeds torch (and, through it, the DataLoader workers).
 torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
+# Image transforms, applied after the flip / crop inside the Dataset: 224x224 squash, colour jitter
+# with the maximum hue shift (0.5), no ImageNet normalisation.
 train_trans = transforms.Compose(([
 
     transforms.Resize((224, 224)),
@@ -129,6 +162,9 @@ val_test_trans = transforms.Compose(([
     transforms.Resize((224, 224)),
     transforms.ToTensor()  # divides by 255
 ]))
+# Training data = Cityscapes train split (2,975 images, with flip / rescale-crop augmentation).
+# 'val_dataset' = the official val split (500 images), used here as the test set.
+# num_workers=8 decodes 2048x1024 PNGs in parallel; reduce it if RAM is short.
 root = 'Datasets/Cityscapes'
 train_dataset = Cityscapes(root, cell_list=cell_list, interested_classes=interested_classes, split='train',
                            target_type='semantic', transform=train_trans)
@@ -144,10 +180,14 @@ valid_loader = torch.utils.data.DataLoader(val_dataset,
 if args.cuda:
     model.cuda()
 
+# Sigmoid + binary cross-entropy over all 1024 bits; LR x0.1 at epochs 100 and 125.
 criterion = nn.BCEWithLogitsLoss()
 scheduler = MultiStepLR(optimizer, milestones=[100, 125], gamma=0.1)
 
 
+# ---- Per-image accuracy (same definition as the outdoor / indoor scripts) ----
+# Returns fractions in [0, 1]: share of cells with all 4 bits right, and share of cells where the
+# safe / hazard decision is right ('normal' = only the Road bit set).
 def pred_acc(original, predicted):
     pred = torch.round(predicted).detach().numpy().astype(np.int64)
     orig = original.detach().numpy()
@@ -166,6 +206,7 @@ def pred_acc(original, predicted):
     return num / NumCell, (num + enum) / NumCell
 
 
+# ---- One training epoch: forward -> BCE loss -> backward -> Adam step ----
 def train(epoch, model):
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
@@ -183,9 +224,13 @@ def train(epoch, model):
                        100. * batch_idx / len(train_loader), loss.item()))
 
 
+# Best TRAINING-set exact-cell accuracy so far (used for checkpoint selection).
 best_correct = -999
 
 
+# ---- Evaluate on the TRAINING loader and save the best weights ----
+# NOTE: this iterates train_loader (augmentation still on) and keeps the checkpoint with the best
+# training accuracy. The paper says training and validation were both done on the training set.
 def evaluate(model):
     model.eval()
     running_loss = []
@@ -225,6 +270,7 @@ def evaluate(model):
     return total_batch_loss, total_batch_acc
 
 
+# ---- Evaluate on the official val split (the test set); only logged, never used for selection ----
 def test(model):
     model.eval()
     running_loss = []
@@ -256,6 +302,7 @@ def test(model):
     return total_batch_loss, total_batch_acc
 
 
+# ---- Main loop: train, evaluate on train (saves best), test on val; curves -> CSV at the end ----
 if __name__ == '__main__':
     import datetime
     start_time = datetime.datetime.now()

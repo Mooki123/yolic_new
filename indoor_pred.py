@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ========================================================================================
+# indoor_pred.py  -  QUALITATIVE visualisation for the indoor model
+# ========================================================================================
+# For every test image: run the model, outline each non-empty polygon cell in yellow, write the
+# class names inside it, and save the result to ./mobilenet_indoor/<name>.jpg.
+# This file is the only place where the 30 indoor polygon cells are defined.
+# NOTE (as released): pred_plot draws the GROUND-TRUTH labels, not the model's predictions - the
+# line that uses 'pred' is commented out (see pred_plot).
+# NOTE: images are read with cv2 (BGR) and fed to the model without conversion to RGB, while
+# training used PIL (RGB).
+# ========================================================================================
 
 import itertools
 
@@ -19,6 +30,7 @@ import os.path
 import matplotlib.pyplot as plt
 import os
 
+# Options copied from training; only --seed has an effect here.
 parser = argparse.ArgumentParser(description='PyTorch Training Script')
 parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
@@ -41,9 +53,16 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
+# 30 polygon cells x (6 classes + 1 Road bit) = 210 outputs.
 NumCell = 30  # number of cells
 NumClass = 6  # number of classes except background class
 
+# ---- Cell geometry (pixels of an 848x480 frame) ----
+# Each entry is one polygon cell, written as a flat list x1, y1, x2, y2, ..., in label order.
+# Rows from the top of the image down: 8 cells (y 0-54), 8 cells (y 54-102), 6 cells (y 102 to
+# about 216), 4 cells (about y 178-338) and 4 cells (y 338-480). Edges follow the perspective of
+# the scene; the long point lists trace curved boundaries. The layout is symmetric about x = 424,
+# which the flip permutation in training relies on.
 polygonList = [[0, 0, 151, 0, 52, 54, 0, 54], [151, 0, 254, 0, 191, 54, 52, 54], [254, 0, 359, 0, 334, 54, 191, 54],
                [359, 0, 424, 0, 424, 54, 334, 54], [489, 0, 424, 0, 424, 54, 514, 54],
                [594, 0, 489, 0, 514, 54, 657, 54], [697, 0, 594, 0, 657, 54, 796, 54],
@@ -74,20 +93,24 @@ polygonList = [[0, 0, 151, 0, 52, 54, 0, 54], [151, 0, 254, 0, 191, 54, 52, 54],
                [645, 338, 424, 338, 424, 480, 711, 480], [848, 338, 645, 338, 711, 480, 848, 480]]
 model = mobilenet_v2()  # load the model
 model.classifier[1] = nn.Linear(1280, NumCell * (NumClass + 1))
+# Weights expected at ./weights/mobilenet_indoor.pth.tar; the model runs on the CPU.
 model.load_state_dict(torch.load("./weights/mobilenet_indoor.pth.tar"))
 
 save_name = 'mobilenet_indoor'  # name of the model
+# 0-5 objects, 6 = Road (background bit), 7 = 'Background' (unused here).
 class_names = ["Sofa", "Wall", "Pillar", "People", "Door", "Others", "Road", "Background"]
 binary_class_names = ["Risk", "Road"]
 
 
 
+# Defined but unused: test() resizes with cv2 instead.
 val_test_trans = transforms.Compose(([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),  # divides by 255
 ]))
 
 
+# Returns the full-size cv2 frame (BGR uint8), its 210-bit label tensor and the file name.
 class MultiLabelRGBataSet(torch.utils.data.Dataset):
     def __init__(self, imgspath, imgslist, annotationpath):
         self.imgslist = imgslist
@@ -108,6 +131,7 @@ class MultiLabelRGBataSet(torch.utils.data.Dataset):
         return img, label, filename
 
 
+# Same split as training -> only the test images are visualised.
 img_dir = 'images'
 label_dir = 'labels'
 img_list = os.listdir(img_dir)
@@ -116,6 +140,7 @@ val_img, test_img = train_test_split(Val_Test, test_size=0.6666, random_state=2)
 
 testSet = MultiLabelRGBataSet(img_dir, test_img, label_dir)
 
+# Centroid of a polygon (shoelace formula), used to place the text labels.
 def polygon_center(points):
     x = [p[0] for p in points]
     y = [p[1] for p in points]
@@ -125,6 +150,10 @@ def polygon_center(points):
     center_y = sum((y[i-1] + y[i]) * (x[i-1]*y[i] - x[i]*y[i-1]) for i in range(length)) / (6*area)
     return int(center_x), int(center_y)
 
+# ---- Draw one frame ----
+# frame: full-size BGR image   original: GT labels   output: probabilities (210,)
+# For each polygon cell that is not 'normal' (only the Road bit set), draw its outline in yellow
+# and write the class names at its centroid.
 def pred_plot(frame, original, output):
     orig = original.detach().numpy()
     output = output.detach().numpy()
@@ -133,6 +162,8 @@ def pred_plot(frame, original, output):
     normal = np.asarray([0] * NumClass + [1])
     for polygon in polygonList:
         points = [(x, y) for x, y in zip(polygon[0::2], polygon[1::2])]
+        # NOTE: as released, the ground truth ('orig', two lines down) is drawn, not the prediction.
+        # To draw predictions, use the commented 'pred' line and comment out the 'orig' line.
         # each = pred[cell:cell + NumClass + 1]
         eachScore = output[cell:cell + NumClass + 1]
         each = orig[cell:cell + NumClass + 1]
@@ -144,6 +175,9 @@ def pred_plot(frame, original, output):
                     continue
             center_x, center_y = polygon_center(points)
             poly_area = cv2.contourArea(np.array(points, np.int32))
+            # English for the Chinese comments below: default font size (tune as needed); 'texts' collects
+            # (text, pixel size, scale) for each label; max_text_len = number of labels to write. The
+            # font is shrunk when several labels must share one cell.
             default_text_scale = 0.4  # 这是默认的字体大小，可以根据你的需要进行调整
             texts = []  # 用于存储所有的文本和对应的大小
             max_text_len = len(index)  # 计算最长的文本长度
@@ -151,16 +185,21 @@ def pred_plot(frame, original, output):
                 text_scale = default_text_scale * min(1, np.sqrt(poly_area) / max_text_len)
             else:
                 text_scale = min(max(poly_area / 10000, 0.3), 0.6)
+            # Unlike the outdoor script, the background bit is not skipped, so 'Road' can be written in a cell
+            # that also contains an object.
             for i in index:
                 text_size, _ = cv2.getTextSize(class_names[i], cv2.FONT_HERSHEY_SIMPLEX, text_scale, 2)
                 texts.append((class_names[i], text_size, text_scale))
             text_origin = [center_x, center_y - sum(text[1][1] for text in texts) // 2]
+            # English: line spacing between label lines. In the loop, x is recomputed per line so the
+            # text stays centred, and y advances by part of the text height before and after each line.
             line_spacing = 0.7  # 行间距，可以根据需要调整
             for text, text_size, text_scale in texts:
                 text_origin[0] = center_x - text_size[0] // 2  # 每行的x坐标需要重新计算以保证居中
                 text_origin[1] += int(text_size[1] * line_spacing) # y坐标加上当前行文本的高度的一部分
                 cv2.putText(frame, text, tuple(text_origin), cv2.FONT_HERSHEY_SIMPLEX, text_scale, (255, 255, 255), 1)
                 text_origin[1] += int(text_size[1] * line_spacing)  # y坐标再加上当前行文本的高度的一部分，为下一行文本做准备
+            # Draw the polygon outline in yellow (BGR 0, 255, 255).
             cv2.polylines(frame, [np.array(points, np.int32)], isClosed=True, color=(0, 255, 255), thickness=3)
         cell += NumClass + 1
     # cv2.imshow("frame", frame)
@@ -168,9 +207,11 @@ def pred_plot(frame, original, output):
     return frame
 
 
+# ToTensor only; resizing to 224x224 is done with cv2 in test().
 preprocess = transforms.Compose([transforms.ToTensor()])
 
 
+# Resize each test frame to 224x224 (still BGR), predict, draw on the full-size frame, save a JPEG.
 def test():
     model.eval()
     with torch.no_grad():
@@ -184,6 +225,7 @@ def test():
             cv2.imwrite(os.path.join(path, filename + ".jpg"), frame)
 
 
+# Create ./mobilenet_indoor if needed and process the test set.
 current_path = os.getcwd()
 path = os.path.join(current_path, save_name)
 if not os.path.exists(path):
