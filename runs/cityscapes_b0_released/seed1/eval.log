@@ -1,0 +1,25 @@
+              precision    recall  f1-score   support
+
+      People     0.7486    0.6135    0.6744     10089
+     Vehicle     0.8816    0.8395    0.8600     25806
+       Other     0.9163    0.9321    0.9241     50193
+        Road     0.9696    0.9595    0.9646     63109
+  Background     0.0000    0.0000    0.0000     11159
+
+    accuracy                         0.8431    160356
+   macro avg     0.7032    0.6689    0.6846    160356
+weighted avg     0.8574    0.8431    0.8497    160356
+
+/home/bhavya/dev/yolic_new/runs/cityscapes_b0_released/seed1/cityscapes_eval.py:249: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+              precision    recall  f1-score   support
+
+        Risk     0.9611    0.9708    0.9659     64891
+        Road     0.9696    0.9595    0.9646     63109
+
+    accuracy                         0.9652    128000
+   macro avg     0.9653    0.9652    0.9652    128000
+weighted avg     0.9653    0.9652    0.9652    128000
+
+/home/bhavya/dev/yolic_new/runs/cityscapes_b0_released/seed1/cityscapes_eval.py:256: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()

@@ -1,0 +1,5 @@
+train/aachen/aachen_000000_000019
+train/aachen/aachen_000001_000019
+train/aachen/aachen_000002_000019
+train/aachen/aachen_000003_000019
+train/aachen/aachen_000004_000019

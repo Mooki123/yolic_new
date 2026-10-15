@@ -1,8 +1,16 @@
+# environment and caches
 .venv/
+.pytest_cache/
 __pycache__/
 *.pyc
-.pytest_cache/
+cache/
+
+# local dataset / weights links (e.g. inside the B0 run directory)
 Datasets/
 weights/
-runs/
-cache/
+
+# run artefacts too large for git (checkpoints, cached predictions); configs, logs and metrics.json are kept
+*.pt
+*.pt.tmp
+*.pth.tar
+*.npy

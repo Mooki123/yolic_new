@@ -1,0 +1,1581 @@
+cityscapes_mobilenet
+Train Epoch: 1 [0/2975 (0%)]	Loss: 0.6955999136
+Train Epoch: 1 [800/2975 (27%)]	Loss: 0.3406076133
+Train Epoch: 1 [1600/2975 (54%)]	Loss: 0.3302726150
+Train Epoch: 1 [2400/2975 (81%)]	Loss: 0.2385147214
+
+ Train_loader set: total_batch_loss: 0.2418, total imgs: 2975 , Acc: (0.7123%), Binary ACC: (0.8995%)
+
+New weight!
+
+Test set: total_batch_loss: 0.2357, total imgs: 500 , Acc: (0.7135%), Binary Acc: (0.9103%)
+
+Train Epoch: 2 [0/2975 (0%)]	Loss: 0.2283162028
+Train Epoch: 2 [800/2975 (27%)]	Loss: 0.2289355546
+Train Epoch: 2 [1600/2975 (54%)]	Loss: 0.2187491059
+Train Epoch: 2 [2400/2975 (81%)]	Loss: 0.2113064080
+
+ Train_loader set: total_batch_loss: 0.2066, total imgs: 2975 , Acc: (0.7514%), Binary ACC: (0.9224%)
+
+New weight!
+
+Test set: total_batch_loss: 0.2139, total imgs: 500 , Acc: (0.7401%), Binary Acc: (0.9226%)
+
+Train Epoch: 3 [0/2975 (0%)]	Loss: 0.1917925626
+Train Epoch: 3 [800/2975 (27%)]	Loss: 0.2103277445
+Train Epoch: 3 [1600/2975 (54%)]	Loss: 0.1898216605
+Train Epoch: 3 [2400/2975 (81%)]	Loss: 0.1817950010
+
+ Train_loader set: total_batch_loss: 0.1921, total imgs: 2975 , Acc: (0.7656%), Binary ACC: (0.9286%)
+
+New weight!
+
+Test set: total_batch_loss: 0.2064, total imgs: 500 , Acc: (0.7461%), Binary Acc: (0.9257%)
+
+Train Epoch: 4 [0/2975 (0%)]	Loss: 0.1803227663
+Train Epoch: 4 [800/2975 (27%)]	Loss: 0.1916378140
+Train Epoch: 4 [1600/2975 (54%)]	Loss: 0.1946552098
+Train Epoch: 4 [2400/2975 (81%)]	Loss: 0.1818692237
+
+ Train_loader set: total_batch_loss: 0.1755, total imgs: 2975 , Acc: (0.7832%), Binary ACC: (0.9331%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1880, total imgs: 500 , Acc: (0.7681%), Binary Acc: (0.9308%)
+
+Train Epoch: 5 [0/2975 (0%)]	Loss: 0.1617024541
+Train Epoch: 5 [800/2975 (27%)]	Loss: 0.1828338206
+Train Epoch: 5 [1600/2975 (54%)]	Loss: 0.1523213536
+Train Epoch: 5 [2400/2975 (81%)]	Loss: 0.1561358422
+
+ Train_loader set: total_batch_loss: 0.1634, total imgs: 2975 , Acc: (0.8001%), Binary ACC: (0.9443%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1789, total imgs: 500 , Acc: (0.7815%), Binary Acc: (0.9416%)
+
+Train Epoch: 6 [0/2975 (0%)]	Loss: 0.1683558226
+Train Epoch: 6 [800/2975 (27%)]	Loss: 0.1651112586
+Train Epoch: 6 [1600/2975 (54%)]	Loss: 0.1531273425
+Train Epoch: 6 [2400/2975 (81%)]	Loss: 0.1691552997
+
+ Train_loader set: total_batch_loss: 0.1763, total imgs: 2975 , Acc: (0.7830%), Binary ACC: (0.9245%)
+
+
+Test set: total_batch_loss: 0.1967, total imgs: 500 , Acc: (0.7574%), Binary Acc: (0.9180%)
+
+Train Epoch: 7 [0/2975 (0%)]	Loss: 0.1733675748
+Train Epoch: 7 [800/2975 (27%)]	Loss: 0.1656288654
+Train Epoch: 7 [1600/2975 (54%)]	Loss: 0.1667495668
+Train Epoch: 7 [2400/2975 (81%)]	Loss: 0.1571945250
+
+ Train_loader set: total_batch_loss: 0.1534, total imgs: 2975 , Acc: (0.8081%), Binary ACC: (0.9461%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1722, total imgs: 500 , Acc: (0.7858%), Binary Acc: (0.9421%)
+
+Train Epoch: 8 [0/2975 (0%)]	Loss: 0.1696757823
+Train Epoch: 8 [800/2975 (27%)]	Loss: 0.1843579710
+Train Epoch: 8 [1600/2975 (54%)]	Loss: 0.1778005660
+Train Epoch: 8 [2400/2975 (81%)]	Loss: 0.1605439484
+
+ Train_loader set: total_batch_loss: 0.1554, total imgs: 2975 , Acc: (0.8070%), Binary ACC: (0.9463%)
+
+
+Test set: total_batch_loss: 0.1756, total imgs: 500 , Acc: (0.7848%), Binary Acc: (0.9413%)
+
+Train Epoch: 9 [0/2975 (0%)]	Loss: 0.1405099779
+Train Epoch: 9 [800/2975 (27%)]	Loss: 0.1503837109
+Train Epoch: 9 [1600/2975 (54%)]	Loss: 0.1433437318
+Train Epoch: 9 [2400/2975 (81%)]	Loss: 0.1451425254
+
+ Train_loader set: total_batch_loss: 0.1516, total imgs: 2975 , Acc: (0.8095%), Binary ACC: (0.9410%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1703, total imgs: 500 , Acc: (0.7876%), Binary Acc: (0.9364%)
+
+Train Epoch: 10 [0/2975 (0%)]	Loss: 0.1472953707
+Train Epoch: 10 [800/2975 (27%)]	Loss: 0.1518872082
+Train Epoch: 10 [1600/2975 (54%)]	Loss: 0.1520574689
+Train Epoch: 10 [2400/2975 (81%)]	Loss: 0.1517081112
+
+ Train_loader set: total_batch_loss: 0.1368, total imgs: 2975 , Acc: (0.8274%), Binary ACC: (0.9550%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1594, total imgs: 500 , Acc: (0.8038%), Binary Acc: (0.9481%)
+
+Train Epoch: 11 [0/2975 (0%)]	Loss: 0.1361770183
+Train Epoch: 11 [800/2975 (27%)]	Loss: 0.1407268047
+Train Epoch: 11 [1600/2975 (54%)]	Loss: 0.1259544343
+Train Epoch: 11 [2400/2975 (81%)]	Loss: 0.1407121122
+
+ Train_loader set: total_batch_loss: 0.1372, total imgs: 2975 , Acc: (0.8262%), Binary ACC: (0.9529%)
+
+
+Test set: total_batch_loss: 0.1607, total imgs: 500 , Acc: (0.7992%), Binary Acc: (0.9473%)
+
+Train Epoch: 12 [0/2975 (0%)]	Loss: 0.1224392205
+Train Epoch: 12 [800/2975 (27%)]	Loss: 0.1320737600
+Train Epoch: 12 [1600/2975 (54%)]	Loss: 0.1342367679
+Train Epoch: 12 [2400/2975 (81%)]	Loss: 0.1446108222
+
+ Train_loader set: total_batch_loss: 0.1327, total imgs: 2975 , Acc: (0.8319%), Binary ACC: (0.9557%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1585, total imgs: 500 , Acc: (0.8042%), Binary Acc: (0.9482%)
+
+Train Epoch: 13 [0/2975 (0%)]	Loss: 0.1234796345
+Train Epoch: 13 [800/2975 (27%)]	Loss: 0.1371634603
+Train Epoch: 13 [1600/2975 (54%)]	Loss: 0.1549235284
+Train Epoch: 13 [2400/2975 (81%)]	Loss: 0.1492647380
+
+ Train_loader set: total_batch_loss: 0.1315, total imgs: 2975 , Acc: (0.8341%), Binary ACC: (0.9564%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1561, total imgs: 500 , Acc: (0.8054%), Binary Acc: (0.9473%)
+
+Train Epoch: 14 [0/2975 (0%)]	Loss: 0.1383413523
+Train Epoch: 14 [800/2975 (27%)]	Loss: 0.1463092566
+Train Epoch: 14 [1600/2975 (54%)]	Loss: 0.1453676373
+Train Epoch: 14 [2400/2975 (81%)]	Loss: 0.1219653487
+
+ Train_loader set: total_batch_loss: 0.1318, total imgs: 2975 , Acc: (0.8337%), Binary ACC: (0.9546%)
+
+
+Test set: total_batch_loss: 0.1584, total imgs: 500 , Acc: (0.8042%), Binary Acc: (0.9467%)
+
+Train Epoch: 15 [0/2975 (0%)]	Loss: 0.1361960322
+Train Epoch: 15 [800/2975 (27%)]	Loss: 0.1173996925
+Train Epoch: 15 [1600/2975 (54%)]	Loss: 0.1370462179
+Train Epoch: 15 [2400/2975 (81%)]	Loss: 0.1237954050
+
+ Train_loader set: total_batch_loss: 0.1294, total imgs: 2975 , Acc: (0.8349%), Binary ACC: (0.9510%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1593, total imgs: 500 , Acc: (0.8044%), Binary Acc: (0.9436%)
+
+Train Epoch: 16 [0/2975 (0%)]	Loss: 0.1250401288
+Train Epoch: 16 [800/2975 (27%)]	Loss: 0.1114670038
+Train Epoch: 16 [1600/2975 (54%)]	Loss: 0.1194564402
+Train Epoch: 16 [2400/2975 (81%)]	Loss: 0.1393089890
+
+ Train_loader set: total_batch_loss: 0.1249, total imgs: 2975 , Acc: (0.8410%), Binary ACC: (0.9576%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1517, total imgs: 500 , Acc: (0.8111%), Binary Acc: (0.9504%)
+
+Train Epoch: 17 [0/2975 (0%)]	Loss: 0.1423047185
+Train Epoch: 17 [800/2975 (27%)]	Loss: 0.1406644583
+Train Epoch: 17 [1600/2975 (54%)]	Loss: 0.1293793321
+Train Epoch: 17 [2400/2975 (81%)]	Loss: 0.1254538596
+
+ Train_loader set: total_batch_loss: 0.1224, total imgs: 2975 , Acc: (0.8438%), Binary ACC: (0.9602%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1515, total imgs: 500 , Acc: (0.8131%), Binary Acc: (0.9515%)
+
+Train Epoch: 18 [0/2975 (0%)]	Loss: 0.1321821958
+Train Epoch: 18 [800/2975 (27%)]	Loss: 0.1287656426
+Train Epoch: 18 [1600/2975 (54%)]	Loss: 0.1271889061
+Train Epoch: 18 [2400/2975 (81%)]	Loss: 0.1129648164
+
+ Train_loader set: total_batch_loss: 0.1193, total imgs: 2975 , Acc: (0.8465%), Binary ACC: (0.9601%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1489, total imgs: 500 , Acc: (0.8101%), Binary Acc: (0.9514%)
+
+Train Epoch: 19 [0/2975 (0%)]	Loss: 0.1275231242
+Train Epoch: 19 [800/2975 (27%)]	Loss: 0.1282991767
+Train Epoch: 19 [1600/2975 (54%)]	Loss: 0.1093919873
+Train Epoch: 19 [2400/2975 (81%)]	Loss: 0.1432763040
+
+ Train_loader set: total_batch_loss: 0.1184, total imgs: 2975 , Acc: (0.8491%), Binary ACC: (0.9620%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1506, total imgs: 500 , Acc: (0.8161%), Binary Acc: (0.9531%)
+
+Train Epoch: 20 [0/2975 (0%)]	Loss: 0.1186893284
+Train Epoch: 20 [800/2975 (27%)]	Loss: 0.1180498004
+Train Epoch: 20 [1600/2975 (54%)]	Loss: 0.1328873634
+Train Epoch: 20 [2400/2975 (81%)]	Loss: 0.1257934868
+
+ Train_loader set: total_batch_loss: 0.1150, total imgs: 2975 , Acc: (0.8519%), Binary ACC: (0.9635%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1489, total imgs: 500 , Acc: (0.8177%), Binary Acc: (0.9549%)
+
+Train Epoch: 21 [0/2975 (0%)]	Loss: 0.1202371120
+Train Epoch: 21 [800/2975 (27%)]	Loss: 0.1178148985
+Train Epoch: 21 [1600/2975 (54%)]	Loss: 0.1117161736
+Train Epoch: 21 [2400/2975 (81%)]	Loss: 0.1297221780
+
+ Train_loader set: total_batch_loss: 0.1169, total imgs: 2975 , Acc: (0.8504%), Binary ACC: (0.9617%)
+
+
+Test set: total_batch_loss: 0.1496, total imgs: 500 , Acc: (0.8124%), Binary Acc: (0.9519%)
+
+Train Epoch: 22 [0/2975 (0%)]	Loss: 0.1326403320
+Train Epoch: 22 [800/2975 (27%)]	Loss: 0.1111631542
+Train Epoch: 22 [1600/2975 (54%)]	Loss: 0.1119952574
+Train Epoch: 22 [2400/2975 (81%)]	Loss: 0.1238072887
+
+ Train_loader set: total_batch_loss: 0.1121, total imgs: 2975 , Acc: (0.8553%), Binary ACC: (0.9648%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1457, total imgs: 500 , Acc: (0.8194%), Binary Acc: (0.9553%)
+
+Train Epoch: 23 [0/2975 (0%)]	Loss: 0.1109680533
+Train Epoch: 23 [800/2975 (27%)]	Loss: 0.1180042773
+Train Epoch: 23 [1600/2975 (54%)]	Loss: 0.1150318682
+Train Epoch: 23 [2400/2975 (81%)]	Loss: 0.1182500646
+
+ Train_loader set: total_batch_loss: 0.1140, total imgs: 2975 , Acc: (0.8522%), Binary ACC: (0.9633%)
+
+
+Test set: total_batch_loss: 0.1508, total imgs: 500 , Acc: (0.8120%), Binary Acc: (0.9513%)
+
+Train Epoch: 24 [0/2975 (0%)]	Loss: 0.1147780493
+Train Epoch: 24 [800/2975 (27%)]	Loss: 0.1034748703
+Train Epoch: 24 [1600/2975 (54%)]	Loss: 0.1197080463
+Train Epoch: 24 [2400/2975 (81%)]	Loss: 0.1240836158
+
+ Train_loader set: total_batch_loss: 0.1108, total imgs: 2975 , Acc: (0.8570%), Binary ACC: (0.9643%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1463, total imgs: 500 , Acc: (0.8184%), Binary Acc: (0.9533%)
+
+Train Epoch: 25 [0/2975 (0%)]	Loss: 0.1271934509
+Train Epoch: 25 [800/2975 (27%)]	Loss: 0.1357622147
+Train Epoch: 25 [1600/2975 (54%)]	Loss: 0.1228586733
+Train Epoch: 25 [2400/2975 (81%)]	Loss: 0.1112267226
+
+ Train_loader set: total_batch_loss: 0.1091, total imgs: 2975 , Acc: (0.8589%), Binary ACC: (0.9657%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1462, total imgs: 500 , Acc: (0.8218%), Binary Acc: (0.9552%)
+
+Train Epoch: 26 [0/2975 (0%)]	Loss: 0.1307190061
+Train Epoch: 26 [800/2975 (27%)]	Loss: 0.1105932742
+Train Epoch: 26 [1600/2975 (54%)]	Loss: 0.1252644658
+Train Epoch: 26 [2400/2975 (81%)]	Loss: 0.1011958718
+
+ Train_loader set: total_batch_loss: 0.1058, total imgs: 2975 , Acc: (0.8625%), Binary ACC: (0.9664%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1434, total imgs: 500 , Acc: (0.8232%), Binary Acc: (0.9541%)
+
+Train Epoch: 27 [0/2975 (0%)]	Loss: 0.1069654375
+Train Epoch: 27 [800/2975 (27%)]	Loss: 0.1119164973
+Train Epoch: 27 [1600/2975 (54%)]	Loss: 0.1222432181
+Train Epoch: 27 [2400/2975 (81%)]	Loss: 0.1076286882
+
+ Train_loader set: total_batch_loss: 0.1098, total imgs: 2975 , Acc: (0.8570%), Binary ACC: (0.9660%)
+
+
+Test set: total_batch_loss: 0.1493, total imgs: 500 , Acc: (0.8155%), Binary Acc: (0.9532%)
+
+Train Epoch: 28 [0/2975 (0%)]	Loss: 0.1123220474
+Train Epoch: 28 [800/2975 (27%)]	Loss: 0.1203985810
+Train Epoch: 28 [1600/2975 (54%)]	Loss: 0.1097764224
+Train Epoch: 28 [2400/2975 (81%)]	Loss: 0.1169296429
+
+ Train_loader set: total_batch_loss: 0.1062, total imgs: 2975 , Acc: (0.8626%), Binary ACC: (0.9658%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1419, total imgs: 500 , Acc: (0.8225%), Binary Acc: (0.9559%)
+
+Train Epoch: 29 [0/2975 (0%)]	Loss: 0.1107735559
+Train Epoch: 29 [800/2975 (27%)]	Loss: 0.1247265115
+Train Epoch: 29 [1600/2975 (54%)]	Loss: 0.0946900696
+Train Epoch: 29 [2400/2975 (81%)]	Loss: 0.1241477877
+
+ Train_loader set: total_batch_loss: 0.1070, total imgs: 2975 , Acc: (0.8608%), Binary ACC: (0.9657%)
+
+
+Test set: total_batch_loss: 0.1418, total imgs: 500 , Acc: (0.8234%), Binary Acc: (0.9561%)
+
+Train Epoch: 30 [0/2975 (0%)]	Loss: 0.1039219424
+Train Epoch: 30 [800/2975 (27%)]	Loss: 0.1140143126
+Train Epoch: 30 [1600/2975 (54%)]	Loss: 0.1157846749
+Train Epoch: 30 [2400/2975 (81%)]	Loss: 0.1408168375
+
+ Train_loader set: total_batch_loss: 0.1030, total imgs: 2975 , Acc: (0.8654%), Binary ACC: (0.9660%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1415, total imgs: 500 , Acc: (0.8248%), Binary Acc: (0.9551%)
+
+Train Epoch: 31 [0/2975 (0%)]	Loss: 0.1070788950
+Train Epoch: 31 [800/2975 (27%)]	Loss: 0.1174705625
+Train Epoch: 31 [1600/2975 (54%)]	Loss: 0.1120254025
+Train Epoch: 31 [2400/2975 (81%)]	Loss: 0.1183779240
+
+ Train_loader set: total_batch_loss: 0.1026, total imgs: 2975 , Acc: (0.8663%), Binary ACC: (0.9683%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1426, total imgs: 500 , Acc: (0.8235%), Binary Acc: (0.9565%)
+
+Train Epoch: 32 [0/2975 (0%)]	Loss: 0.0986826867
+Train Epoch: 32 [800/2975 (27%)]	Loss: 0.1095067561
+Train Epoch: 32 [1600/2975 (54%)]	Loss: 0.1058584973
+Train Epoch: 32 [2400/2975 (81%)]	Loss: 0.1126921251
+
+ Train_loader set: total_batch_loss: 0.1015, total imgs: 2975 , Acc: (0.8673%), Binary ACC: (0.9682%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1435, total imgs: 500 , Acc: (0.8246%), Binary Acc: (0.9564%)
+
+Train Epoch: 33 [0/2975 (0%)]	Loss: 0.0944380686
+Train Epoch: 33 [800/2975 (27%)]	Loss: 0.0970540866
+Train Epoch: 33 [1600/2975 (54%)]	Loss: 0.1107233167
+Train Epoch: 33 [2400/2975 (81%)]	Loss: 0.1087204516
+
+ Train_loader set: total_batch_loss: 0.0982, total imgs: 2975 , Acc: (0.8708%), Binary ACC: (0.9698%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1426, total imgs: 500 , Acc: (0.8267%), Binary Acc: (0.9571%)
+
+Train Epoch: 34 [0/2975 (0%)]	Loss: 0.0980148762
+Train Epoch: 34 [800/2975 (27%)]	Loss: 0.1056253165
+Train Epoch: 34 [1600/2975 (54%)]	Loss: 0.1011338681
+Train Epoch: 34 [2400/2975 (81%)]	Loss: 0.1265666187
+
+ Train_loader set: total_batch_loss: 0.0998, total imgs: 2975 , Acc: (0.8691%), Binary ACC: (0.9680%)
+
+
+Test set: total_batch_loss: 0.1419, total imgs: 500 , Acc: (0.8257%), Binary Acc: (0.9556%)
+
+Train Epoch: 35 [0/2975 (0%)]	Loss: 0.1183519289
+Train Epoch: 35 [800/2975 (27%)]	Loss: 0.1009607390
+Train Epoch: 35 [1600/2975 (54%)]	Loss: 0.1080247760
+Train Epoch: 35 [2400/2975 (81%)]	Loss: 0.1076326892
+
+ Train_loader set: total_batch_loss: 0.0992, total imgs: 2975 , Acc: (0.8697%), Binary ACC: (0.9674%)
+
+
+Test set: total_batch_loss: 0.1443, total imgs: 500 , Acc: (0.8232%), Binary Acc: (0.9546%)
+
+Train Epoch: 36 [0/2975 (0%)]	Loss: 0.1144473106
+Train Epoch: 36 [800/2975 (27%)]	Loss: 0.1060682312
+Train Epoch: 36 [1600/2975 (54%)]	Loss: 0.1068099365
+Train Epoch: 36 [2400/2975 (81%)]	Loss: 0.1002565473
+
+ Train_loader set: total_batch_loss: 0.1004, total imgs: 2975 , Acc: (0.8685%), Binary ACC: (0.9656%)
+
+
+Test set: total_batch_loss: 0.1443, total imgs: 500 , Acc: (0.8231%), Binary Acc: (0.9533%)
+
+Train Epoch: 37 [0/2975 (0%)]	Loss: 0.1150904000
+Train Epoch: 37 [800/2975 (27%)]	Loss: 0.1163002178
+Train Epoch: 37 [1600/2975 (54%)]	Loss: 0.1053788960
+Train Epoch: 37 [2400/2975 (81%)]	Loss: 0.0917304307
+
+ Train_loader set: total_batch_loss: 0.0993, total imgs: 2975 , Acc: (0.8697%), Binary ACC: (0.9664%)
+
+
+Test set: total_batch_loss: 0.1444, total imgs: 500 , Acc: (0.8229%), Binary Acc: (0.9534%)
+
+Train Epoch: 38 [0/2975 (0%)]	Loss: 0.1004406959
+Train Epoch: 38 [800/2975 (27%)]	Loss: 0.1017096937
+Train Epoch: 38 [1600/2975 (54%)]	Loss: 0.1068542451
+Train Epoch: 38 [2400/2975 (81%)]	Loss: 0.1151060909
+
+ Train_loader set: total_batch_loss: 0.0997, total imgs: 2975 , Acc: (0.8701%), Binary ACC: (0.9671%)
+
+
+Test set: total_batch_loss: 0.1430, total imgs: 500 , Acc: (0.8256%), Binary Acc: (0.9549%)
+
+Train Epoch: 39 [0/2975 (0%)]	Loss: 0.0988431573
+Train Epoch: 39 [800/2975 (27%)]	Loss: 0.1018512994
+Train Epoch: 39 [1600/2975 (54%)]	Loss: 0.1036314666
+Train Epoch: 39 [2400/2975 (81%)]	Loss: 0.1268628389
+
+ Train_loader set: total_batch_loss: 0.0945, total imgs: 2975 , Acc: (0.8758%), Binary ACC: (0.9707%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1413, total imgs: 500 , Acc: (0.8285%), Binary Acc: (0.9577%)
+
+Train Epoch: 40 [0/2975 (0%)]	Loss: 0.1139437705
+Train Epoch: 40 [800/2975 (27%)]	Loss: 0.1025276408
+Train Epoch: 40 [1600/2975 (54%)]	Loss: 0.0924416035
+Train Epoch: 40 [2400/2975 (81%)]	Loss: 0.1018405855
+
+ Train_loader set: total_batch_loss: 0.0928, total imgs: 2975 , Acc: (0.8777%), Binary ACC: (0.9711%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1386, total imgs: 500 , Acc: (0.8307%), Binary Acc: (0.9590%)
+
+Train Epoch: 41 [0/2975 (0%)]	Loss: 0.0847645551
+Train Epoch: 41 [800/2975 (27%)]	Loss: 0.1182547137
+Train Epoch: 41 [1600/2975 (54%)]	Loss: 0.1049841568
+Train Epoch: 41 [2400/2975 (81%)]	Loss: 0.0960335284
+
+ Train_loader set: total_batch_loss: 0.0935, total imgs: 2975 , Acc: (0.8764%), Binary ACC: (0.9727%)
+
+
+Test set: total_batch_loss: 0.1405, total imgs: 500 , Acc: (0.8309%), Binary Acc: (0.9594%)
+
+Train Epoch: 42 [0/2975 (0%)]	Loss: 0.0885463506
+Train Epoch: 42 [800/2975 (27%)]	Loss: 0.1034938619
+Train Epoch: 42 [1600/2975 (54%)]	Loss: 0.1103307009
+Train Epoch: 42 [2400/2975 (81%)]	Loss: 0.1141268462
+
+ Train_loader set: total_batch_loss: 0.0950, total imgs: 2975 , Acc: (0.8752%), Binary ACC: (0.9703%)
+
+
+Test set: total_batch_loss: 0.1418, total imgs: 500 , Acc: (0.8274%), Binary Acc: (0.9573%)
+
+Train Epoch: 43 [0/2975 (0%)]	Loss: 0.1050243676
+Train Epoch: 43 [800/2975 (27%)]	Loss: 0.1044800580
+Train Epoch: 43 [1600/2975 (54%)]	Loss: 0.0924120992
+Train Epoch: 43 [2400/2975 (81%)]	Loss: 0.0901102051
+
+ Train_loader set: total_batch_loss: 0.0930, total imgs: 2975 , Acc: (0.8773%), Binary ACC: (0.9707%)
+
+
+Test set: total_batch_loss: 0.1424, total imgs: 500 , Acc: (0.8297%), Binary Acc: (0.9574%)
+
+Train Epoch: 44 [0/2975 (0%)]	Loss: 0.0980110019
+Train Epoch: 44 [800/2975 (27%)]	Loss: 0.0924101546
+Train Epoch: 44 [1600/2975 (54%)]	Loss: 0.1063761860
+Train Epoch: 44 [2400/2975 (81%)]	Loss: 0.1109098047
+
+ Train_loader set: total_batch_loss: 0.0923, total imgs: 2975 , Acc: (0.8778%), Binary ACC: (0.9721%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1417, total imgs: 500 , Acc: (0.8317%), Binary Acc: (0.9581%)
+
+Train Epoch: 45 [0/2975 (0%)]	Loss: 0.0983773768
+Train Epoch: 45 [800/2975 (27%)]	Loss: 0.0980073810
+Train Epoch: 45 [1600/2975 (54%)]	Loss: 0.0996271670
+Train Epoch: 45 [2400/2975 (81%)]	Loss: 0.1123577654
+
+ Train_loader set: total_batch_loss: 0.0937, total imgs: 2975 , Acc: (0.8768%), Binary ACC: (0.9708%)
+
+
+Test set: total_batch_loss: 0.1400, total imgs: 500 , Acc: (0.8293%), Binary Acc: (0.9587%)
+
+Train Epoch: 46 [0/2975 (0%)]	Loss: 0.0988049060
+Train Epoch: 46 [800/2975 (27%)]	Loss: 0.0956839025
+Train Epoch: 46 [1600/2975 (54%)]	Loss: 0.0967773646
+Train Epoch: 46 [2400/2975 (81%)]	Loss: 0.1016547978
+
+ Train_loader set: total_batch_loss: 0.0917, total imgs: 2975 , Acc: (0.8785%), Binary ACC: (0.9721%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1425, total imgs: 500 , Acc: (0.8315%), Binary Acc: (0.9582%)
+
+Train Epoch: 47 [0/2975 (0%)]	Loss: 0.0962257236
+Train Epoch: 47 [800/2975 (27%)]	Loss: 0.1007409170
+Train Epoch: 47 [1600/2975 (54%)]	Loss: 0.0898873135
+Train Epoch: 47 [2400/2975 (81%)]	Loss: 0.0797802731
+
+ Train_loader set: total_batch_loss: 0.0891, total imgs: 2975 , Acc: (0.8819%), Binary ACC: (0.9722%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1392, total imgs: 500 , Acc: (0.8329%), Binary Acc: (0.9588%)
+
+Train Epoch: 48 [0/2975 (0%)]	Loss: 0.0912501514
+Train Epoch: 48 [800/2975 (27%)]	Loss: 0.0979610980
+Train Epoch: 48 [1600/2975 (54%)]	Loss: 0.1107086688
+Train Epoch: 48 [2400/2975 (81%)]	Loss: 0.0914013386
+
+ Train_loader set: total_batch_loss: 0.0914, total imgs: 2975 , Acc: (0.8804%), Binary ACC: (0.9691%)
+
+
+Test set: total_batch_loss: 0.1399, total imgs: 500 , Acc: (0.8294%), Binary Acc: (0.9556%)
+
+Train Epoch: 49 [0/2975 (0%)]	Loss: 0.0961083025
+Train Epoch: 49 [800/2975 (27%)]	Loss: 0.0929021686
+Train Epoch: 49 [1600/2975 (54%)]	Loss: 0.1010807827
+Train Epoch: 49 [2400/2975 (81%)]	Loss: 0.0983841270
+
+ Train_loader set: total_batch_loss: 0.0880, total imgs: 2975 , Acc: (0.8831%), Binary ACC: (0.9741%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1383, total imgs: 500 , Acc: (0.8339%), Binary Acc: (0.9594%)
+
+Train Epoch: 50 [0/2975 (0%)]	Loss: 0.0968067944
+Train Epoch: 50 [800/2975 (27%)]	Loss: 0.1090088710
+Train Epoch: 50 [1600/2975 (54%)]	Loss: 0.0929475054
+Train Epoch: 50 [2400/2975 (81%)]	Loss: 0.0996759161
+
+ Train_loader set: total_batch_loss: 0.0905, total imgs: 2975 , Acc: (0.8801%), Binary ACC: (0.9710%)
+
+
+Test set: total_batch_loss: 0.1390, total imgs: 500 , Acc: (0.8312%), Binary Acc: (0.9572%)
+
+Train Epoch: 51 [0/2975 (0%)]	Loss: 0.0888646990
+Train Epoch: 51 [800/2975 (27%)]	Loss: 0.0935345739
+Train Epoch: 51 [1600/2975 (54%)]	Loss: 0.1092723608
+Train Epoch: 51 [2400/2975 (81%)]	Loss: 0.0960723460
+
+ Train_loader set: total_batch_loss: 0.0873, total imgs: 2975 , Acc: (0.8841%), Binary ACC: (0.9731%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1402, total imgs: 500 , Acc: (0.8321%), Binary Acc: (0.9583%)
+
+Train Epoch: 52 [0/2975 (0%)]	Loss: 0.0899618939
+Train Epoch: 52 [800/2975 (27%)]	Loss: 0.0955443233
+Train Epoch: 52 [1600/2975 (54%)]	Loss: 0.0839383453
+Train Epoch: 52 [2400/2975 (81%)]	Loss: 0.0923755392
+
+ Train_loader set: total_batch_loss: 0.0867, total imgs: 2975 , Acc: (0.8844%), Binary ACC: (0.9735%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1387, total imgs: 500 , Acc: (0.8319%), Binary Acc: (0.9588%)
+
+Train Epoch: 53 [0/2975 (0%)]	Loss: 0.0938910544
+Train Epoch: 53 [800/2975 (27%)]	Loss: 0.0888097286
+Train Epoch: 53 [1600/2975 (54%)]	Loss: 0.0879708081
+Train Epoch: 53 [2400/2975 (81%)]	Loss: 0.0908838734
+
+ Train_loader set: total_batch_loss: 0.0859, total imgs: 2975 , Acc: (0.8856%), Binary ACC: (0.9737%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1391, total imgs: 500 , Acc: (0.8322%), Binary Acc: (0.9598%)
+
+Train Epoch: 54 [0/2975 (0%)]	Loss: 0.1006553322
+Train Epoch: 54 [800/2975 (27%)]	Loss: 0.0885257572
+Train Epoch: 54 [1600/2975 (54%)]	Loss: 0.0845272616
+Train Epoch: 54 [2400/2975 (81%)]	Loss: 0.0926516205
+
+ Train_loader set: total_batch_loss: 0.0873, total imgs: 2975 , Acc: (0.8842%), Binary ACC: (0.9742%)
+
+
+Test set: total_batch_loss: 0.1412, total imgs: 500 , Acc: (0.8303%), Binary Acc: (0.9590%)
+
+Train Epoch: 55 [0/2975 (0%)]	Loss: 0.0864754766
+Train Epoch: 55 [800/2975 (27%)]	Loss: 0.0974847078
+Train Epoch: 55 [1600/2975 (54%)]	Loss: 0.0882308185
+Train Epoch: 55 [2400/2975 (81%)]	Loss: 0.0832346901
+
+ Train_loader set: total_batch_loss: 0.0861, total imgs: 2975 , Acc: (0.8858%), Binary ACC: (0.9731%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1378, total imgs: 500 , Acc: (0.8345%), Binary Acc: (0.9590%)
+
+Train Epoch: 56 [0/2975 (0%)]	Loss: 0.0936423019
+Train Epoch: 56 [800/2975 (27%)]	Loss: 0.0914466828
+Train Epoch: 56 [1600/2975 (54%)]	Loss: 0.1018104702
+Train Epoch: 56 [2400/2975 (81%)]	Loss: 0.1017903388
+
+ Train_loader set: total_batch_loss: 0.0892, total imgs: 2975 , Acc: (0.8821%), Binary ACC: (0.9721%)
+
+
+Test set: total_batch_loss: 0.1433, total imgs: 500 , Acc: (0.8330%), Binary Acc: (0.9583%)
+
+Train Epoch: 57 [0/2975 (0%)]	Loss: 0.0867886767
+Train Epoch: 57 [800/2975 (27%)]	Loss: 0.0886261836
+Train Epoch: 57 [1600/2975 (54%)]	Loss: 0.1004823819
+Train Epoch: 57 [2400/2975 (81%)]	Loss: 0.0865172148
+
+ Train_loader set: total_batch_loss: 0.0892, total imgs: 2975 , Acc: (0.8831%), Binary ACC: (0.9713%)
+
+
+Test set: total_batch_loss: 0.1400, total imgs: 500 , Acc: (0.8335%), Binary Acc: (0.9588%)
+
+Train Epoch: 58 [0/2975 (0%)]	Loss: 0.1103990376
+Train Epoch: 58 [800/2975 (27%)]	Loss: 0.0957563818
+Train Epoch: 58 [1600/2975 (54%)]	Loss: 0.0890926123
+Train Epoch: 58 [2400/2975 (81%)]	Loss: 0.0858511776
+
+ Train_loader set: total_batch_loss: 0.0864, total imgs: 2975 , Acc: (0.8851%), Binary ACC: (0.9742%)
+
+
+Test set: total_batch_loss: 0.1395, total imgs: 500 , Acc: (0.8339%), Binary Acc: (0.9592%)
+
+Train Epoch: 59 [0/2975 (0%)]	Loss: 0.0859621465
+Train Epoch: 59 [800/2975 (27%)]	Loss: 0.0822378397
+Train Epoch: 59 [1600/2975 (54%)]	Loss: 0.0842181370
+Train Epoch: 59 [2400/2975 (81%)]	Loss: 0.0781337023
+
+ Train_loader set: total_batch_loss: 0.0852, total imgs: 2975 , Acc: (0.8872%), Binary ACC: (0.9727%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1378, total imgs: 500 , Acc: (0.8323%), Binary Acc: (0.9575%)
+
+Train Epoch: 60 [0/2975 (0%)]	Loss: 0.0910599381
+Train Epoch: 60 [800/2975 (27%)]	Loss: 0.0906969085
+Train Epoch: 60 [1600/2975 (54%)]	Loss: 0.0857399106
+Train Epoch: 60 [2400/2975 (81%)]	Loss: 0.0873792246
+
+ Train_loader set: total_batch_loss: 0.0827, total imgs: 2975 , Acc: (0.8900%), Binary ACC: (0.9757%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1389, total imgs: 500 , Acc: (0.8332%), Binary Acc: (0.9594%)
+
+Train Epoch: 61 [0/2975 (0%)]	Loss: 0.0954681337
+Train Epoch: 61 [800/2975 (27%)]	Loss: 0.1058364064
+Train Epoch: 61 [1600/2975 (54%)]	Loss: 0.0865649581
+Train Epoch: 61 [2400/2975 (81%)]	Loss: 0.0845968947
+
+ Train_loader set: total_batch_loss: 0.0822, total imgs: 2975 , Acc: (0.8909%), Binary ACC: (0.9758%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1392, total imgs: 500 , Acc: (0.8369%), Binary Acc: (0.9603%)
+
+Train Epoch: 62 [0/2975 (0%)]	Loss: 0.0864320174
+Train Epoch: 62 [800/2975 (27%)]	Loss: 0.0924649388
+Train Epoch: 62 [1600/2975 (54%)]	Loss: 0.1030357629
+Train Epoch: 62 [2400/2975 (81%)]	Loss: 0.1008496135
+
+ Train_loader set: total_batch_loss: 0.0824, total imgs: 2975 , Acc: (0.8899%), Binary ACC: (0.9756%)
+
+
+Test set: total_batch_loss: 0.1397, total imgs: 500 , Acc: (0.8330%), Binary Acc: (0.9599%)
+
+Train Epoch: 63 [0/2975 (0%)]	Loss: 0.0938226581
+Train Epoch: 63 [800/2975 (27%)]	Loss: 0.0880595297
+Train Epoch: 63 [1600/2975 (54%)]	Loss: 0.0880609751
+Train Epoch: 63 [2400/2975 (81%)]	Loss: 0.0887071639
+
+ Train_loader set: total_batch_loss: 0.0816, total imgs: 2975 , Acc: (0.8915%), Binary ACC: (0.9757%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1366, total imgs: 500 , Acc: (0.8372%), Binary Acc: (0.9610%)
+
+Train Epoch: 64 [0/2975 (0%)]	Loss: 0.0904307365
+Train Epoch: 64 [800/2975 (27%)]	Loss: 0.0904904678
+Train Epoch: 64 [1600/2975 (54%)]	Loss: 0.0883526430
+Train Epoch: 64 [2400/2975 (81%)]	Loss: 0.0873556063
+
+ Train_loader set: total_batch_loss: 0.0805, total imgs: 2975 , Acc: (0.8924%), Binary ACC: (0.9772%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1386, total imgs: 500 , Acc: (0.8370%), Binary Acc: (0.9609%)
+
+Train Epoch: 65 [0/2975 (0%)]	Loss: 0.0870517939
+Train Epoch: 65 [800/2975 (27%)]	Loss: 0.0915717036
+Train Epoch: 65 [1600/2975 (54%)]	Loss: 0.0877560228
+Train Epoch: 65 [2400/2975 (81%)]	Loss: 0.0870451927
+
+ Train_loader set: total_batch_loss: 0.0805, total imgs: 2975 , Acc: (0.8920%), Binary ACC: (0.9755%)
+
+
+Test set: total_batch_loss: 0.1396, total imgs: 500 , Acc: (0.8377%), Binary Acc: (0.9600%)
+
+Train Epoch: 66 [0/2975 (0%)]	Loss: 0.0870738551
+Train Epoch: 66 [800/2975 (27%)]	Loss: 0.0781415403
+Train Epoch: 66 [1600/2975 (54%)]	Loss: 0.0887683928
+Train Epoch: 66 [2400/2975 (81%)]	Loss: 0.0821615458
+
+ Train_loader set: total_batch_loss: 0.0802, total imgs: 2975 , Acc: (0.8927%), Binary ACC: (0.9760%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1403, total imgs: 500 , Acc: (0.8372%), Binary Acc: (0.9603%)
+
+Train Epoch: 67 [0/2975 (0%)]	Loss: 0.0955837443
+Train Epoch: 67 [800/2975 (27%)]	Loss: 0.0779429376
+Train Epoch: 67 [1600/2975 (54%)]	Loss: 0.0856669843
+Train Epoch: 67 [2400/2975 (81%)]	Loss: 0.0944156200
+
+ Train_loader set: total_batch_loss: 0.0811, total imgs: 2975 , Acc: (0.8917%), Binary ACC: (0.9765%)
+
+
+Test set: total_batch_loss: 0.1394, total imgs: 500 , Acc: (0.8380%), Binary Acc: (0.9609%)
+
+Train Epoch: 68 [0/2975 (0%)]	Loss: 0.0913614109
+Train Epoch: 68 [800/2975 (27%)]	Loss: 0.0964911133
+Train Epoch: 68 [1600/2975 (54%)]	Loss: 0.0895917639
+Train Epoch: 68 [2400/2975 (81%)]	Loss: 0.0928401947
+
+ Train_loader set: total_batch_loss: 0.0809, total imgs: 2975 , Acc: (0.8924%), Binary ACC: (0.9754%)
+
+
+Test set: total_batch_loss: 0.1390, total imgs: 500 , Acc: (0.8366%), Binary Acc: (0.9603%)
+
+Train Epoch: 69 [0/2975 (0%)]	Loss: 0.0871631280
+Train Epoch: 69 [800/2975 (27%)]	Loss: 0.0942175835
+Train Epoch: 69 [1600/2975 (54%)]	Loss: 0.0944937021
+Train Epoch: 69 [2400/2975 (81%)]	Loss: 0.0901002586
+
+ Train_loader set: total_batch_loss: 0.0791, total imgs: 2975 , Acc: (0.8941%), Binary ACC: (0.9767%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1388, total imgs: 500 , Acc: (0.8385%), Binary Acc: (0.9609%)
+
+Train Epoch: 70 [0/2975 (0%)]	Loss: 0.0819614902
+Train Epoch: 70 [800/2975 (27%)]	Loss: 0.0778339952
+Train Epoch: 70 [1600/2975 (54%)]	Loss: 0.0906104296
+Train Epoch: 70 [2400/2975 (81%)]	Loss: 0.0999472588
+
+ Train_loader set: total_batch_loss: 0.0809, total imgs: 2975 , Acc: (0.8924%), Binary ACC: (0.9747%)
+
+
+Test set: total_batch_loss: 0.1381, total imgs: 500 , Acc: (0.8350%), Binary Acc: (0.9593%)
+
+Train Epoch: 71 [0/2975 (0%)]	Loss: 0.0801448375
+Train Epoch: 71 [800/2975 (27%)]	Loss: 0.0837642252
+Train Epoch: 71 [1600/2975 (54%)]	Loss: 0.0977302417
+Train Epoch: 71 [2400/2975 (81%)]	Loss: 0.0894110799
+
+ Train_loader set: total_batch_loss: 0.0793, total imgs: 2975 , Acc: (0.8936%), Binary ACC: (0.9761%)
+
+
+Test set: total_batch_loss: 0.1390, total imgs: 500 , Acc: (0.8351%), Binary Acc: (0.9598%)
+
+Train Epoch: 72 [0/2975 (0%)]	Loss: 0.0796113685
+Train Epoch: 72 [800/2975 (27%)]	Loss: 0.0948197767
+Train Epoch: 72 [1600/2975 (54%)]	Loss: 0.0893092155
+Train Epoch: 72 [2400/2975 (81%)]	Loss: 0.0830705762
+
+ Train_loader set: total_batch_loss: 0.0775, total imgs: 2975 , Acc: (0.8961%), Binary ACC: (0.9766%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1368, total imgs: 500 , Acc: (0.8379%), Binary Acc: (0.9606%)
+
+Train Epoch: 73 [0/2975 (0%)]	Loss: 0.0888700634
+Train Epoch: 73 [800/2975 (27%)]	Loss: 0.0815951973
+Train Epoch: 73 [1600/2975 (54%)]	Loss: 0.0815839544
+Train Epoch: 73 [2400/2975 (81%)]	Loss: 0.0918293297
+
+ Train_loader set: total_batch_loss: 0.0778, total imgs: 2975 , Acc: (0.8952%), Binary ACC: (0.9775%)
+
+
+Test set: total_batch_loss: 0.1436, total imgs: 500 , Acc: (0.8359%), Binary Acc: (0.9596%)
+
+Train Epoch: 74 [0/2975 (0%)]	Loss: 0.0889411569
+Train Epoch: 74 [800/2975 (27%)]	Loss: 0.0970968604
+Train Epoch: 74 [1600/2975 (54%)]	Loss: 0.0849112347
+Train Epoch: 74 [2400/2975 (81%)]	Loss: 0.0890675634
+
+ Train_loader set: total_batch_loss: 0.0782, total imgs: 2975 , Acc: (0.8951%), Binary ACC: (0.9761%)
+
+
+Test set: total_batch_loss: 0.1424, total imgs: 500 , Acc: (0.8385%), Binary Acc: (0.9596%)
+
+Train Epoch: 75 [0/2975 (0%)]	Loss: 0.0842845589
+Train Epoch: 75 [800/2975 (27%)]	Loss: 0.0980811268
+Train Epoch: 75 [1600/2975 (54%)]	Loss: 0.0928755552
+Train Epoch: 75 [2400/2975 (81%)]	Loss: 0.0798813477
+
+ Train_loader set: total_batch_loss: 0.0763, total imgs: 2975 , Acc: (0.8973%), Binary ACC: (0.9776%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1370, total imgs: 500 , Acc: (0.8374%), Binary Acc: (0.9614%)
+
+Train Epoch: 76 [0/2975 (0%)]	Loss: 0.0733050182
+Train Epoch: 76 [800/2975 (27%)]	Loss: 0.0881688520
+Train Epoch: 76 [1600/2975 (54%)]	Loss: 0.0817594826
+Train Epoch: 76 [2400/2975 (81%)]	Loss: 0.0874469876
+
+ Train_loader set: total_batch_loss: 0.0759, total imgs: 2975 , Acc: (0.8981%), Binary ACC: (0.9778%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1402, total imgs: 500 , Acc: (0.8375%), Binary Acc: (0.9608%)
+
+Train Epoch: 77 [0/2975 (0%)]	Loss: 0.0707204938
+Train Epoch: 77 [800/2975 (27%)]	Loss: 0.0861925036
+Train Epoch: 77 [1600/2975 (54%)]	Loss: 0.0916556567
+Train Epoch: 77 [2400/2975 (81%)]	Loss: 0.0871483088
+
+ Train_loader set: total_batch_loss: 0.0768, total imgs: 2975 , Acc: (0.8971%), Binary ACC: (0.9776%)
+
+
+Test set: total_batch_loss: 0.1396, total imgs: 500 , Acc: (0.8381%), Binary Acc: (0.9606%)
+
+Train Epoch: 78 [0/2975 (0%)]	Loss: 0.0813003480
+Train Epoch: 78 [800/2975 (27%)]	Loss: 0.0794232711
+Train Epoch: 78 [1600/2975 (54%)]	Loss: 0.0872621834
+Train Epoch: 78 [2400/2975 (81%)]	Loss: 0.0768157393
+
+ Train_loader set: total_batch_loss: 0.0759, total imgs: 2975 , Acc: (0.8975%), Binary ACC: (0.9780%)
+
+
+Test set: total_batch_loss: 0.1385, total imgs: 500 , Acc: (0.8385%), Binary Acc: (0.9620%)
+
+Train Epoch: 79 [0/2975 (0%)]	Loss: 0.0893574208
+Train Epoch: 79 [800/2975 (27%)]	Loss: 0.0911731273
+Train Epoch: 79 [1600/2975 (54%)]	Loss: 0.0778563023
+Train Epoch: 79 [2400/2975 (81%)]	Loss: 0.0974123627
+
+ Train_loader set: total_batch_loss: 0.0757, total imgs: 2975 , Acc: (0.8986%), Binary ACC: (0.9767%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1385, total imgs: 500 , Acc: (0.8379%), Binary Acc: (0.9610%)
+
+Train Epoch: 80 [0/2975 (0%)]	Loss: 0.0791706443
+Train Epoch: 80 [800/2975 (27%)]	Loss: 0.0777877718
+Train Epoch: 80 [1600/2975 (54%)]	Loss: 0.0837149173
+Train Epoch: 80 [2400/2975 (81%)]	Loss: 0.0774404109
+
+ Train_loader set: total_batch_loss: 0.0755, total imgs: 2975 , Acc: (0.8987%), Binary ACC: (0.9767%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1418, total imgs: 500 , Acc: (0.8394%), Binary Acc: (0.9605%)
+
+Train Epoch: 81 [0/2975 (0%)]	Loss: 0.0787150264
+Train Epoch: 81 [800/2975 (27%)]	Loss: 0.0865150094
+Train Epoch: 81 [1600/2975 (54%)]	Loss: 0.0828428268
+Train Epoch: 81 [2400/2975 (81%)]	Loss: 0.0898035243
+
+ Train_loader set: total_batch_loss: 0.0793, total imgs: 2975 , Acc: (0.8939%), Binary ACC: (0.9749%)
+
+
+Test set: total_batch_loss: 0.1427, total imgs: 500 , Acc: (0.8370%), Binary Acc: (0.9589%)
+
+Train Epoch: 82 [0/2975 (0%)]	Loss: 0.0970510989
+Train Epoch: 82 [800/2975 (27%)]	Loss: 0.0832882375
+Train Epoch: 82 [1600/2975 (54%)]	Loss: 0.0909278840
+Train Epoch: 82 [2400/2975 (81%)]	Loss: 0.0846257657
+
+ Train_loader set: total_batch_loss: 0.0753, total imgs: 2975 , Acc: (0.8989%), Binary ACC: (0.9781%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1387, total imgs: 500 , Acc: (0.8407%), Binary Acc: (0.9619%)
+
+Train Epoch: 83 [0/2975 (0%)]	Loss: 0.0780825466
+Train Epoch: 83 [800/2975 (27%)]	Loss: 0.0756641328
+Train Epoch: 83 [1600/2975 (54%)]	Loss: 0.0828651562
+Train Epoch: 83 [2400/2975 (81%)]	Loss: 0.0832514316
+
+ Train_loader set: total_batch_loss: 0.0752, total imgs: 2975 , Acc: (0.8992%), Binary ACC: (0.9768%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1370, total imgs: 500 , Acc: (0.8394%), Binary Acc: (0.9613%)
+
+Train Epoch: 84 [0/2975 (0%)]	Loss: 0.0798404515
+Train Epoch: 84 [800/2975 (27%)]	Loss: 0.0802022740
+Train Epoch: 84 [1600/2975 (54%)]	Loss: 0.0935036764
+Train Epoch: 84 [2400/2975 (81%)]	Loss: 0.0773298591
+
+ Train_loader set: total_batch_loss: 0.0753, total imgs: 2975 , Acc: (0.8991%), Binary ACC: (0.9788%)
+
+
+Test set: total_batch_loss: 0.1386, total imgs: 500 , Acc: (0.8376%), Binary Acc: (0.9621%)
+
+Train Epoch: 85 [0/2975 (0%)]	Loss: 0.0794809461
+Train Epoch: 85 [800/2975 (27%)]	Loss: 0.0751912519
+Train Epoch: 85 [1600/2975 (54%)]	Loss: 0.0892528445
+Train Epoch: 85 [2400/2975 (81%)]	Loss: 0.0818673968
+
+ Train_loader set: total_batch_loss: 0.0729, total imgs: 2975 , Acc: (0.9018%), Binary ACC: (0.9791%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1388, total imgs: 500 , Acc: (0.8389%), Binary Acc: (0.9626%)
+
+Train Epoch: 86 [0/2975 (0%)]	Loss: 0.0817917064
+Train Epoch: 86 [800/2975 (27%)]	Loss: 0.0852938890
+Train Epoch: 86 [1600/2975 (54%)]	Loss: 0.0780099109
+Train Epoch: 86 [2400/2975 (81%)]	Loss: 0.0834489539
+
+ Train_loader set: total_batch_loss: 0.0733, total imgs: 2975 , Acc: (0.9013%), Binary ACC: (0.9784%)
+
+
+Test set: total_batch_loss: 0.1422, total imgs: 500 , Acc: (0.8375%), Binary Acc: (0.9605%)
+
+Train Epoch: 87 [0/2975 (0%)]	Loss: 0.0856250525
+Train Epoch: 87 [800/2975 (27%)]	Loss: 0.0656645596
+Train Epoch: 87 [1600/2975 (54%)]	Loss: 0.0769315511
+Train Epoch: 87 [2400/2975 (81%)]	Loss: 0.0840136558
+
+ Train_loader set: total_batch_loss: 0.0762, total imgs: 2975 , Acc: (0.8978%), Binary ACC: (0.9778%)
+
+
+Test set: total_batch_loss: 0.1435, total imgs: 500 , Acc: (0.8365%), Binary Acc: (0.9612%)
+
+Train Epoch: 88 [0/2975 (0%)]	Loss: 0.0737916529
+Train Epoch: 88 [800/2975 (27%)]	Loss: 0.0865984559
+Train Epoch: 88 [1600/2975 (54%)]	Loss: 0.0868274793
+Train Epoch: 88 [2400/2975 (81%)]	Loss: 0.0884279609
+
+ Train_loader set: total_batch_loss: 0.0747, total imgs: 2975 , Acc: (0.8998%), Binary ACC: (0.9769%)
+
+
+Test set: total_batch_loss: 0.1381, total imgs: 500 , Acc: (0.8393%), Binary Acc: (0.9610%)
+
+Train Epoch: 89 [0/2975 (0%)]	Loss: 0.0785231888
+Train Epoch: 89 [800/2975 (27%)]	Loss: 0.0770368800
+Train Epoch: 89 [1600/2975 (54%)]	Loss: 0.0719938427
+Train Epoch: 89 [2400/2975 (81%)]	Loss: 0.0850167423
+
+ Train_loader set: total_batch_loss: 0.0724, total imgs: 2975 , Acc: (0.9022%), Binary ACC: (0.9788%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1413, total imgs: 500 , Acc: (0.8404%), Binary Acc: (0.9618%)
+
+Train Epoch: 90 [0/2975 (0%)]	Loss: 0.0869052261
+Train Epoch: 90 [800/2975 (27%)]	Loss: 0.0831218511
+Train Epoch: 90 [1600/2975 (54%)]	Loss: 0.0860517174
+Train Epoch: 90 [2400/2975 (81%)]	Loss: 0.0807085186
+
+ Train_loader set: total_batch_loss: 0.0734, total imgs: 2975 , Acc: (0.9014%), Binary ACC: (0.9792%)
+
+
+Test set: total_batch_loss: 0.1420, total imgs: 500 , Acc: (0.8381%), Binary Acc: (0.9610%)
+
+Train Epoch: 91 [0/2975 (0%)]	Loss: 0.0779733062
+Train Epoch: 91 [800/2975 (27%)]	Loss: 0.0839962959
+Train Epoch: 91 [1600/2975 (54%)]	Loss: 0.0745114982
+Train Epoch: 91 [2400/2975 (81%)]	Loss: 0.0784363896
+
+ Train_loader set: total_batch_loss: 0.0771, total imgs: 2975 , Acc: (0.8966%), Binary ACC: (0.9759%)
+
+
+Test set: total_batch_loss: 0.1405, total imgs: 500 , Acc: (0.8403%), Binary Acc: (0.9609%)
+
+Train Epoch: 92 [0/2975 (0%)]	Loss: 0.0706771612
+Train Epoch: 92 [800/2975 (27%)]	Loss: 0.0817176476
+Train Epoch: 92 [1600/2975 (54%)]	Loss: 0.0726460963
+Train Epoch: 92 [2400/2975 (81%)]	Loss: 0.0976867303
+
+ Train_loader set: total_batch_loss: 0.0741, total imgs: 2975 , Acc: (0.9015%), Binary ACC: (0.9787%)
+
+
+Test set: total_batch_loss: 0.1395, total imgs: 500 , Acc: (0.8381%), Binary Acc: (0.9616%)
+
+Train Epoch: 93 [0/2975 (0%)]	Loss: 0.0787285566
+Train Epoch: 93 [800/2975 (27%)]	Loss: 0.0863088667
+Train Epoch: 93 [1600/2975 (54%)]	Loss: 0.0886387751
+Train Epoch: 93 [2400/2975 (81%)]	Loss: 0.0755385607
+
+ Train_loader set: total_batch_loss: 0.0721, total imgs: 2975 , Acc: (0.9027%), Binary ACC: (0.9786%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1404, total imgs: 500 , Acc: (0.8404%), Binary Acc: (0.9611%)
+
+Train Epoch: 94 [0/2975 (0%)]	Loss: 0.0819944441
+Train Epoch: 94 [800/2975 (27%)]	Loss: 0.0837679431
+Train Epoch: 94 [1600/2975 (54%)]	Loss: 0.0744109899
+Train Epoch: 94 [2400/2975 (81%)]	Loss: 0.0843123347
+
+ Train_loader set: total_batch_loss: 0.0717, total imgs: 2975 , Acc: (0.9039%), Binary ACC: (0.9787%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1377, total imgs: 500 , Acc: (0.8409%), Binary Acc: (0.9618%)
+
+Train Epoch: 95 [0/2975 (0%)]	Loss: 0.0851271749
+Train Epoch: 95 [800/2975 (27%)]	Loss: 0.0687043667
+Train Epoch: 95 [1600/2975 (54%)]	Loss: 0.0938657969
+Train Epoch: 95 [2400/2975 (81%)]	Loss: 0.0816345140
+
+ Train_loader set: total_batch_loss: 0.0707, total imgs: 2975 , Acc: (0.9050%), Binary ACC: (0.9797%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1409, total imgs: 500 , Acc: (0.8422%), Binary Acc: (0.9623%)
+
+Train Epoch: 96 [0/2975 (0%)]	Loss: 0.0738019422
+Train Epoch: 96 [800/2975 (27%)]	Loss: 0.0762358755
+Train Epoch: 96 [1600/2975 (54%)]	Loss: 0.0823365971
+Train Epoch: 96 [2400/2975 (81%)]	Loss: 0.0834566727
+
+ Train_loader set: total_batch_loss: 0.0713, total imgs: 2975 , Acc: (0.9045%), Binary ACC: (0.9799%)
+
+
+Test set: total_batch_loss: 0.1386, total imgs: 500 , Acc: (0.8428%), Binary Acc: (0.9627%)
+
+Train Epoch: 97 [0/2975 (0%)]	Loss: 0.0820911825
+Train Epoch: 97 [800/2975 (27%)]	Loss: 0.0751907751
+Train Epoch: 97 [1600/2975 (54%)]	Loss: 0.0770035088
+Train Epoch: 97 [2400/2975 (81%)]	Loss: 0.0844176933
+
+ Train_loader set: total_batch_loss: 0.0706, total imgs: 2975 , Acc: (0.9056%), Binary ACC: (0.9794%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1400, total imgs: 500 , Acc: (0.8397%), Binary Acc: (0.9619%)
+
+Train Epoch: 98 [0/2975 (0%)]	Loss: 0.0799208879
+Train Epoch: 98 [800/2975 (27%)]	Loss: 0.0764487386
+Train Epoch: 98 [1600/2975 (54%)]	Loss: 0.0699885786
+Train Epoch: 98 [2400/2975 (81%)]	Loss: 0.0753351972
+
+ Train_loader set: total_batch_loss: 0.0695, total imgs: 2975 , Acc: (0.9064%), Binary ACC: (0.9806%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1386, total imgs: 500 , Acc: (0.8423%), Binary Acc: (0.9620%)
+
+Train Epoch: 99 [0/2975 (0%)]	Loss: 0.0833587646
+Train Epoch: 99 [800/2975 (27%)]	Loss: 0.0709686577
+Train Epoch: 99 [1600/2975 (54%)]	Loss: 0.0674562752
+Train Epoch: 99 [2400/2975 (81%)]	Loss: 0.0746102706
+
+ Train_loader set: total_batch_loss: 0.0709, total imgs: 2975 , Acc: (0.9044%), Binary ACC: (0.9786%)
+
+
+Test set: total_batch_loss: 0.1409, total imgs: 500 , Acc: (0.8420%), Binary Acc: (0.9617%)
+
+Train Epoch: 100 [0/2975 (0%)]	Loss: 0.0747325867
+Train Epoch: 100 [800/2975 (27%)]	Loss: 0.0792650729
+Train Epoch: 100 [1600/2975 (54%)]	Loss: 0.0668621510
+Train Epoch: 100 [2400/2975 (81%)]	Loss: 0.0824516267
+
+ Train_loader set: total_batch_loss: 0.0696, total imgs: 2975 , Acc: (0.9061%), Binary ACC: (0.9802%)
+
+
+Test set: total_batch_loss: 0.1390, total imgs: 500 , Acc: (0.8417%), Binary Acc: (0.9626%)
+
+Train Epoch: 101 [0/2975 (0%)]	Loss: 0.0790859759
+Train Epoch: 101 [800/2975 (27%)]	Loss: 0.0744305402
+Train Epoch: 101 [1600/2975 (54%)]	Loss: 0.0796220899
+Train Epoch: 101 [2400/2975 (81%)]	Loss: 0.0757690370
+
+ Train_loader set: total_batch_loss: 0.0646, total imgs: 2975 , Acc: (0.9132%), Binary ACC: (0.9823%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1350, total imgs: 500 , Acc: (0.8469%), Binary Acc: (0.9641%)
+
+Train Epoch: 102 [0/2975 (0%)]	Loss: 0.0748750269
+Train Epoch: 102 [800/2975 (27%)]	Loss: 0.0760451406
+Train Epoch: 102 [1600/2975 (54%)]	Loss: 0.0713333189
+Train Epoch: 102 [2400/2975 (81%)]	Loss: 0.0685371608
+
+ Train_loader set: total_batch_loss: 0.0638, total imgs: 2975 , Acc: (0.9141%), Binary ACC: (0.9824%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1342, total imgs: 500 , Acc: (0.8478%), Binary Acc: (0.9644%)
+
+Train Epoch: 103 [0/2975 (0%)]	Loss: 0.0682166815
+Train Epoch: 103 [800/2975 (27%)]	Loss: 0.0740876198
+Train Epoch: 103 [1600/2975 (54%)]	Loss: 0.0599295050
+Train Epoch: 103 [2400/2975 (81%)]	Loss: 0.0700463504
+
+ Train_loader set: total_batch_loss: 0.0628, total imgs: 2975 , Acc: (0.9157%), Binary ACC: (0.9830%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1340, total imgs: 500 , Acc: (0.8476%), Binary Acc: (0.9646%)
+
+Train Epoch: 104 [0/2975 (0%)]	Loss: 0.0696368068
+Train Epoch: 104 [800/2975 (27%)]	Loss: 0.0716374964
+Train Epoch: 104 [1600/2975 (54%)]	Loss: 0.0857410282
+Train Epoch: 104 [2400/2975 (81%)]	Loss: 0.0870402306
+
+ Train_loader set: total_batch_loss: 0.0628, total imgs: 2975 , Acc: (0.9157%), Binary ACC: (0.9828%)
+
+
+Test set: total_batch_loss: 0.1342, total imgs: 500 , Acc: (0.8479%), Binary Acc: (0.9647%)
+
+Train Epoch: 105 [0/2975 (0%)]	Loss: 0.0693095326
+Train Epoch: 105 [800/2975 (27%)]	Loss: 0.0734017193
+Train Epoch: 105 [1600/2975 (54%)]	Loss: 0.0661266893
+Train Epoch: 105 [2400/2975 (81%)]	Loss: 0.0723622143
+
+ Train_loader set: total_batch_loss: 0.0618, total imgs: 2975 , Acc: (0.9172%), Binary ACC: (0.9834%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8482%), Binary Acc: (0.9649%)
+
+Train Epoch: 106 [0/2975 (0%)]	Loss: 0.0721068084
+Train Epoch: 106 [800/2975 (27%)]	Loss: 0.0680055171
+Train Epoch: 106 [1600/2975 (54%)]	Loss: 0.0620035678
+Train Epoch: 106 [2400/2975 (81%)]	Loss: 0.0681191608
+
+ Train_loader set: total_batch_loss: 0.0617, total imgs: 2975 , Acc: (0.9168%), Binary ACC: (0.9833%)
+
+
+Test set: total_batch_loss: 0.1342, total imgs: 500 , Acc: (0.8486%), Binary Acc: (0.9651%)
+
+Train Epoch: 107 [0/2975 (0%)]	Loss: 0.0663251430
+Train Epoch: 107 [800/2975 (27%)]	Loss: 0.0638114065
+Train Epoch: 107 [1600/2975 (54%)]	Loss: 0.0727315992
+Train Epoch: 107 [2400/2975 (81%)]	Loss: 0.0688145161
+
+ Train_loader set: total_batch_loss: 0.0619, total imgs: 2975 , Acc: (0.9171%), Binary ACC: (0.9839%)
+
+
+Test set: total_batch_loss: 0.1334, total imgs: 500 , Acc: (0.8483%), Binary Acc: (0.9648%)
+
+Train Epoch: 108 [0/2975 (0%)]	Loss: 0.0703725517
+Train Epoch: 108 [800/2975 (27%)]	Loss: 0.0660432205
+Train Epoch: 108 [1600/2975 (54%)]	Loss: 0.0659236982
+Train Epoch: 108 [2400/2975 (81%)]	Loss: 0.0628480464
+
+ Train_loader set: total_batch_loss: 0.0608, total imgs: 2975 , Acc: (0.9185%), Binary ACC: (0.9835%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1343, total imgs: 500 , Acc: (0.8487%), Binary Acc: (0.9654%)
+
+Train Epoch: 109 [0/2975 (0%)]	Loss: 0.0582284145
+Train Epoch: 109 [800/2975 (27%)]	Loss: 0.0610089041
+Train Epoch: 109 [1600/2975 (54%)]	Loss: 0.0718411058
+Train Epoch: 109 [2400/2975 (81%)]	Loss: 0.0679065809
+
+ Train_loader set: total_batch_loss: 0.0606, total imgs: 2975 , Acc: (0.9184%), Binary ACC: (0.9835%)
+
+
+Test set: total_batch_loss: 0.1339, total imgs: 500 , Acc: (0.8486%), Binary Acc: (0.9649%)
+
+Train Epoch: 110 [0/2975 (0%)]	Loss: 0.0707342476
+Train Epoch: 110 [800/2975 (27%)]	Loss: 0.0773331523
+Train Epoch: 110 [1600/2975 (54%)]	Loss: 0.0671827942
+Train Epoch: 110 [2400/2975 (81%)]	Loss: 0.0680689961
+
+ Train_loader set: total_batch_loss: 0.0605, total imgs: 2975 , Acc: (0.9189%), Binary ACC: (0.9840%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1335, total imgs: 500 , Acc: (0.8490%), Binary Acc: (0.9654%)
+
+Train Epoch: 111 [0/2975 (0%)]	Loss: 0.0648998469
+Train Epoch: 111 [800/2975 (27%)]	Loss: 0.0667040944
+Train Epoch: 111 [1600/2975 (54%)]	Loss: 0.0599178150
+Train Epoch: 111 [2400/2975 (81%)]	Loss: 0.0640679300
+
+ Train_loader set: total_batch_loss: 0.0603, total imgs: 2975 , Acc: (0.9190%), Binary ACC: (0.9839%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1342, total imgs: 500 , Acc: (0.8488%), Binary Acc: (0.9650%)
+
+Train Epoch: 112 [0/2975 (0%)]	Loss: 0.0836316645
+Train Epoch: 112 [800/2975 (27%)]	Loss: 0.0682347417
+Train Epoch: 112 [1600/2975 (54%)]	Loss: 0.0668820590
+Train Epoch: 112 [2400/2975 (81%)]	Loss: 0.0682108179
+
+ Train_loader set: total_batch_loss: 0.0599, total imgs: 2975 , Acc: (0.9199%), Binary ACC: (0.9841%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1345, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9654%)
+
+Train Epoch: 113 [0/2975 (0%)]	Loss: 0.0670064166
+Train Epoch: 113 [800/2975 (27%)]	Loss: 0.0686761066
+Train Epoch: 113 [1600/2975 (54%)]	Loss: 0.0607994832
+Train Epoch: 113 [2400/2975 (81%)]	Loss: 0.0708996207
+
+ Train_loader set: total_batch_loss: 0.0599, total imgs: 2975 , Acc: (0.9193%), Binary ACC: (0.9840%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8489%), Binary Acc: (0.9652%)
+
+Train Epoch: 114 [0/2975 (0%)]	Loss: 0.0598967075
+Train Epoch: 114 [800/2975 (27%)]	Loss: 0.0660091490
+Train Epoch: 114 [1600/2975 (54%)]	Loss: 0.0617229380
+Train Epoch: 114 [2400/2975 (81%)]	Loss: 0.0716366321
+
+ Train_loader set: total_batch_loss: 0.0594, total imgs: 2975 , Acc: (0.9203%), Binary ACC: (0.9841%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1343, total imgs: 500 , Acc: (0.8490%), Binary Acc: (0.9652%)
+
+Train Epoch: 115 [0/2975 (0%)]	Loss: 0.0620581396
+Train Epoch: 115 [800/2975 (27%)]	Loss: 0.0613490343
+Train Epoch: 115 [1600/2975 (54%)]	Loss: 0.0601438470
+Train Epoch: 115 [2400/2975 (81%)]	Loss: 0.0656167269
+
+ Train_loader set: total_batch_loss: 0.0599, total imgs: 2975 , Acc: (0.9201%), Binary ACC: (0.9841%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8493%), Binary Acc: (0.9656%)
+
+Train Epoch: 116 [0/2975 (0%)]	Loss: 0.0590289086
+Train Epoch: 116 [800/2975 (27%)]	Loss: 0.0709036589
+Train Epoch: 116 [1600/2975 (54%)]	Loss: 0.0660916418
+Train Epoch: 116 [2400/2975 (81%)]	Loss: 0.0675071329
+
+ Train_loader set: total_batch_loss: 0.0591, total imgs: 2975 , Acc: (0.9206%), Binary ACC: (0.9844%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1342, total imgs: 500 , Acc: (0.8486%), Binary Acc: (0.9650%)
+
+Train Epoch: 117 [0/2975 (0%)]	Loss: 0.0608008951
+Train Epoch: 117 [800/2975 (27%)]	Loss: 0.0610098951
+Train Epoch: 117 [1600/2975 (54%)]	Loss: 0.0703407079
+Train Epoch: 117 [2400/2975 (81%)]	Loss: 0.0596500710
+
+ Train_loader set: total_batch_loss: 0.0599, total imgs: 2975 , Acc: (0.9196%), Binary ACC: (0.9840%)
+
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8488%), Binary Acc: (0.9650%)
+
+Train Epoch: 118 [0/2975 (0%)]	Loss: 0.0672511533
+Train Epoch: 118 [800/2975 (27%)]	Loss: 0.0739750862
+Train Epoch: 118 [1600/2975 (54%)]	Loss: 0.0620770305
+Train Epoch: 118 [2400/2975 (81%)]	Loss: 0.0779406503
+
+ Train_loader set: total_batch_loss: 0.0593, total imgs: 2975 , Acc: (0.9206%), Binary ACC: (0.9843%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8487%), Binary Acc: (0.9653%)
+
+Train Epoch: 119 [0/2975 (0%)]	Loss: 0.0740901008
+Train Epoch: 119 [800/2975 (27%)]	Loss: 0.0566826090
+Train Epoch: 119 [1600/2975 (54%)]	Loss: 0.0634235144
+Train Epoch: 119 [2400/2975 (81%)]	Loss: 0.0637691915
+
+ Train_loader set: total_batch_loss: 0.0591, total imgs: 2975 , Acc: (0.9207%), Binary ACC: (0.9845%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1351, total imgs: 500 , Acc: (0.8489%), Binary Acc: (0.9656%)
+
+Train Epoch: 120 [0/2975 (0%)]	Loss: 0.0682065561
+Train Epoch: 120 [800/2975 (27%)]	Loss: 0.0657684058
+Train Epoch: 120 [1600/2975 (54%)]	Loss: 0.0631195679
+Train Epoch: 120 [2400/2975 (81%)]	Loss: 0.0562849268
+
+ Train_loader set: total_batch_loss: 0.0597, total imgs: 2975 , Acc: (0.9198%), Binary ACC: (0.9841%)
+
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8492%), Binary Acc: (0.9653%)
+
+Train Epoch: 121 [0/2975 (0%)]	Loss: 0.0649319589
+Train Epoch: 121 [800/2975 (27%)]	Loss: 0.0713560134
+Train Epoch: 121 [1600/2975 (54%)]	Loss: 0.0709117278
+Train Epoch: 121 [2400/2975 (81%)]	Loss: 0.0615706593
+
+ Train_loader set: total_batch_loss: 0.0590, total imgs: 2975 , Acc: (0.9209%), Binary ACC: (0.9846%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9655%)
+
+Train Epoch: 122 [0/2975 (0%)]	Loss: 0.0668603182
+Train Epoch: 122 [800/2975 (27%)]	Loss: 0.0709725097
+Train Epoch: 122 [1600/2975 (54%)]	Loss: 0.0597427636
+Train Epoch: 122 [2400/2975 (81%)]	Loss: 0.0699278712
+
+ Train_loader set: total_batch_loss: 0.0589, total imgs: 2975 , Acc: (0.9205%), Binary ACC: (0.9845%)
+
+
+Test set: total_batch_loss: 0.1348, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9655%)
+
+Train Epoch: 123 [0/2975 (0%)]	Loss: 0.0673855990
+Train Epoch: 123 [800/2975 (27%)]	Loss: 0.0606581122
+Train Epoch: 123 [1600/2975 (54%)]	Loss: 0.0640206784
+Train Epoch: 123 [2400/2975 (81%)]	Loss: 0.0713445395
+
+ Train_loader set: total_batch_loss: 0.0585, total imgs: 2975 , Acc: (0.9215%), Binary ACC: (0.9847%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1351, total imgs: 500 , Acc: (0.8495%), Binary Acc: (0.9654%)
+
+Train Epoch: 124 [0/2975 (0%)]	Loss: 0.0613184422
+Train Epoch: 124 [800/2975 (27%)]	Loss: 0.0583551638
+Train Epoch: 124 [1600/2975 (54%)]	Loss: 0.0690875128
+Train Epoch: 124 [2400/2975 (81%)]	Loss: 0.0678723454
+
+ Train_loader set: total_batch_loss: 0.0588, total imgs: 2975 , Acc: (0.9212%), Binary ACC: (0.9845%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8486%), Binary Acc: (0.9653%)
+
+Train Epoch: 125 [0/2975 (0%)]	Loss: 0.0617746860
+Train Epoch: 125 [800/2975 (27%)]	Loss: 0.0778206959
+Train Epoch: 125 [1600/2975 (54%)]	Loss: 0.0752042234
+Train Epoch: 125 [2400/2975 (81%)]	Loss: 0.0725809485
+
+ Train_loader set: total_batch_loss: 0.0583, total imgs: 2975 , Acc: (0.9216%), Binary ACC: (0.9847%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1348, total imgs: 500 , Acc: (0.8487%), Binary Acc: (0.9654%)
+
+Train Epoch: 126 [0/2975 (0%)]	Loss: 0.0666861311
+Train Epoch: 126 [800/2975 (27%)]	Loss: 0.0771647468
+Train Epoch: 126 [1600/2975 (54%)]	Loss: 0.0599899068
+Train Epoch: 126 [2400/2975 (81%)]	Loss: 0.0635524243
+
+ Train_loader set: total_batch_loss: 0.0584, total imgs: 2975 , Acc: (0.9216%), Binary ACC: (0.9846%)
+
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9656%)
+
+Train Epoch: 127 [0/2975 (0%)]	Loss: 0.0723942220
+Train Epoch: 127 [800/2975 (27%)]	Loss: 0.0646511912
+Train Epoch: 127 [1600/2975 (54%)]	Loss: 0.0673758239
+Train Epoch: 127 [2400/2975 (81%)]	Loss: 0.0580759123
+
+ Train_loader set: total_batch_loss: 0.0582, total imgs: 2975 , Acc: (0.9220%), Binary ACC: (0.9847%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8490%), Binary Acc: (0.9653%)
+
+Train Epoch: 128 [0/2975 (0%)]	Loss: 0.0631148517
+Train Epoch: 128 [800/2975 (27%)]	Loss: 0.0634991974
+Train Epoch: 128 [1600/2975 (54%)]	Loss: 0.0694323257
+Train Epoch: 128 [2400/2975 (81%)]	Loss: 0.0685546249
+
+ Train_loader set: total_batch_loss: 0.0579, total imgs: 2975 , Acc: (0.9225%), Binary ACC: (0.9849%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1342, total imgs: 500 , Acc: (0.8495%), Binary Acc: (0.9656%)
+
+Train Epoch: 129 [0/2975 (0%)]	Loss: 0.0625634193
+Train Epoch: 129 [800/2975 (27%)]	Loss: 0.0733738914
+Train Epoch: 129 [1600/2975 (54%)]	Loss: 0.0631062537
+Train Epoch: 129 [2400/2975 (81%)]	Loss: 0.0694573447
+
+ Train_loader set: total_batch_loss: 0.0579, total imgs: 2975 , Acc: (0.9227%), Binary ACC: (0.9848%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1348, total imgs: 500 , Acc: (0.8493%), Binary Acc: (0.9655%)
+
+Train Epoch: 130 [0/2975 (0%)]	Loss: 0.0655633211
+Train Epoch: 130 [800/2975 (27%)]	Loss: 0.0700284541
+Train Epoch: 130 [1600/2975 (54%)]	Loss: 0.0614088513
+Train Epoch: 130 [2400/2975 (81%)]	Loss: 0.0598869361
+
+ Train_loader set: total_batch_loss: 0.0581, total imgs: 2975 , Acc: (0.9219%), Binary ACC: (0.9848%)
+
+
+Test set: total_batch_loss: 0.1345, total imgs: 500 , Acc: (0.8492%), Binary Acc: (0.9655%)
+
+Train Epoch: 131 [0/2975 (0%)]	Loss: 0.0639097095
+Train Epoch: 131 [800/2975 (27%)]	Loss: 0.0633710101
+Train Epoch: 131 [1600/2975 (54%)]	Loss: 0.0602231771
+Train Epoch: 131 [2400/2975 (81%)]	Loss: 0.0606483705
+
+ Train_loader set: total_batch_loss: 0.0581, total imgs: 2975 , Acc: (0.9224%), Binary ACC: (0.9849%)
+
+
+Test set: total_batch_loss: 0.1340, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9656%)
+
+Train Epoch: 132 [0/2975 (0%)]	Loss: 0.0633361936
+Train Epoch: 132 [800/2975 (27%)]	Loss: 0.0719877332
+Train Epoch: 132 [1600/2975 (54%)]	Loss: 0.0651812851
+Train Epoch: 132 [2400/2975 (81%)]	Loss: 0.0692733228
+
+ Train_loader set: total_batch_loss: 0.0583, total imgs: 2975 , Acc: (0.9220%), Binary ACC: (0.9846%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8489%), Binary Acc: (0.9655%)
+
+Train Epoch: 133 [0/2975 (0%)]	Loss: 0.0594691113
+Train Epoch: 133 [800/2975 (27%)]	Loss: 0.0593422502
+Train Epoch: 133 [1600/2975 (54%)]	Loss: 0.0668544471
+Train Epoch: 133 [2400/2975 (81%)]	Loss: 0.0577340461
+
+ Train_loader set: total_batch_loss: 0.0584, total imgs: 2975 , Acc: (0.9218%), Binary ACC: (0.9846%)
+
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9656%)
+
+Train Epoch: 134 [0/2975 (0%)]	Loss: 0.0662719309
+Train Epoch: 134 [800/2975 (27%)]	Loss: 0.0610589162
+Train Epoch: 134 [1600/2975 (54%)]	Loss: 0.0620236658
+Train Epoch: 134 [2400/2975 (81%)]	Loss: 0.0649874061
+
+ Train_loader set: total_batch_loss: 0.0576, total imgs: 2975 , Acc: (0.9228%), Binary ACC: (0.9851%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1347, total imgs: 500 , Acc: (0.8493%), Binary Acc: (0.9655%)
+
+Train Epoch: 135 [0/2975 (0%)]	Loss: 0.0699994639
+Train Epoch: 135 [800/2975 (27%)]	Loss: 0.0590210892
+Train Epoch: 135 [1600/2975 (54%)]	Loss: 0.0621800348
+Train Epoch: 135 [2400/2975 (81%)]	Loss: 0.0610317811
+
+ Train_loader set: total_batch_loss: 0.0578, total imgs: 2975 , Acc: (0.9226%), Binary ACC: (0.9850%)
+
+
+Test set: total_batch_loss: 0.1347, total imgs: 500 , Acc: (0.8490%), Binary Acc: (0.9652%)
+
+Train Epoch: 136 [0/2975 (0%)]	Loss: 0.0634859055
+Train Epoch: 136 [800/2975 (27%)]	Loss: 0.0560579374
+Train Epoch: 136 [1600/2975 (54%)]	Loss: 0.0730955452
+Train Epoch: 136 [2400/2975 (81%)]	Loss: 0.0614874214
+
+ Train_loader set: total_batch_loss: 0.0581, total imgs: 2975 , Acc: (0.9226%), Binary ACC: (0.9847%)
+
+
+Test set: total_batch_loss: 0.1340, total imgs: 500 , Acc: (0.8493%), Binary Acc: (0.9657%)
+
+Train Epoch: 137 [0/2975 (0%)]	Loss: 0.0678868145
+Train Epoch: 137 [800/2975 (27%)]	Loss: 0.0648338869
+Train Epoch: 137 [1600/2975 (54%)]	Loss: 0.0601660348
+Train Epoch: 137 [2400/2975 (81%)]	Loss: 0.0593201742
+
+ Train_loader set: total_batch_loss: 0.0580, total imgs: 2975 , Acc: (0.9223%), Binary ACC: (0.9850%)
+
+
+Test set: total_batch_loss: 0.1343, total imgs: 500 , Acc: (0.8493%), Binary Acc: (0.9656%)
+
+Train Epoch: 138 [0/2975 (0%)]	Loss: 0.0681094229
+Train Epoch: 138 [800/2975 (27%)]	Loss: 0.0725070611
+Train Epoch: 138 [1600/2975 (54%)]	Loss: 0.0644707233
+Train Epoch: 138 [2400/2975 (81%)]	Loss: 0.0690183789
+
+ Train_loader set: total_batch_loss: 0.0574, total imgs: 2975 , Acc: (0.9231%), Binary ACC: (0.9850%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1343, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9654%)
+
+Train Epoch: 139 [0/2975 (0%)]	Loss: 0.0618017241
+Train Epoch: 139 [800/2975 (27%)]	Loss: 0.0642548054
+Train Epoch: 139 [1600/2975 (54%)]	Loss: 0.0616299473
+Train Epoch: 139 [2400/2975 (81%)]	Loss: 0.0662290901
+
+ Train_loader set: total_batch_loss: 0.0577, total imgs: 2975 , Acc: (0.9226%), Binary ACC: (0.9847%)
+
+
+Test set: total_batch_loss: 0.1347, total imgs: 500 , Acc: (0.8492%), Binary Acc: (0.9655%)
+
+Train Epoch: 140 [0/2975 (0%)]	Loss: 0.0644112974
+Train Epoch: 140 [800/2975 (27%)]	Loss: 0.0642061532
+Train Epoch: 140 [1600/2975 (54%)]	Loss: 0.0683920085
+Train Epoch: 140 [2400/2975 (81%)]	Loss: 0.0682995841
+
+ Train_loader set: total_batch_loss: 0.0579, total imgs: 2975 , Acc: (0.9224%), Binary ACC: (0.9849%)
+
+
+Test set: total_batch_loss: 0.1345, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9656%)
+
+Train Epoch: 141 [0/2975 (0%)]	Loss: 0.0661693886
+Train Epoch: 141 [800/2975 (27%)]	Loss: 0.0601245314
+Train Epoch: 141 [1600/2975 (54%)]	Loss: 0.0634017214
+Train Epoch: 141 [2400/2975 (81%)]	Loss: 0.0647292733
+
+ Train_loader set: total_batch_loss: 0.0572, total imgs: 2975 , Acc: (0.9235%), Binary ACC: (0.9848%)
+
+New weight!
+
+Test set: total_batch_loss: 0.1347, total imgs: 500 , Acc: (0.8496%), Binary Acc: (0.9656%)
+
+Train Epoch: 142 [0/2975 (0%)]	Loss: 0.0628860146
+Train Epoch: 142 [800/2975 (27%)]	Loss: 0.0615896769
+Train Epoch: 142 [1600/2975 (54%)]	Loss: 0.0706681013
+Train Epoch: 142 [2400/2975 (81%)]	Loss: 0.0550280809
+
+ Train_loader set: total_batch_loss: 0.0579, total imgs: 2975 , Acc: (0.9222%), Binary ACC: (0.9848%)
+
+
+Test set: total_batch_loss: 0.1345, total imgs: 500 , Acc: (0.8494%), Binary Acc: (0.9657%)
+
+Train Epoch: 143 [0/2975 (0%)]	Loss: 0.0649698824
+Train Epoch: 143 [800/2975 (27%)]	Loss: 0.0649670511
+Train Epoch: 143 [1600/2975 (54%)]	Loss: 0.0646508783
+Train Epoch: 143 [2400/2975 (81%)]	Loss: 0.0707122982
+
+ Train_loader set: total_batch_loss: 0.0578, total imgs: 2975 , Acc: (0.9228%), Binary ACC: (0.9847%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8492%), Binary Acc: (0.9656%)
+
+Train Epoch: 144 [0/2975 (0%)]	Loss: 0.0689489692
+Train Epoch: 144 [800/2975 (27%)]	Loss: 0.0677329004
+Train Epoch: 144 [1600/2975 (54%)]	Loss: 0.0651897490
+Train Epoch: 144 [2400/2975 (81%)]	Loss: 0.0683057010
+
+ Train_loader set: total_batch_loss: 0.0578, total imgs: 2975 , Acc: (0.9226%), Binary ACC: (0.9850%)
+
+
+Test set: total_batch_loss: 0.1345, total imgs: 500 , Acc: (0.8492%), Binary Acc: (0.9657%)
+
+Train Epoch: 145 [0/2975 (0%)]	Loss: 0.0592956170
+Train Epoch: 145 [800/2975 (27%)]	Loss: 0.0672002733
+Train Epoch: 145 [1600/2975 (54%)]	Loss: 0.0645927265
+Train Epoch: 145 [2400/2975 (81%)]	Loss: 0.0653742403
+
+ Train_loader set: total_batch_loss: 0.0574, total imgs: 2975 , Acc: (0.9230%), Binary ACC: (0.9850%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8490%), Binary Acc: (0.9656%)
+
+Train Epoch: 146 [0/2975 (0%)]	Loss: 0.0653307289
+Train Epoch: 146 [800/2975 (27%)]	Loss: 0.0697408468
+Train Epoch: 146 [1600/2975 (54%)]	Loss: 0.0680078939
+Train Epoch: 146 [2400/2975 (81%)]	Loss: 0.0709048212
+
+ Train_loader set: total_batch_loss: 0.0576, total imgs: 2975 , Acc: (0.9227%), Binary ACC: (0.9847%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8491%), Binary Acc: (0.9655%)
+
+Train Epoch: 147 [0/2975 (0%)]	Loss: 0.0659940094
+Train Epoch: 147 [800/2975 (27%)]	Loss: 0.0639461577
+Train Epoch: 147 [1600/2975 (54%)]	Loss: 0.0639531165
+Train Epoch: 147 [2400/2975 (81%)]	Loss: 0.0729877576
+
+ Train_loader set: total_batch_loss: 0.0577, total imgs: 2975 , Acc: (0.9227%), Binary ACC: (0.9849%)
+
+
+Test set: total_batch_loss: 0.1352, total imgs: 500 , Acc: (0.8496%), Binary Acc: (0.9655%)
+
+Train Epoch: 148 [0/2975 (0%)]	Loss: 0.0653533936
+Train Epoch: 148 [800/2975 (27%)]	Loss: 0.0614452660
+Train Epoch: 148 [1600/2975 (54%)]	Loss: 0.0683183968
+Train Epoch: 148 [2400/2975 (81%)]	Loss: 0.0613397211
+
+ Train_loader set: total_batch_loss: 0.0577, total imgs: 2975 , Acc: (0.9225%), Binary ACC: (0.9850%)
+
+
+Test set: total_batch_loss: 0.1344, total imgs: 500 , Acc: (0.8493%), Binary Acc: (0.9655%)
+
+Train Epoch: 149 [0/2975 (0%)]	Loss: 0.0642617643
+Train Epoch: 149 [800/2975 (27%)]	Loss: 0.0668135956
+Train Epoch: 149 [1600/2975 (54%)]	Loss: 0.0626873076
+Train Epoch: 149 [2400/2975 (81%)]	Loss: 0.0769141167
+
+ Train_loader set: total_batch_loss: 0.0578, total imgs: 2975 , Acc: (0.9225%), Binary ACC: (0.9847%)
+
+
+Test set: total_batch_loss: 0.1350, total imgs: 500 , Acc: (0.8499%), Binary Acc: (0.9658%)
+
+Train Epoch: 150 [0/2975 (0%)]	Loss: 0.0726256371
+Train Epoch: 150 [800/2975 (27%)]	Loss: 0.0775763318
+Train Epoch: 150 [1600/2975 (54%)]	Loss: 0.0642516240
+Train Epoch: 150 [2400/2975 (81%)]	Loss: 0.0677569881
+
+ Train_loader set: total_batch_loss: 0.0574, total imgs: 2975 , Acc: (0.9232%), Binary ACC: (0.9851%)
+
+
+Test set: total_batch_loss: 0.1346, total imgs: 500 , Acc: (0.8488%), Binary Acc: (0.9657%)
+
+
+Time taken: 6:23:09.740055
+

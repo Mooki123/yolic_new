@@ -1,0 +1,96 @@
+{
+ "per_class": {
+  "People": {
+   "precision": 0.6648516710476906,
+   "recall": 0.7122598813235442,
+   "f1": 0.6877397426559845,
+   "support": 9943
+  },
+  "Vehicle": {
+   "precision": 0.8701510333863275,
+   "recall": 0.8565001369273503,
+   "f1": 0.863271623193549,
+   "support": 25561
+  },
+  "Other": {
+   "precision": 0.9229612469263753,
+   "recall": 0.9215940911488982,
+   "f1": 0.9222771623803191,
+   "support": 49282
+  },
+  "Road": {
+   "precision": 0.9612045076667283,
+   "recall": 0.956082322675487,
+   "f1": 0.9586365730078305,
+   "support": 54420
+  }
+ },
+ "object_macro_f1": 0.8244295094099509,
+ "primary_classes": [
+  "People",
+  "Vehicle"
+ ],
+ "primary_macro_f1": 0.7755056829247667,
+ "all_paper": {
+  "precision": 0.8193213171201311,
+  "recall": 0.8301180364665975,
+  "f1": 0.8246843408022614
+ },
+ "ap": {
+  "People": 0.7659338924530903,
+  "Vehicle": 0.944187123790636,
+  "Other": 0.9747823856072765
+ },
+ "binary_road_all_cells": {
+  "Risk": {
+   "precision": 0.9626958856215271,
+   "recall": 0.9670732854589357,
+   "f1": 0.9648796207937674,
+   "support": 63778
+  },
+  "Road": {
+   "precision": 0.9612045076667283,
+   "recall": 0.956082322675487,
+   "f1": 0.9586365730078305,
+   "support": 54420
+  }
+ },
+ "mAP": 0.894967800617001,
+ "by_group": {
+  "small_64x32": {
+   "object_macro_f1": 0.8234537183136199,
+   "classes_present": 3
+  },
+  "large_128x64": {
+   "object_macro_f1": 0.8712377154274468,
+   "classes_present": 3
+  }
+ },
+ "by_group_primary": {
+  "small_64x32": {
+   "object_macro_f1": 0.7706816716626181,
+   "classes_present": 2
+  },
+  "large_128x64": {
+   "object_macro_f1": 0.8718761949749196,
+   "classes_present": 2
+  }
+ },
+ "tuned": {
+  "thresholds": [
+   0.5399999999999999,
+   0.4499999999999999,
+   0.41999999999999993,
+   0.5
+  ],
+  "object_macro_f1": 0.8251465151479526,
+  "primary_macro_f1": 0.7763650071619919
+ },
+ "name": "cityscapes_b5_cellpool_s16",
+ "seed": 2,
+ "best_val_primary_macro_f1": 0.763579854325396,
+ "test_loss": 0.15168388579835318,
+ "n_test": 500,
+ "params": 2230020,
+ "macs": 552914428
+}

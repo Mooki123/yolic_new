@@ -1,0 +1,19 @@
+2026-10-08 19:54:54 start cityscapes_b1 seed 0
+2026-10-08 20:11:15 start cityscapes_b4_cellpool_s32 seed 0
+2026-10-08 20:27:51 start cityscapes_b8_lraspp_s seed 0
+2026-10-08 20:30:43 queue restarted after CellPool coverage fix; B seed 0 moved to runs/_invalid
+2026-10-08 20:43:23 start cityscapes_b1 seed 0
+2026-10-08 20:43:29 start cityscapes_b4_cellpool_s32 seed 0
+2026-10-08 21:00:10 start cityscapes_b8_lraspp_s seed 0
+2026-10-08 21:00:15 start cityscapes_b5_cellpool_s16 seed 0
+2026-10-08 21:18:31 start cityscapes_b1 seed 1
+2026-10-08 21:35:20 start cityscapes_b4_cellpool_s32 seed 1
+2026-10-08 21:52:04 start cityscapes_b8_lraspp_s seed 1
+2026-10-08 22:07:13 start cityscapes_b5_cellpool_s16 seed 1
+2026-10-08 22:25:32 start cityscapes_b1 seed 2
+2026-10-08 22:42:02 start cityscapes_b4_cellpool_s32 seed 2
+2026-10-08 22:58:27 start cityscapes_b8_lraspp_s seed 2
+2026-10-08 23:13:37 start cityscapes_b5_cellpool_s16 seed 2
+2026-10-08 23:31:59 start B0 train
+2026-10-09 05:55:47 start B0 eval
+2026-10-11 01:12:13 B0 eval re-run after machine restart (first attempt killed); queue done
