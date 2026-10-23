@@ -190,6 +190,91 @@ class MilPool(nn.Module):
         return out.transpose(1, 2) + self.bias  # (B, n_cells, n_bits)
 
 
+def _splat_matrix(num_pixels, num_bins):
+    """RoIAlign-style bilinear weights (num_bins, num_pixels), as in YOLIC-Align's yolic_align._splat_matrix."""
+    centers = (torch.arange(num_pixels, dtype=torch.float64) + 0.5) * num_bins / num_pixels - 0.5
+    centers = centers.clamp(0, num_bins - 1)
+    bins = torch.arange(num_bins, dtype=torch.float64)
+    return (1 - (bins[:, None] - centers[None, :]).abs()).clamp(min=0)
+
+
+def align_cell_weights(layout, in_w, in_h, feat_w, feat_h, crop=None, supersample=8):
+    """Per-cell pooling weights on a feature grid for one view: exact cell coverage at the view's input resolution
+    (Layout.rasterize, crop = the view's source box), spread onto the feature grid bilinearly, normalised per cell.
+    Returns (weights (n_cells, feat_h * feat_w), covered (n_cells,) bool); uncovered cells get all-zero weights."""
+    cov = torch.as_tensor(layout.rasterize(in_w, in_h, supersample=supersample, crop=crop), dtype=torch.float64)
+    w = torch.einsum('fh,nhw,gw->nfg', _splat_matrix(in_h, feat_h), cov, _splat_matrix(in_w, feat_w))
+    area = w.flatten(1).sum(1)
+    covered = area > 1e-9
+    w = torch.where(covered[:, None, None], w / area.clamp_min(1e-12)[:, None, None], torch.zeros_like(w))
+    return w.flatten(1).float(), covered
+
+
+class AlignTrunk(nn.Module):
+    """YOLIC-Align's feature path: MobileNetV2 split at stride 16, the stride-32 map upsampled to stride 16 and
+    concatenated with a 1x1-conv lateral of the stride-16 map."""
+
+    def __init__(self, pretrained=True, lateral_channels=128):
+        super().__init__()
+        w = models.MobileNet_V2_Weights.IMAGENET1K_V1 if pretrained else None
+        f = models.mobilenet_v2(weights=w).features
+        self.stride16, self.stride32 = f[:14], f[14:]
+        self.lateral = nn.Sequential(nn.Conv2d(96, lateral_channels, 1, bias=False), nn.BatchNorm2d(lateral_channels),
+                                     nn.ReLU6(inplace=True))
+
+    def forward(self, x):
+        x16 = self.stride16(x)
+        x32 = nn.functional.interpolate(self.stride32(x16), size=x16.shape[-2:], mode='bilinear', align_corners=False)
+        return torch.cat([x32, self.lateral(x16)], dim=1)
+
+
+class AlignNet(nn.Module):
+    """research/13: YOLIC-Align's 'align' head (research/12), for one or several views.
+
+    Per view: trunk (per-view BatchNorm, shared convolutions) -> shared dropout + 1x1 classifier -> per-location logits;
+    each cell reads them through its bilinear mask weights in that view as mean + sigmoid(mix) * (LSE_T - mean).
+    With several views, a cell's readouts are blended by a learned per-cell softmax over the views that cover it
+    (equal at initialisation); then the per-(cell, class) bias is added. With one view this is exactly YOLIC-Align.
+    """
+
+    def __init__(self, layout, n_bits, view_specs, pretrained=True, dropout=0.2, lse_temperature=4.0):
+        super().__init__()
+        trunk = AlignTrunk(pretrained)
+        self.trunks = _per_view_copies(trunk, len(view_specs)) if len(view_specs) > 1 else nn.ModuleList([trunk])
+        self.dropout = nn.Dropout(dropout)
+        self.classifier = nn.Conv2d(1280 + 128, n_bits, 1)
+        self.cell_bias = nn.Parameter(torch.zeros(len(layout), n_bits))
+        self.mix = nn.Parameter(torch.zeros(n_bits))
+        self.view_logit = nn.Parameter(torch.zeros(len(layout), len(view_specs)))
+        self.t = lse_temperature
+        covered = []
+        with torch.no_grad():
+            for v, (crop, (w, h)) in enumerate(view_specs):
+                fh, fw = trunk.stride16(torch.zeros(1, 3, h, w)).shape[-2:]
+                wts, cov = align_cell_weights(layout, w, h, fw, fh, crop)
+                self.register_buffer(f'w{v}', wts, persistent=False)
+                self.register_buffer(f'logw{v}', torch.where(wts > 0, wts.log(), torch.zeros_like(wts)), persistent=False)
+                self.register_buffer(f'in{v}', wts > 0, persistent=False)
+                covered.append(cov)
+        covered = torch.stack(covered, 1)
+        if not covered.any(1).all():
+            raise ValueError(f'{int((~covered.any(1)).sum())} cells are covered by no view')
+        self.register_buffer('covered', covered, persistent=False)
+
+    def readout(self, v, x):
+        z = self.classifier(self.dropout(self.trunks[v](x))).float().flatten(2)  # (B, K, P)
+        w, logw, inside = getattr(self, f'w{v}'), getattr(self, f'logw{v}'), getattr(self, f'in{v}')
+        mean = torch.einsum('bkp,np->bnk', z, w)
+        s = (self.t * z.unsqueeze(2) + logw).masked_fill(~inside, -1e4)  # (B, K, N, P)
+        lse = (torch.logsumexp(s, dim=-1) / self.t).transpose(1, 2)
+        return mean + torch.sigmoid(self.mix) * (lse - mean)  # (B, N, K)
+
+    def forward(self, *views):
+        r = torch.stack([self.readout(v, x) for v, x in enumerate(views)], dim=-1)  # (B, N, K, V)
+        a = torch.softmax(self.view_logit.masked_fill(~self.covered, -1e9), dim=1)  # (N, V)
+        return (r * a[None, :, None, :]).sum(-1) + self.cell_bias
+
+
 def _per_view_copies(features, n_views):
     """n_views copies of a backbone that share every weight except BatchNorm (each copy has its own BN).
 
@@ -233,8 +318,12 @@ class FoveaGapFc(nn.Module):
         return self.fc(self.drop(z)).view(-1, self.n_cells, self.n_bits)
 
 
-def build(cfg, layout, n_bits, input_size=224, pretrained=True, n_views=1):
-    """cfg: dict with backbone, head and (cellpool) stride. Returns a CellNet, SegCells or FoveaGapFc."""
+def build(cfg, layout, n_bits, input_size=224, pretrained=True, n_views=1, view_specs=None):
+    """cfg: dict with backbone, head and (cellpool) stride. Returns a CellNet, SegCells, FoveaGapFc or AlignNet.
+    view_specs: [(crop box in source pixels or None, (width, height))] per input view (needed by 'align')."""
+    if cfg['head'] == 'align':
+        specs = view_specs or [(None, (input_size, input_size))] * n_views
+        return AlignNet(layout, n_bits, specs, pretrained)
     if cfg['head'] == 'fovea_gapfc':
         feats, channels = backbone(cfg['backbone'], pretrained)
         return FoveaGapFc(feats, channels, n_views, len(layout), n_bits, per_view_bn=cfg.get('per_view_bn', True))

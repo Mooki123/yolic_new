@@ -183,7 +183,13 @@ def main():
     class_names = json.load(open(os.path.join(cfg['cache'], 'meta.json')))['classes']
     input_size = cfg.get('input_size', 224)
 
-    model = heads.build(cfg['model'], layout, n_bits, input_size, n_views=len(cache.views)).to(device)
+    meta_views = json.load(open(os.path.join(cfg['cache'], 'meta.json'))).get('views', {})
+    view_specs = [((tuple(meta_views[v]['crop']), tuple(meta_views[v]['size'])) if v in meta_views else
+                   (None, (arr.shape[2], arr.shape[1])))
+                  for v, arr in zip(cfg.get('views') or [None], cache.views)]
+    if cfg.get('resize'):
+        view_specs = [(crop, (cfg['resize'], cfg['resize'])) for crop, _ in view_specs]
+    model = heads.build(cfg['model'], layout, n_bits, input_size, n_views=len(cache.views), view_specs=view_specs).to(device)
     model = model.to(memory_format=torch.channels_last)
     seg = is_seg(model)
     opt = torch.optim.Adam(model.parameters(), lr=cfg['lr'])
