@@ -1,0 +1,177 @@
+{
+ "per_class": {
+  "Bump": {
+   "precision": 0.8714063519141036,
+   "recall": 0.5650518918567199,
+   "f1": 0.6855609062919397,
+   "support": 30737
+  },
+  "Column": {
+   "precision": 0.5816676185037122,
+   "recall": 0.42147734326505276,
+   "f1": 0.4887822435512898,
+   "support": 4833
+  },
+  "Dent": {
+   "precision": 0.7392857142857143,
+   "recall": 0.15673902069661788,
+   "f1": 0.25864223240316536,
+   "support": 3962
+  },
+  "Fence": {
+   "precision": 0.6748647319232661,
+   "recall": 0.2648648648648649,
+   "f1": 0.38042423402190495,
+   "support": 5180
+  },
+  "Creature": {
+   "precision": 0.8020946681175191,
+   "recall": 0.6323860589812332,
+   "f1": 0.70720153504827,
+   "support": 9325
+  },
+  "Vehicle": {
+   "precision": 0.8502493765586034,
+   "recall": 0.671293561724749,
+   "f1": 0.750247551985917,
+   "support": 10158
+  },
+  "Wall": {
+   "precision": 0.7778615025243011,
+   "recall": 0.6629206267659903,
+   "f1": 0.7158062614845889,
+   "support": 15572
+  },
+  "Weed": {
+   "precision": 0.8936968675806081,
+   "recall": 0.699748141041017,
+   "f1": 0.7849191134429757,
+   "support": 16676
+  },
+  "ZebraCrossing": {
+   "precision": 0.8478003657093686,
+   "recall": 0.5797719749908055,
+   "f1": 0.6886248471081602,
+   "support": 13595
+  },
+  "TrafficCone": {
+   "precision": 0.6190476190476191,
+   "recall": 0.07315700619020822,
+   "f1": 0.13085052843482636,
+   "support": 1777
+  },
+  "TrafficSign": {
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "support": 215
+  },
+  "Road": {
+   "precision": 0.9330736692214264,
+   "recall": 0.972730391392484,
+   "f1": 0.9524894339530451,
+   "support": 320650
+  }
+ },
+ "object_macro_f1": 0.5082781321611853,
+ "primary_classes": [
+  "Bump",
+  "Column",
+  "Dent",
+  "Fence",
+  "Creature",
+  "Vehicle",
+  "Wall",
+  "Weed",
+  "ZebraCrossing",
+  "TrafficCone",
+  "TrafficSign"
+ ],
+ "primary_macro_f1": 0.5082781321611853,
+ "all_paper": {
+  "precision": 0.6961795287422561,
+  "recall": 0.42976459003429623,
+  "f1": 0.53145321294504
+ },
+ "ap": {
+  "Bump": 0.789233102568784,
+  "Column": 0.4871524515351535,
+  "Dent": 0.28714801086041225,
+  "Fence": 0.41430193053503894,
+  "Creature": 0.7926645987983116,
+  "Vehicle": 0.8301716355057547,
+  "Wall": 0.7838528795811015,
+  "Weed": 0.8712741654653063,
+  "ZebraCrossing": 0.7494413765318895,
+  "TrafficCone": 0.2268596533581003,
+  "TrafficSign": 0.005001524115038455
+ },
+ "binary_road_all_cells": {
+  "Risk": {
+   "precision": 0.9018696832985433,
+   "recall": 0.7822337298265424,
+   "f1": 0.8378023352793996,
+   "support": 102734
+  },
+  "Road": {
+   "precision": 0.9330736692214264,
+   "recall": 0.972730391392484,
+   "f1": 0.9524894339530451,
+   "support": 320650
+  }
+ },
+ "mAP": 0.567009211714081,
+ "by_group": {
+  "far_34px": {
+   "object_macro_f1": 0.5315337707576356,
+   "classes_present": 10
+  },
+  "near_53px": {
+   "object_macro_f1": 0.5720013388457252,
+   "classes_present": 10
+  },
+  "top_60px": {
+   "object_macro_f1": 0.0,
+   "classes_present": 1
+  }
+ },
+ "by_group_primary": {
+  "far_34px": {
+   "object_macro_f1": 0.5315337707576356,
+   "classes_present": 10
+  },
+  "near_53px": {
+   "object_macro_f1": 0.5720013388457252,
+   "classes_present": 10
+  },
+  "top_60px": {
+   "object_macro_f1": 0.0,
+   "classes_present": 1
+  }
+ },
+ "tuned": {
+  "thresholds": [
+   0.19999999999999996,
+   0.3,
+   0.05,
+   0.12,
+   0.18,
+   0.48999999999999994,
+   0.58,
+   0.26999999999999996,
+   0.12,
+   0.06,
+   0.13,
+   0.5
+  ],
+  "object_macro_f1": 0.5400401589950844,
+  "primary_macro_f1": 0.5400401589950844
+ },
+ "name": "outdoor_b1_grouped_sb10",
+ "seed": 0,
+ "best_val_primary_macro_f1": 0.558025890656326,
+ "test_loss": 0.08463684981206973,
+ "n_test": 4071,
+ "params": 3822560,
+ "macs": 314447936
+}

@@ -27,13 +27,15 @@ IMAGENET_STD = (0.229, 0.224, 0.225)
 class CellCache:
     """views: names of extra image views (images_<view>.npy, tools/cache_views.py); None = images.npy."""
 
-    def __init__(self, path, views=None):
+    def __init__(self, path, views=None, labels=None):
+        """labels: name of an alternative label set (labels_<name>.npy / valid_<name>.npy, e.g. another layout)."""
         self.path = path
         files = ['images.npy'] if not views else [f'images_{v}.npy' for v in views]
         self.views = [np.load(os.path.join(path, f), mmap_mode='r') for f in files]
         self.images = self.views[0]
-        self.labels = np.load(os.path.join(path, 'labels.npy'))
-        vp = os.path.join(path, 'valid.npy')
+        suffix = '' if not labels else f'_{labels}'
+        self.labels = np.load(os.path.join(path, f'labels{suffix}.npy'))
+        vp = os.path.join(path, f'valid{suffix}.npy')
         self.valid = np.load(vp) if os.path.exists(vp) else None
         mp = os.path.join(path, 'masks.npy')
         self.masks = np.load(mp, mmap_mode='r') if os.path.exists(mp) else None
@@ -157,9 +159,11 @@ def color_jitter(x, brightness, contrast, saturation, hue, generator=None):
 
 
 class GpuAugment:
-    def __init__(self, perm, flip='hflip', jitter=None, normalize=True, generator=None):
+    def __init__(self, perm, flip='hflip', jitter=None, normalize=True, generator=None, resize=None):
+        """resize: optional square side; every view is resized to it (bilinear, antialiased) as the last step."""
         self.perm = torch.as_tensor(perm) if perm is not None else None
         self.flip, self.jitter, self.normalize, self.g = flip, jitter, normalize, generator
+        self.resize = resize
         self.mean = torch.tensor(IMAGENET_MEAN).view(1, 3, 1, 1)
         self.std = torch.tensor(IMAGENET_STD).view(1, 3, 1, 1)
 
@@ -171,6 +175,9 @@ class GpuAugment:
         return self.finish(x)
 
     def finish(self, x):
+        if self.resize:
+            x = torch.nn.functional.interpolate(x, size=(self.resize, self.resize), mode='bilinear',
+                                                align_corners=False, antialias=True)
         if self.normalize:
             x = (x - self.mean.to(x.device)) / self.std.to(x.device)
         return x.contiguous(memory_format=torch.channels_last)

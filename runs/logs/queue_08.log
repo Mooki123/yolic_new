@@ -1,0 +1,6 @@
+2026-10-22 16:47:07 start cityscapes_mil_max_s16 seed 0
+2026-10-22 17:05:25 start cityscapes_mil_lse_s16 seed 0
+2026-10-22 17:24:07 start cityscapes_oracle_union seed 0
+2026-10-22 17:40:48 start cityscapes_oracle_shift seed 0
+2026-10-22 17:57:15 start cityscapes_oracle_fine seed 0
+2026-10-22 18:14:49 queue done

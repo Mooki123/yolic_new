@@ -1,0 +1,76 @@
+{
+ "frame-level (leaky control)": {
+  "alpha=0.05": {
+   "CRC mean FNR": 0.0,
+   "CRC P(FNR > alpha+0.05)": 0.0,
+   "CRC FNR 5-95%": [
+    0.0,
+    0.0
+   ],
+   "naive mean FNR": 0.0,
+   "CRC flagged-cell rate": 1.0
+  },
+  "alpha=0.1": {
+   "CRC mean FNR": 0.0973,
+   "CRC P(FNR > alpha+0.05)": 0.0,
+   "CRC FNR 5-95%": [
+    0.087,
+    0.107
+   ],
+   "naive mean FNR": 0.0977,
+   "CRC flagged-cell rate": 0.299
+  },
+  "alpha=0.2": {
+   "CRC mean FNR": 0.1997,
+   "CRC P(FNR > alpha+0.05)": 0.0,
+   "CRC FNR 5-95%": [
+    0.188,
+    0.211
+   ],
+   "naive mean FNR": 0.1999,
+   "CRC flagged-cell rate": 0.226
+  }
+ },
+ "session-level (deployment)": {
+  "alpha=0.05": {
+   "CRC mean FNR": 0.003,
+   "CRC P(FNR > alpha+0.05)": 0.02,
+   "CRC FNR 5-95%": [
+    0.0,
+    0.0
+   ],
+   "naive mean FNR": 0.003,
+   "CRC flagged-cell rate": 0.981
+  },
+  "alpha=0.1": {
+   "CRC mean FNR": 0.0954,
+   "CRC P(FNR > alpha+0.05)": 0.054,
+   "CRC FNR 5-95%": [
+    0.052,
+    0.15
+   ],
+   "naive mean FNR": 0.0959,
+   "CRC flagged-cell rate": 0.326
+  },
+  "alpha=0.2": {
+   "CRC mean FNR": 0.1984,
+   "CRC P(FNR > alpha+0.05)": 0.06,
+   "CRC FNR 5-95%": [
+    0.141,
+    0.254
+   ],
+   "naive mean FNR": 0.1986,
+   "CRC flagged-cell rate": 0.227
+  }
+ },
+ "fixed 0.5 threshold": {
+  "FNR": 0.3348,
+  "flagged-cell rate": 0.179
+ },
+ "data": {
+  "images": 6107,
+  "images with a hazard": 6052,
+  "sessions": 68
+ },
+ "verdict (alpha = 0.10)": "NOT MATERIAL"
+}

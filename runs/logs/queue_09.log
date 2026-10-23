@@ -1,0 +1,19 @@
+2026-10-22 18:35:39 start cityscapes_oracle_poly seed 0
+2026-10-22 18:51:58 start cityscapes_mil_max_s16_r168 seed 0
+2026-10-22 19:05:59 start cityscapes_oracleT_shift seed 0
+2026-10-22 19:20:10 start cityscapes_oracleT_fine seed 0
+2026-10-22 19:34:33 start cityscapes_oracleT_poly seed 0
+2026-10-22 19:48:45 start cityscapes_mil_max_s16_r168 seed 1
+2026-10-22 20:03:20 start cityscapes_oracleT_shift seed 1
+2026-10-22 20:17:33 start cityscapes_oracleT_fine seed 1
+2026-10-22 20:31:50 start cityscapes_mil_max_s16_r168 seed 2
+2026-10-22 20:46:03 start cityscapes_oracleT_shift seed 2
+2026-10-22 21:00:18 start cityscapes_oracleT_fine seed 2
+2026-10-22 21:14:33 decisive runs done
+2026-10-22 21:14:33 start cityscapes_oracle_shift seed 1
+2026-10-22 21:31:04 start cityscapes_oracle_fine seed 1
+2026-10-22 21:48:43 start cityscapes_mil_max_s16 seed 1
+2026-10-22 22:07:04 start cityscapes_oracle_shift seed 2
+2026-10-22 22:23:33 start cityscapes_oracle_fine seed 2
+2026-10-22 22:40:48 start cityscapes_mil_max_s16 seed 2
+2026-10-22 22:59:28 queue done

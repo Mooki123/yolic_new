@@ -1,0 +1,40 @@
+name: outdoor_f_ctx_grouped_pvbn
+cache: /home/bhavya/data/yolic_cache/outdoor
+layout: layouts/outdoor.json
+split: splits/outdoor_grouped
+object_classes:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+model:
+  backbone: mnv2
+  head: fovea_gapfc
+  per_view_bn: true
+views:
+- ctx88x48
+- fov464x112
+input_size: 224
+epochs: 150
+milestones:
+- 100
+- 125
+batch: 32
+lr: 0.001
+amp: true
+normalize: true
+flip: hflip
+jitter:
+  brightness: 0.5
+  contrast: 0.5
+  saturation: 0.5
+  hue: 0.1
+seed: 1
+git: f1c2cd3896c6f542d4aa0cfdd33b9fa7a4d07eee

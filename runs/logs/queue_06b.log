@@ -1,0 +1,9 @@
+2026-10-18 20:16:38 paused by user (queues and outdoor_b1_grouped seed 1 stopped; resume from last.pt)
+2026-10-19 01:13:55 resumed by user
+2026-10-19 02:37:25 start cityscapes_f_v5 seed 1
+2026-10-19 02:57:46 start cityscapes_f_v5 seed 2
+2026-10-19 03:18:06 stage 2 done
+2026-10-19 03:18:06 start outdoor_f_bands_grouped seed 0
+2026-10-19 05:23:54 start outdoor_f_bands_grouped seed 1
+2026-10-19 07:30:02 start outdoor_f_bands_grouped seed 2
+2026-10-19 09:37:46 queue done

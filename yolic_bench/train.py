@@ -137,12 +137,13 @@ def report(gt, probs, layout, object_classes, class_names, valid=None, val_gt=No
     return out
 
 
-def count_macs(model, cache, device):
+def count_macs(model, cache, device, resize=None):
     """fvcore MACs for one sample at the cached input size(s) (all views)."""
     from fvcore.nn import FlopCountAnalysis
     logging.getLogger('fvcore').setLevel(logging.ERROR)
     model.eval()
-    inputs = tuple(torch.zeros(1, 3, v.shape[1], v.shape[2], device=device) for v in cache.views)
+    shapes = [(resize, resize) if resize else v.shape[1:3] for v in cache.views]
+    inputs = tuple(torch.zeros(1, 3, h, w, device=device) for h, w in shapes)
     fl = FlopCountAnalysis(model, inputs)
     fl.unsupported_ops_warnings(False)
     fl.uncalled_modules_warnings(False)
@@ -160,7 +161,7 @@ def main():
     cfg = load_config(args.config)
     if args.epochs:
         cfg['epochs'] = args.epochs
-        cfg['milestones'] = [m * args.epochs // 150 for m in cfg['milestones']]
+        cfg['milestones'] = [max(1, m * args.epochs // 150) for m in cfg['milestones']]  # never 0: that would cut the lr before training
     run_dir = os.path.join(args.runs, cfg['name'], f'seed{args.seed}')
     if os.path.exists(os.path.join(run_dir, 'metrics.json')):
         print(f'{run_dir} already finished; skipping')
@@ -173,7 +174,7 @@ def main():
     device = torch.device('cuda')
     torch.backends.cudnn.benchmark = True
     layout = Layout.load(os.path.join(ROOT, cfg['layout']))
-    cache = CellCache(cfg['cache'], cfg.get('views'))
+    cache = CellCache(cfg['cache'], cfg.get('views'), cfg.get('labels'))
     split = os.path.join(ROOT, cfg['split'])
     tr, va, te = (cache.indices(os.path.join(split, p + '.txt')) for p in ('train', 'val', 'test'))
     n_bits = cache.labels.shape[-1]
@@ -190,7 +191,8 @@ def main():
     scaler = torch.amp.GradScaler('cuda', enabled=cfg.get('amp', True))
     g = torch.Generator().manual_seed(args.seed)
     perm = layout.mirror_permutation() if cfg.get('flip', 'hflip') != 'none' else None
-    aug = GpuAugment(perm, cfg.get('flip', 'hflip'), cfg.get('jitter'), cfg.get('normalize', True), g)
+    aug = GpuAugment(perm, cfg.get('flip', 'hflip'), cfg.get('jitter'), cfg.get('normalize', True), g,
+                     resize=cfg.get('resize'))
 
     start, best = 1, -1.0
     last = os.path.join(run_dir, 'last.pt')
@@ -200,8 +202,8 @@ def main():
         opt.load_state_dict(st['opt'])
         sched.load_state_dict(st['sched'])
         scaler.load_state_dict(st['scaler'])
-        g.set_state(st['gen'])
-        torch.set_rng_state(st['torch_rng'])
+        g.set_state(st['gen'].cpu())  # map_location moved the RNG states to the GPU too
+        torch.set_rng_state(st['torch_rng'].cpu())
         start, best = st['epoch'] + 1, st['best']
         print(f'resuming from epoch {start}, best val macro-F1 {best:.4f}')
 
@@ -212,12 +214,19 @@ def main():
     if new_log:
         w.writerow(['epoch', 'lr', 'train_loss', 'val_loss', 'val_primary_macro_f1', 'best', 'img_per_s', 'sec'])
     val_gt = cache.labels[va]
+    balance = None
+    if cfg.get('session_balance') is not None:  # research/11: frame weight ~ 1 / (frames in its session)^beta
+        sessions = np.array(open(os.path.join(cfg['cache'], 'sessions.txt')).read().split())[tr]
+        _, inv, size = np.unique(sessions, return_inverse=True, return_counts=True)
+        balance = torch.as_tensor(1.0 / size[inv] ** float(cfg['session_balance']), dtype=torch.float64)
     val_valid = cache.valid[va] if cache.valid is not None else None
 
     for epoch in range(start, cfg['epochs'] + 1):
         model.train()
         t0, seen, loss_sum = time.time(), 0, 0.0
         rows = cache.sample_states(tr, g)
+        if balance is not None:
+            rows = rows[torch.multinomial(balance, len(rows), replacement=True, generator=g).numpy()]
         for imgs, lab, valid, mk, _ in batches(cache, rows, cfg['batch'], shuffle=True, generator=g, masks=seg):
             imgs = [v.to(device, non_blocking=True) for v in imgs]
             lab = lab.to(device, non_blocking=True).float()
@@ -269,7 +278,7 @@ def main():
                  val_probs=val_probs, val_valid=val_valid, primary_classes=primary)
     res |= {'name': cfg['name'], 'seed': args.seed, 'best_val_primary_macro_f1': best, 'test_loss': test_loss,
             'n_test': int(len(te)), 'params': int(sum(p.numel() for p in model.parameters())),
-            'macs': count_macs(model, cache, device)}
+            'macs': count_macs(model, cache, device, cfg.get('resize'))}
     with open(os.path.join(run_dir, 'metrics.json'), 'w') as f:
         json.dump(res, f, indent=1)
     os.remove(last)

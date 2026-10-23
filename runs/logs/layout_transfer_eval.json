@@ -1,0 +1,137 @@
+scored mean (D, CellPool-s16)
+scored max (MIL)
+scored lse (MIL)
+{
+ "P+V macro-F1 (val' / test)": {
+  "cityscapes": {
+   "overlap (A)": {
+    "val": 76.3,
+    "test": 77.65
+   },
+   "oracle": {
+    "val": 76.3,
+    "test": 77.65
+   },
+   "mean (D, CellPool-s16)": {
+    "val": 75.36,
+    "test": 77.3
+   },
+   "max (MIL)": {
+    "val": 76.83,
+    "test": 78.55
+   },
+   "lse (MIL)": {
+    "val": 76.67,
+    "test": 78.8
+   },
+   "segmenter (B8, masks)": {
+    "val": 68.2,
+    "test": 70.63
+   }
+  },
+  "cityscapes_union": {
+   "overlap (A)": {
+    "val": 78.09,
+    "test": 79.65
+   },
+   "oracle": {
+    "val": 79.4,
+    "test": 80.41
+   },
+   "mean (D, CellPool-s16)": {
+    "val": 63.76,
+    "test": 66.62
+   },
+   "max (MIL)": {
+    "val": 77.92,
+    "test": 79.84
+   },
+   "lse (MIL)": {
+    "val": 77.89,
+    "test": 80.12
+   },
+   "segmenter (B8, masks)": {
+    "val": 69.26,
+    "test": 71.11
+   }
+  },
+  "cityscapes_shift": {
+   "overlap (A)": {
+    "val": 71.85,
+    "test": 73.73
+   },
+   "oracle": {
+    "val": 75.77,
+    "test": 77.52
+   },
+   "mean (D, CellPool-s16)": {
+    "val": 74.59,
+    "test": 77.25
+   },
+   "max (MIL)": {
+    "val": 75.73,
+    "test": 77.81
+   },
+   "lse (MIL)": {
+    "val": 75.47,
+    "test": 78.39
+   },
+   "segmenter (B8, masks)": {
+    "val": 67.98,
+    "test": 70.45
+   }
+  },
+  "cityscapes_fine": {
+   "overlap (A)": {
+    "val": 71.62,
+    "test": 72.92
+   },
+   "oracle": {
+    "val": 73.33,
+    "test": 75.07
+   },
+   "mean (D, CellPool-s16)": {
+    "val": 72.68,
+    "test": 74.32
+   },
+   "max (MIL)": {
+    "val": 74.33,
+    "test": 76.26
+   },
+   "lse (MIL)": {
+    "val": 73.35,
+    "test": 75.51
+   },
+   "segmenter (B8, masks)": {
+    "val": 67.5,
+    "test": 70.06
+   }
+  }
+ },
+ "selected dense pooling (on val')": "max (MIL)",
+ "checks": {
+  "cityscapes_shift": {
+   "T": 77.81,
+   "oracle": 77.52,
+   "T/oracle": 1.004,
+   "T-overlap": 4.08,
+   "ci95": [
+    3.31,
+    4.79
+   ],
+   "pass": true
+  },
+  "cityscapes_fine": {
+   "T": 76.26,
+   "oracle": 75.07,
+   "T/oracle": 1.016,
+   "T-overlap": 3.34,
+   "ci95": [
+    2.7,
+    3.94
+   ],
+   "pass": true
+  }
+ },
+ "verdict": "GO"
+}

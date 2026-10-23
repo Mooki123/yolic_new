@@ -1,0 +1,32 @@
+name: cityscapes_oracle_shift
+cache: /home/bhavya/data/yolic_cache/cityscapes
+layout: layouts/cityscapes_shift.json
+labels: cityscapes_shift
+split: splits/cityscapes
+object_classes:
+- 0
+- 1
+- 2
+primary_classes:
+- 0
+- 1
+model:
+  backbone: mnv2
+  head: gapfc
+input_size: 224
+epochs: 150
+milestones:
+- 100
+- 125
+batch: 32
+lr: 0.001
+amp: true
+normalize: true
+flip: hflip
+jitter:
+  brightness: 0.5
+  contrast: 0.5
+  saturation: 0.5
+  hue: 0.1
+seed: 0
+git: f1c2cd3896c6f542d4aa0cfdd33b9fa7a4d07eee

@@ -1,0 +1,17 @@
+2026-10-18 17:31:41 start cityscapes_f_v2 seed 0
+2026-10-18 17:51:28 start cityscapes_f_v3 seed 0
+2026-10-18 18:13:26 start cityscapes_f_v4 seed 0
+2026-10-18 18:37:19 start cityscapes_f_v5 seed 0
+2026-10-18 18:58:10 stage 1 done
+2026-10-18 18:58:10 start outdoor_b1_grouped seed 1
+2026-10-18 20:16:38 paused by user (queues and outdoor_b1_grouped seed 1 stopped; resume from last.pt)
+2026-10-19 01:13:55 resumed by user
+2026-10-19 01:13:55 start cityscapes_f_v2 seed 0
+2026-10-19 01:14:02 start cityscapes_f_v3 seed 0
+2026-10-19 01:14:04 start cityscapes_f_v4 seed 0
+2026-10-19 01:14:07 start cityscapes_f_v5 seed 0
+2026-10-19 01:14:10 stage 1 done
+2026-10-19 01:14:10 start outdoor_b1_grouped seed 1
+2026-10-19 01:14:14 FAILED outdoor_b1_grouped seed 1
+2026-10-19 01:14:14 start outdoor_b1_grouped seed 2
+2026-10-19 02:37:11 queue done

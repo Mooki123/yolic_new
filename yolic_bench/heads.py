@@ -142,19 +142,94 @@ class SegCells(nn.Module):
         return torch.cat([out, 1 - out.max(dim=2, keepdim=True).values], dim=2)
 
 
-class FoveaGapFc(nn.Module):
-    """F (research/05): one shared backbone runs on every view (e.g. a low-res full frame and a high-res
-    crop of the small-cell band); the views' global-average-pooled features are concatenated and one
-    Linear maps them to every (cell, bit), exactly like GapFc."""
+class MilPool(nn.Module):
+    """research/08: layout-agnostic MIL head. 1x1 conv class maps, bilinearly upsampled to grid x grid, pooled over the
+    pixels whose centres fall in each cell (max, log-sum-exp with sharpness r, or mean), plus a per-class bias only, so
+    nothing is tied to a layout. set_layout() points the same trained head at any other layout."""
 
-    def __init__(self, features, channels, n_views, n_cells, n_bits, dropout=0.2):
+    def __init__(self, channels, layout, n_bits, pool='max', r=5.0, grid=112, dropout=0.2):
         super().__init__()
-        self.features, self.n_cells, self.n_bits = features, n_cells, n_bits
+        if pool not in ('max', 'lse', 'mean'):
+            raise ValueError(f'unknown MIL pooling {pool!r}')
+        self.pool, self.r, self.grid, self.n_bits = pool, r, grid, n_bits
+        self.drop = nn.Dropout(dropout)
+        self.conv = nn.Conv2d(channels, n_bits, 1)
+        self.bias = nn.Parameter(torch.zeros(n_bits))
+        self.set_layout(layout)
+
+    def set_layout(self, layout):
+        idx = torch.as_tensor(layout.index_map(self.grid, self.grid).astype(np.int64)).flatten()
+        count = torch.bincount(idx[idx >= 0], minlength=len(layout))
+        if (count == 0).any():
+            raise ValueError(f'{int((count == 0).sum())} cells contain no pixel centre on the {self.grid}x{self.grid} grid')
+        self.n_cells = len(layout)
+        self.register_buffer('pix_cell', idx.clamp_min(0), persistent=False)
+        self.register_buffer('pix_in', idx >= 0, persistent=False)
+        self.register_buffer('count', count.float(), persistent=False)
+        return self
+
+    def forward(self, x):
+        z = self.conv(self.drop(x)).float()
+        z = nn.functional.interpolate(z, size=(self.grid, self.grid), mode='bilinear', align_corners=False).flatten(2)
+        b, k, _ = z.shape
+        index = self.pix_cell.to(z.device).expand(b, k, -1)
+        inside = self.pix_in.to(z.device)
+        if self.pool == 'max':
+            out = torch.full((b, k, self.n_cells), -1e4, device=z.device)
+            out = out.scatter_reduce(2, index, z.masked_fill(~inside, -1e4), reduce='amax', include_self=True)
+        elif self.pool == 'mean':
+            out = torch.zeros(b, k, self.n_cells, device=z.device).scatter_add(2, index, z * inside)
+            out = out / self.count.to(z.device)
+        else:  # log-sum-exp, a smooth max: (1/r) log mean_p exp(r z_p)
+            m = torch.full((b, k, self.n_cells), -1e4, device=z.device)
+            m = m.scatter_reduce(2, index, z.masked_fill(~inside, -1e4), reduce='amax', include_self=True)
+            d = (z - m.gather(2, index)).masked_fill(~inside, -30.0)  # mask before exp: outside pixels could overflow
+            e = torch.exp(self.r * d) * inside
+            s = torch.zeros(b, k, self.n_cells, device=z.device).scatter_add(2, index, e)
+            out = m + torch.log(s / self.count.to(z.device)) / self.r
+        return out.transpose(1, 2) + self.bias  # (B, n_cells, n_bits)
+
+
+def _per_view_copies(features, n_views):
+    """n_views copies of a backbone that share every weight except BatchNorm (each copy has its own BN).
+
+    Views of different image regions (road band, sky band) have different statistics. With one set of BN
+    layers, training normalises each view with its own batch statistics but evaluation uses running
+    statistics averaged over all views, so evaluation sees mis-normalised features (research/06 addendum).
+    """
+    import copy
+    copies = [features]
+    for _ in range(n_views - 1):
+        c = copy.deepcopy(features)
+        for (_, src), (_, dst) in zip(features.named_modules(), c.named_modules()):
+            if not isinstance(dst, nn.modules.batchnorm._BatchNorm):
+                for pname, p in list(dst.named_parameters(recurse=False)):
+                    setattr(dst, pname, getattr(src, pname))  # tie to the first copy's Parameter
+        copies.append(c)
+    return nn.ModuleList(copies)
+
+
+class FoveaGapFc(nn.Module):
+    """F (research/05-06): one backbone runs on every view (e.g. crops of each cell-group band); the views'
+    global-average-pooled features are concatenated and one Linear maps them to every (cell, bit), like GapFc.
+
+    per_view_bn=True (default) gives each view its own BatchNorm layers while every other weight is shared.
+    per_view_bn=False is the original shared-BN version, kept only to reproduce the invalid research/06 runs.
+    """
+
+    def __init__(self, features, channels, n_views, n_cells, n_bits, dropout=0.2, per_view_bn=True):
+        super().__init__()
+        self.n_cells, self.n_bits, self.per_view_bn = n_cells, n_bits, per_view_bn
+        if per_view_bn:
+            self.views = _per_view_copies(features, n_views)
+        else:
+            self.features = features
         self.drop = nn.Dropout(dropout)
         self.fc = nn.Linear(channels * n_views, n_cells * n_bits)
 
     def forward(self, *views):
-        z = torch.cat([self.features(v).mean(dim=(2, 3)) for v in views], dim=1)
+        nets = self.views if self.per_view_bn else [self.features] * len(views)
+        z = torch.cat([net(v).mean(dim=(2, 3)) for net, v in zip(nets, views)], dim=1)
         return self.fc(self.drop(z)).view(-1, self.n_cells, self.n_bits)
 
 
@@ -162,7 +237,7 @@ def build(cfg, layout, n_bits, input_size=224, pretrained=True, n_views=1):
     """cfg: dict with backbone, head and (cellpool) stride. Returns a CellNet, SegCells or FoveaGapFc."""
     if cfg['head'] == 'fovea_gapfc':
         feats, channels = backbone(cfg['backbone'], pretrained)
-        return FoveaGapFc(feats, channels, n_views, len(layout), n_bits)
+        return FoveaGapFc(feats, channels, n_views, len(layout), n_bits, per_view_bn=cfg.get('per_view_bn', True))
     if n_views != 1:
         raise ValueError(f"head {cfg['head']!r} takes one view, got {n_views}")
     if cfg['head'] == 'lraspp':
@@ -171,6 +246,8 @@ def build(cfg, layout, n_bits, input_size=224, pretrained=True, n_views=1):
     feats, channels = backbone(cfg['backbone'], pretrained, stride)
     if cfg['head'] == 'gapfc':
         head = GapFc(channels, len(layout), n_bits)
+    elif cfg['head'] == 'mil':
+        head = MilPool(channels, layout, n_bits, pool=cfg.get('pool', 'max'), r=float(cfg.get('r', 5.0)))
     elif cfg['head'] == 'cellpool':
         side = input_size // stride
         head = CellPool(channels, layout.rasterize(side, side, supersample=COVERAGE_SUPERSAMPLE, crop=cfg.get('crop')), n_bits)

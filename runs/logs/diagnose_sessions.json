@@ -1,0 +1,103 @@
+{
+ "per_session": {
+  "n_sessions": 48,
+  "F1 quartiles": [
+   21.4,
+   36.7,
+   44.1,
+   60.1,
+   97.7
+  ],
+  "frame-weighted mean": 40.3,
+  "share of test frames in sessions with F1 < 40": 0.645
+ },
+ "per_class": {
+  "Bump": {
+   "pos/frame train": 2.78,
+   "pos/frame test": 7.55,
+   "F1 random split": 91.0,
+   "F1 grouped": 69.3
+  },
+  "Column": {
+   "pos/frame train": 0.75,
+   "pos/frame test": 1.19,
+   "F1 random split": 81.3,
+   "F1 grouped": 46.9
+  },
+  "Dent": {
+   "pos/frame train": 0.96,
+   "pos/frame test": 0.97,
+   "F1 random split": 88.6,
+   "F1 grouped": 27.7
+  },
+  "Fence": {
+   "pos/frame train": 0.26,
+   "pos/frame test": 1.27,
+   "F1 random split": 86.1,
+   "F1 grouped": 35.6
+  },
+  "Creature": {
+   "pos/frame train": 0.64,
+   "pos/frame test": 2.29,
+   "F1 random split": 84.5,
+   "F1 grouped": 70.5
+  },
+  "Vehicle": {
+   "pos/frame train": 1.55,
+   "pos/frame test": 2.5,
+   "F1 random split": 90.2,
+   "F1 grouped": 75.5
+  },
+  "Wall": {
+   "pos/frame train": 1.41,
+   "pos/frame test": 3.83,
+   "F1 random split": 93.5,
+   "F1 grouped": 70.0
+  },
+  "Weed": {
+   "pos/frame train": 4.56,
+   "pos/frame test": 4.1,
+   "F1 random split": 93.1,
+   "F1 grouped": 79.2
+  },
+  "ZebraCrossing": {
+   "pos/frame train": 3.06,
+   "pos/frame test": 3.34,
+   "F1 random split": 96.7,
+   "F1 grouped": 54.2
+  },
+  "TrafficCone": {
+   "pos/frame train": 0.16,
+   "pos/frame test": 0.44,
+   "F1 random split": 81.6,
+   "F1 grouped": 24.1
+  },
+  "TrafficSign": {
+   "pos/frame train": 0.03,
+   "pos/frame test": 0.05,
+   "F1 random split": 77.5,
+   "F1 grouped": 0.3
+  }
+ },
+ "distance_vs_F1": {
+  "spearman_rho": -0.084,
+  "p": 0.5702,
+  "median NN distance quartiles": [
+   10.0,
+   14.0,
+   14.0,
+   16.0,
+   18.0
+  ]
+ },
+ "near_duplicate_label_agreement": {
+  "same": {
+   "pairs": 15732,
+   "mean cell agreement": 0.728
+  },
+  "diff": {
+   "pairs": 0,
+   "mean cell agreement": null
+  }
+ }
+}

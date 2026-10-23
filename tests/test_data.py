@@ -106,3 +106,33 @@ def test_fovea_gapfc_shape(outdoor):
     m = heads.build({'backbone': 'mnv2', 'head': 'fovea_gapfc'}, outdoor, 12, pretrained=False, n_views=2).eval()
     out = m(torch.zeros(2, 3, 112, 224), torch.zeros(2, 3, 96, 320))
     assert out.shape == (2, len(outdoor), 12)
+
+
+def test_per_view_bn_shares_everything_but_batchnorm(outdoor):
+    m = heads.build({'backbone': 'mnv2', 'head': 'fovea_gapfc'}, outdoor, 12, pretrained=False, n_views=3)
+    a, b = m.views[0], m.views[2]
+    conv_a, conv_b = a[0][0], b[0][0]
+    assert conv_a.weight is conv_b.weight  # convolutions tied
+    bn_a, bn_b = a[0][1], b[0][1]
+    assert bn_a.weight is not bn_b.weight and bn_a.running_mean is not bn_b.running_mean  # BN separate
+    shared = heads.build({'backbone': 'mnv2', 'head': 'fovea_gapfc', 'per_view_bn': False}, outdoor, 12,
+                         pretrained=False, n_views=3)
+    n = lambda mod: sum(p.numel() for p in mod.parameters())  # parameters() de-duplicates tied weights
+    bn = sum(p.numel() for mm in shared.features.modules() if isinstance(mm, torch.nn.BatchNorm2d) for p in mm.parameters())
+    assert n(m) == n(shared) + 2 * bn
+
+
+def test_per_view_bn_keeps_each_views_statistics(outdoor):
+    """Each view's first BatchNorm must track only that view's activations (the shared-BN bug mixed them)."""
+    torch.manual_seed(0)
+    m = heads.build({'backbone': 'mnv2', 'head': 'fovea_gapfc'}, outdoor, 12, pretrained=False, n_views=2)
+    xs = (torch.randn(8, 3, 64, 96) * 3 + 2, torch.randn(8, 3, 32, 128) * 0.2 - 1)  # very different statistics
+    for mod in m.modules():
+        if isinstance(mod, torch.nn.BatchNorm2d):
+            mod.momentum = None  # cumulative average: running_mean = batch mean after one pass
+    m.train()
+    with torch.no_grad():
+        m(*xs)
+        for net, x in zip(m.views, xs):
+            conv, bn = net[0][0], net[0][1]
+            assert torch.allclose(bn.running_mean, conv(x).mean(dim=(0, 2, 3)), atol=1e-4)
