@@ -1,0 +1,105 @@
+/home/bhavya/dev/yolic_new/tools/latency.py:67: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(m, tuple(torch.zeros(s) for s in shapes), path, opset_version=17, dynamo=False,
+A (YOLIC) {'median_ms': 8.34, 'p90_ms': 9.01, 'input': [(224, 224)]}
+AL (Align) {'median_ms': 9.12, 'p90_ms': 9.43, 'input': [(224, 224)]}
+F (foveated) {'median_ms': 8.65, 'p90_ms': 9.28, 'input': [(112, 224), (96, 320)]}
+F+AL {'median_ms': 9.75, 'p90_ms': 10.15, 'input': [(112, 224), (96, 320)]}
+Ultralytics 8.4.185 🚀 Python-3.12.13 torch-2.11.0+cu128 CPU (12th Gen Intel Core i7-12650H)
+💡 ProTip: Export to OpenVINO format for best performance on Intel hardware. Learn more at https://docs.ultralytics.com/integrations/openvino
+Model summary (fused): 73 layers, 3,132,950 parameters, 0 gradients, 0.6 GFLOPs
+
+[34m[1mPyTorch:[0m starting from '/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_224_seed0/weights/best.pt' with input shape (1, 3, 128, 224) BCHW and output shape(s) (1, 6, 588) (6.2 MB)
+
+[34m[1mONNX:[0m starting export with onnx 1.23.2 opset 17...
+[34m[1mONNX:[0m export success ✅ 0.3s, saved as '/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_224_seed0/weights/best.onnx' (12.0 MB)
+
+Export complete (0.5s)
+Results saved to [1m/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_224_seed0/weights/best.onnx[0m
+Predict:         yolo predict task=detect model=/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_224_seed0/weights/best.onnx imgsz=128,224 
+Validate:        yolo val task=detect model=/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_224_seed0/weights/best.onnx imgsz=128,224 data=/home/bhavya/data/yolo_cityscapes/data.yaml 
+Visualize:       https://netron.app
+YOLOv8-N@224 {'median_ms': 6.65, 'p90_ms': 6.95, 'input': [(128, 224)]}
+Ultralytics 8.4.185 🚀 Python-3.12.13 torch-2.11.0+cu128 CPU (12th Gen Intel Core i7-12650H)
+Model summary (fused): 73 layers, 3,132,950 parameters, 0 gradients, 4.3 GFLOPs
+
+[34m[1mPyTorch:[0m starting from '/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_640_seed0/weights/best.pt' with input shape (1, 3, 320, 640) BCHW and output shape(s) (1, 6, 4200) (6.2 MB)
+
+[34m[1mONNX:[0m starting export with onnx 1.23.2 opset 17...
+[34m[1mONNX:[0m export success ✅ 0.3s, saved as '/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_640_seed0/weights/best.onnx' (12.1 MB)
+
+Export complete (0.4s)
+Results saved to [1m/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_640_seed0/weights/best.onnx[0m
+Predict:         yolo predict task=detect model=/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_640_seed0/weights/best.onnx imgsz=320,640 
+Validate:        yolo val task=detect model=/home/bhavya/dev/yolic_new/runs/yolo/yolov8n_640_seed0/weights/best.onnx imgsz=320,640 data=/home/bhavya/data/yolo_cityscapes/data.yaml 
+Visualize:       https://netron.app
+YOLOv8-N@640 {'median_ms': 44.81, 'p90_ms': 46.25, 'input': [(320, 640)]}
+{
+ "A (YOLIC)": {
+  "median_ms": 8.34,
+  "p90_ms": 9.01,
+  "input": [
+   [
+    224,
+    224
+   ]
+  ]
+ },
+ "AL (Align)": {
+  "median_ms": 9.12,
+  "p90_ms": 9.43,
+  "input": [
+   [
+    224,
+    224
+   ]
+  ]
+ },
+ "F (foveated)": {
+  "median_ms": 8.65,
+  "p90_ms": 9.28,
+  "input": [
+   [
+    112,
+    224
+   ],
+   [
+    96,
+    320
+   ]
+  ]
+ },
+ "F+AL": {
+  "median_ms": 9.75,
+  "p90_ms": 10.15,
+  "input": [
+   [
+    112,
+    224
+   ],
+   [
+    96,
+    320
+   ]
+  ]
+ },
+ "YOLOv8-N@224": {
+  "median_ms": 6.65,
+  "p90_ms": 6.95,
+  "input": [
+   [
+    128,
+    224
+   ]
+  ]
+ },
+ "YOLOv8-N@640": {
+  "median_ms": 44.81,
+  "p90_ms": 46.25,
+  "input": [
+   [
+    320,
+    640
+   ]
+  ]
+ }
+}

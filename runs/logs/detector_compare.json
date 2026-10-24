@@ -1,0 +1,172 @@
+{
+ "table": {
+  "A (YOLIC)": {
+   "seeds": 3,
+   "P+V @0.5": 77.77,
+   "P+V tuned": 78.0,
+   "tuned per seed": [
+    77.91,
+    77.97,
+    78.13
+   ],
+   "far (tuned)": 78.11,
+   "near (tuned)": 75.06,
+   "params_M": 3.54
+  },
+  "AL (Align)": {
+   "seeds": 3,
+   "P+V @0.5": 79.47,
+   "P+V tuned": 79.68,
+   "tuned per seed": [
+    79.92,
+    79.56,
+    79.56
+   ],
+   "far (tuned)": 79.32,
+   "near (tuned)": 86.58,
+   "params_M": 2.24
+  },
+  "F (foveated)": {
+   "seeds": 3,
+   "P+V @0.5": 83.28,
+   "P+V tuned": 83.41,
+   "tuned per seed": [
+    83.6,
+    83.31,
+    83.33
+   ],
+   "far (tuned)": 83.59,
+   "near (tuned)": 78.21,
+   "params_M": 4.88
+  },
+  "F+AL": {
+   "seeds": 3,
+   "P+V @0.5": 86.83,
+   "P+V tuned": 86.85,
+   "tuned per seed": [
+    86.99,
+    86.74,
+    86.83
+   ],
+   "far (tuned)": 86.86,
+   "near (tuned)": 85.79,
+   "params_M": 2.28
+  },
+  "YOLOv8-N@224": {
+   "seeds": 3,
+   "P+V @0.5": 68.23,
+   "P+V tuned": 78.25,
+   "tuned per seed": [
+    78.59,
+    78.02,
+    78.14
+   ],
+   "far (tuned)": 78.27,
+   "near (tuned)": 79.39,
+   "box mAP50 / 50-95": [
+    28.6,
+    14.3
+   ]
+  },
+  "YOLOv8-N@640": {
+   "seeds": 1,
+   "P+V @0.5": 84.42,
+   "P+V tuned": 87.04,
+   "tuned per seed": [
+    87.04
+   ],
+   "far (tuned)": 87.3,
+   "near (tuned)": 84.28,
+   "box mAP50 / 50-95": [
+    56.0,
+    32.4
+   ]
+  },
+  "box oracle (GT boxes)": {
+   "P+V tuned": 94.25
+  }
+ },
+ "F+AL - YOLOv8-N@224 (tuned)": [
+  8.6,
+  7.93,
+  9.36
+ ],
+ "A - YOLOv8-N@224 (tuned)": [
+  -0.24,
+  -0.88,
+  0.41
+ ],
+ "claim: F+AL beats YOLOv8-N@224": true,
+ "F+AL - YOLOv8-N@640 (tuned, 1 seed)": -0.19,
+ "claim: F+AL matches YOLOv8-N@640 (|gap| <= 1)": true,
+ "latency (ms, 1 CPU thread)": {
+  "A (YOLIC)": {
+   "median_ms": 8.34,
+   "p90_ms": 9.01,
+   "input": [
+    [
+     224,
+     224
+    ]
+   ]
+  },
+  "AL (Align)": {
+   "median_ms": 9.12,
+   "p90_ms": 9.43,
+   "input": [
+    [
+     224,
+     224
+    ]
+   ]
+  },
+  "F (foveated)": {
+   "median_ms": 8.65,
+   "p90_ms": 9.28,
+   "input": [
+    [
+     112,
+     224
+    ],
+    [
+     96,
+     320
+    ]
+   ]
+  },
+  "F+AL": {
+   "median_ms": 9.75,
+   "p90_ms": 10.15,
+   "input": [
+    [
+     112,
+     224
+    ],
+    [
+     96,
+     320
+    ]
+   ]
+  },
+  "YOLOv8-N@224": {
+   "median_ms": 6.65,
+   "p90_ms": 6.95,
+   "input": [
+    [
+     128,
+     224
+    ]
+   ]
+  },
+  "YOLOv8-N@640": {
+   "median_ms": 44.81,
+   "p90_ms": 46.25,
+   "input": [
+    [
+     320,
+     640
+    ]
+   ]
+  }
+ }
+}

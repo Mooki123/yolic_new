@@ -14,3 +14,6 @@ weights/
 *.pt.tmp
 *.pth.tar
 *.npy
+*.onnx
+# Ultralytics console logs are mostly progress bars; per-epoch metrics are in runs/yolo/*/results.csv
+runs/logs/yolov8n_*.log
