@@ -67,7 +67,7 @@ def main():
         res['claim: F+AL beats YOLOv8-N@224'] = bool(res['F+AL - YOLOv8-N@224 (tuned)'][1] > 0)
     if 'YOLOv8-N@640' in P:
         gap = table['F+AL']['P+V tuned'] - table['YOLOv8-N@640']['P+V tuned']
-        res['F+AL - YOLOv8-N@640 (tuned, 1 seed)'] = round(gap, 2)
+        res['F+AL - YOLOv8-N@640 (tuned)'] = delta('YOLOv8-N@640', 'F+AL') if len(P['YOLOv8-N@640']) > 1 else round(gap, 2)
         res['claim: F+AL matches YOLOv8-N@640 (|gap| <= 1)'] = bool(abs(gap) <= 1.0)
     lat = os.path.join(ROOT, 'runs', 'latency', 'latency.json')
     if os.path.exists(lat):

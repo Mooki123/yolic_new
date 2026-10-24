@@ -61,3 +61,8 @@ Notes: at a fixed 0.5 threshold the detectors look 3-10 points worse than tuned 
 fixed-threshold comparison would wrongly credit to the cell models. Latency varies about 30% between runs on this
 laptop (an earlier run put A at 6.14 ms), so only within-run ratios are reported. The box oracle (94.25) shows even
 perfect boxes over-cover cells; the remaining gap for F+AL is about 7 points.
+
+### Update (2026-10-25 00:00): YOLOv8-N@640 at 3 seeds
+87.04 / 86.94 / 86.80 (mean 86.92, tuned), box mAP50 / 50-95 55.8 / 32.4. **F+AL − YOLOv8-N@640 = −0.07
+[−0.58, +0.42]**: statistically indistinguishable (|gap| <= 1 holds with the whole CI inside ±0.6), at about 4.6x lower
+single-thread CPU latency.

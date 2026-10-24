@@ -1,0 +1,13 @@
+2026-10-24 19:45:25 start cityscapes_f_align_no_lse seed 0
+2026-10-24 20:06:10 start cityscapes_f_align_no_mean seed 0
+2026-10-24 20:27:26 start cityscapes_f_align_no_lateral seed 0
+2026-10-24 20:48:29 start cityscapes_f_align_no_cellbias seed 0
+2026-10-24 21:09:40 start cityscapes_f_align_no_lse seed 1
+2026-10-24 21:30:23 start cityscapes_f_align_no_mean seed 1
+2026-10-24 21:51:35 start cityscapes_f_align_no_lateral seed 1
+2026-10-24 22:12:21 start cityscapes_f_align_no_cellbias seed 1
+2026-10-24 22:33:33 start cityscapes_f_align_no_lse seed 2
+2026-10-24 22:54:11 start cityscapes_f_align_no_mean seed 2
+2026-10-24 23:15:14 start cityscapes_f_align_no_lateral seed 2
+2026-10-24 23:36:06 start cityscapes_f_align_no_cellbias seed 2
+2026-10-24 23:57:10 queue done

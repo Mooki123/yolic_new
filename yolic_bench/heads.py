@@ -214,18 +214,19 @@ class AlignTrunk(nn.Module):
     """YOLIC-Align's feature path: MobileNetV2 split at stride 16, the stride-32 map upsampled to stride 16 and
     concatenated with a 1x1-conv lateral of the stride-16 map."""
 
-    def __init__(self, pretrained=True, lateral_channels=128):
+    def __init__(self, pretrained=True, lateral_channels=128, lateral=True):
         super().__init__()
         w = models.MobileNet_V2_Weights.IMAGENET1K_V1 if pretrained else None
         f = models.mobilenet_v2(weights=w).features
         self.stride16, self.stride32 = f[:14], f[14:]
+        self.out_channels = 1280 + (lateral_channels if lateral else 0)
         self.lateral = nn.Sequential(nn.Conv2d(96, lateral_channels, 1, bias=False), nn.BatchNorm2d(lateral_channels),
-                                     nn.ReLU6(inplace=True))
+                                     nn.ReLU6(inplace=True)) if lateral else None
 
     def forward(self, x):
         x16 = self.stride16(x)
         x32 = nn.functional.interpolate(self.stride32(x16), size=x16.shape[-2:], mode='bilinear', align_corners=False)
-        return torch.cat([x32, self.lateral(x16)], dim=1)
+        return x32 if self.lateral is None else torch.cat([x32, self.lateral(x16)], dim=1)
 
 
 class AlignNet(nn.Module):
@@ -237,13 +238,18 @@ class AlignNet(nn.Module):
     (equal at initialisation); then the per-(cell, class) bias is added. With one view this is exactly YOLIC-Align.
     """
 
-    def __init__(self, layout, n_bits, view_specs, pretrained=True, dropout=0.2, lse_temperature=4.0):
+    def __init__(self, layout, n_bits, view_specs, pretrained=True, dropout=0.2, lse_temperature=4.0,
+                 readout='blend', lateral=True, cell_bias=True):
+        """readout: 'blend' (YOLIC-Align), 'mean' or 'lse'; lateral / cell_bias: research/15 ablation switches."""
         super().__init__()
-        trunk = AlignTrunk(pretrained)
+        if readout not in ('blend', 'mean', 'lse'):
+            raise ValueError(f'unknown readout {readout!r}')
+        self.readout_mode = readout
+        trunk = AlignTrunk(pretrained, lateral=lateral)
         self.trunks = _per_view_copies(trunk, len(view_specs)) if len(view_specs) > 1 else nn.ModuleList([trunk])
         self.dropout = nn.Dropout(dropout)
-        self.classifier = nn.Conv2d(1280 + 128, n_bits, 1)
-        self.cell_bias = nn.Parameter(torch.zeros(len(layout), n_bits))
+        self.classifier = nn.Conv2d(trunk.out_channels, n_bits, 1)
+        self.cell_bias = nn.Parameter(torch.zeros(len(layout), n_bits)) if cell_bias else None
         self.mix = nn.Parameter(torch.zeros(n_bits))
         self.view_logit = nn.Parameter(torch.zeros(len(layout), len(view_specs)))
         self.t = lse_temperature
@@ -265,14 +271,19 @@ class AlignNet(nn.Module):
         z = self.classifier(self.dropout(self.trunks[v](x))).float().flatten(2)  # (B, K, P)
         w, logw, inside = getattr(self, f'w{v}'), getattr(self, f'logw{v}'), getattr(self, f'in{v}')
         mean = torch.einsum('bkp,np->bnk', z, w)
+        if self.readout_mode == 'mean':
+            return mean
         s = (self.t * z.unsqueeze(2) + logw).masked_fill(~inside, -1e4)  # (B, K, N, P)
         lse = (torch.logsumexp(s, dim=-1) / self.t).transpose(1, 2)
+        if self.readout_mode == 'lse':
+            return lse
         return mean + torch.sigmoid(self.mix) * (lse - mean)  # (B, N, K)
 
     def forward(self, *views):
         r = torch.stack([self.readout(v, x) for v, x in enumerate(views)], dim=-1)  # (B, N, K, V)
         a = torch.softmax(self.view_logit.masked_fill(~self.covered, -1e9), dim=1)  # (N, V)
-        return (r * a[None, :, None, :]).sum(-1) + self.cell_bias
+        out = (r * a[None, :, None, :]).sum(-1)
+        return out if self.cell_bias is None else out + self.cell_bias
 
 
 def _per_view_copies(features, n_views):
@@ -323,7 +334,8 @@ def build(cfg, layout, n_bits, input_size=224, pretrained=True, n_views=1, view_
     view_specs: [(crop box in source pixels or None, (width, height))] per input view (needed by 'align')."""
     if cfg['head'] == 'align':
         specs = view_specs or [(None, (input_size, input_size))] * n_views
-        return AlignNet(layout, n_bits, specs, pretrained)
+        return AlignNet(layout, n_bits, specs, pretrained, readout=cfg.get('readout', 'blend'),
+                        lateral=cfg.get('lateral', True), cell_bias=cfg.get('cell_bias', True))
     if cfg['head'] == 'fovea_gapfc':
         feats, channels = backbone(cfg['backbone'], pretrained)
         return FoveaGapFc(feats, channels, n_views, len(layout), n_bits, per_view_bn=cfg.get('per_view_bn', True))

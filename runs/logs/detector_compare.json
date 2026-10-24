@@ -69,16 +69,18 @@
    ]
   },
   "YOLOv8-N@640": {
-   "seeds": 1,
-   "P+V @0.5": 84.42,
-   "P+V tuned": 87.04,
+   "seeds": 3,
+   "P+V @0.5": 84.28,
+   "P+V tuned": 86.92,
    "tuned per seed": [
-    87.04
+    87.04,
+    86.94,
+    86.8
    ],
-   "far (tuned)": 87.3,
-   "near (tuned)": 84.28,
+   "far (tuned)": 87.17,
+   "near (tuned)": 84.2,
    "box mAP50 / 50-95": [
-    56.0,
+    55.8,
     32.4
    ]
   },
@@ -97,7 +99,7 @@
   0.41
  ],
  "claim: F+AL beats YOLOv8-N@224": true,
- "F+AL - YOLOv8-N@640 (tuned, 1 seed)": -0.19,
+ "F+AL - YOLOv8-N@640 (tuned, 1 seed)": -0.07,
  "claim: F+AL matches YOLOv8-N@640 (|gap| <= 1)": true,
  "latency (ms, 1 CPU thread)": {
   "A (YOLIC)": {

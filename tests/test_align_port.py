@@ -63,3 +63,21 @@ def test_foveated_views_cover_every_cell():
         out = m(torch.randn(2, 3, 112, 224), torch.randn(2, 3, 96, 320))
     assert out.shape == (2, 256, 4) and torch.isfinite(out).all()
     assert m.trunks[0].stride16[0][0].weight is m.trunks[1].stride16[0][0].weight  # convolutions shared
+
+
+@pytest.mark.parametrize('kv', [{'readout': 'mean'}, {'readout': 'lse'}, {'lateral': False}, {'cell_bias': False}])
+def test_ablation_variants(kv):
+    """research/15: each ablation builds, runs, and removes what it says (the default stays YOLIC-Align)."""
+    lay = Layout.load(os.path.join(ROOT, 'layouts', 'cityscapes.json'))
+    specs = [((0, 0, 2048, 1024), (224, 112)), ((512, 320, 1536, 640), (320, 96))]
+    full = heads.build({'head': 'align'}, lay, 4, pretrained=False, view_specs=specs)
+    m = heads.build({'head': 'align', **kv}, lay, 4, pretrained=False, view_specs=specs).eval()
+    with torch.no_grad():
+        out = m(torch.randn(2, 3, 112, 224), torch.randn(2, 3, 96, 320))
+    assert out.shape == (2, 256, 4) and torch.isfinite(out).all()
+    if kv.get('lateral') is False:
+        assert m.trunks[0].lateral is None and m.classifier.in_channels == 1280
+    if kv.get('cell_bias') is False:
+        assert m.cell_bias is None
+    if 'readout' in kv:
+        assert m.readout_mode == kv['readout'] and full.readout_mode == 'blend'

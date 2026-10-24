@@ -1,0 +1,34 @@
+name: cityscapes_f_align_no_mean
+cache: /home/bhavya/data/yolic_cache/cityscapes
+layout: layouts/cityscapes.json
+split: splits/cityscapes
+object_classes:
+- 0
+- 1
+- 2
+primary_classes:
+- 0
+- 1
+model:
+  head: align
+  readout: lse
+views:
+- g224x112
+- fov320x96
+input_size: 224
+epochs: 150
+milestones:
+- 100
+- 125
+batch: 32
+lr: 0.001
+amp: true
+normalize: true
+flip: hflip
+jitter:
+  brightness: 0.5
+  contrast: 0.5
+  saturation: 0.5
+  hue: 0.1
+seed: 0
+git: b563d3ecfa5ba55310fc8eebca1dacfa8505f883
