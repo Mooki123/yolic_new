@@ -1,0 +1,331 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1095" viewBox="0 0 1320 1095">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L7,3.5 L0,7 z" fill="#36454F"/></marker></defs>
+<rect width="1320" height="1095" fill="#FFFFFF"/>
+<text x="18.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="650" text-anchor="start" fill="#1F2933" fill-opacity="1.0">(a) Overall architecture: F+AL (foveated YOLIC-Align)</text>
+<text x="105.0" y="128.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Camera frame</text>
+<rect x="50.2" y="139.8" width="130" height="82" rx="2" fill="#DCEAF7" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="46.8" y="143.2" width="130" height="82" rx="2" fill="#DCEAF7" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="43.4" y="146.6" width="130" height="82" rx="2" fill="#DCEAF7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="40.0" y="150.0" width="130" height="82" rx="2" fill="#DCEAF7" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="61.7" y1="150" x2="61.7" y2="232" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="83.3" y1="150" x2="83.3" y2="232" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="105.0" y1="150" x2="105.0" y2="232" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="126.7" y1="150" x2="126.7" y2="232" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="148.3" y1="150" x2="148.3" y2="232" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="40" y1="170.5" x2="170" y2="170.5" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="40" y1="191.0" x2="170" y2="191.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="40" y1="211.5" x2="170" y2="211.5" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="44" y1="184.4" x2="166" y2="184.4" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.5"/>
+<line x1="105.0" y1="184.4" x2="55.6" y2="229" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="105.0" y1="184.4" x2="154.4" y2="229" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="89.4" y="177.4" width="7" height="5" fill="#2F3B45" fill-opacity="0.55"/>
+<rect x="115.4" y="180.4" width="6" height="4" fill="#2F3B45" fill-opacity="0.55"/>
+<rect x="72.5" y="175.4" width="65.0" height="25.4" fill="none" stroke="#C66A12" stroke-width="1.3" stroke-dasharray="3 2"/>
+<text x="105.0" y="258.0" font-family="Arial, Helvetica, sans-serif" font-size="13.9" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">3 × 1024 × 2048</text>
+<text x="105.0" y="276.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="400" text-anchor="middle" fill="#C66A12" fill-opacity="0.68">fovea = far band</text>
+<text x="305.0" y="74.0" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Context view</text>
+<rect x="265.2" y="79.8" width="100" height="50" rx="2" fill="#DCEAF7" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="261.8" y="83.2" width="100" height="50" rx="2" fill="#DCEAF7" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="258.4" y="86.6" width="100" height="50" rx="2" fill="#DCEAF7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="255.0" y="90.0" width="100" height="50" rx="2" fill="#DCEAF7" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="267.5" y1="90" x2="267.5" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="280.0" y1="90" x2="280.0" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="292.5" y1="90" x2="292.5" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="305.0" y1="90" x2="305.0" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="317.5" y1="90" x2="317.5" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="330.0" y1="90" x2="330.0" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="342.5" y1="90" x2="342.5" y2="140" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="255" y1="102.5" x2="355" y2="102.5" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="255" y1="115.0" x2="355" y2="115.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="255" y1="127.5" x2="355" y2="127.5" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<text x="305.0" y="162.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">whole frame</text>
+<text x="305.0" y="178.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">3 × 112 × 224</text>
+<text x="305.0" y="236.0" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Fovea view</text>
+<rect x="265.2" y="241.8" width="100" height="42" rx="2" fill="#DCEAF7" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="261.8" y="245.2" width="100" height="42" rx="2" fill="#DCEAF7" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="258.4" y="248.6" width="100" height="42" rx="2" fill="#DCEAF7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="255.0" y="252.0" width="100" height="42" rx="2" fill="#DCEAF7" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="265.0" y1="252" x2="265.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="275.0" y1="252" x2="275.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="285.0" y1="252" x2="285.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="295.0" y1="252" x2="295.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="305.0" y1="252" x2="305.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="315.0" y1="252" x2="315.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="325.0" y1="252" x2="325.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="335.0" y1="252" x2="335.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="345.0" y1="252" x2="345.0" y2="294" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="255" y1="266.0" x2="355" y2="266.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="255" y1="280.0" x2="355" y2="280.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<text x="305.0" y="316.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">far band (512,320)–(1536,640)</text>
+<text x="305.0" y="332.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">3 × 96 × 320</text>
+<path d="M175.0,175.0 L212.0,175.0 L212.0,115.0 L249.0,115.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M175.0,205.0 L212.0,205.0 L212.0,273.0 L249.0,273.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="410" y="62" width="200" height="112" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="410.7" y="62.7" width="198.6" height="7" fill="#F3D7A7"/>
+<rect x="410.7" y="69.7" width="198.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="510.0" y="94.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">MobileNetV2 trunk</text>
+<text x="510.0" y="113.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">stride 16 + lateral fusion</text>
+<text x="510.0" y="130.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">view-0 BatchNorm</text>
+<rect x="476" y="143.0" width="30" height="22" rx="1.5" fill="#F3D7A7" fill-opacity="0.50" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.7"/>
+<rect x="502" y="146.0" width="22" height="16" rx="1.5" fill="#F3D7A7" fill-opacity="0.68" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.7"/>
+<rect x="528" y="148.5" width="15" height="11" rx="1.5" fill="#F3D7A7" fill-opacity="0.86" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.7"/>
+<text x="510.0" y="196.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">1408 × 7 × 14</text>
+<rect x="410" y="226" width="200" height="112" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="410.7" y="226.7" width="198.6" height="7" fill="#F3D7A7"/>
+<rect x="410.7" y="233.7" width="198.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="510.0" y="258.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">MobileNetV2 trunk</text>
+<text x="510.0" y="277.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">stride 16 + lateral fusion</text>
+<text x="510.0" y="294.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">view-1 BatchNorm</text>
+<rect x="476" y="307.0" width="30" height="22" rx="1.5" fill="#F3D7A7" fill-opacity="0.50" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.7"/>
+<rect x="502" y="310.0" width="22" height="16" rx="1.5" fill="#F3D7A7" fill-opacity="0.68" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.7"/>
+<rect x="528" y="312.5" width="15" height="11" rx="1.5" fill="#F3D7A7" fill-opacity="0.86" stroke="#2F3B45" stroke-width="0.7" stroke-opacity="0.7"/>
+<text x="510.0" y="360.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">1408 × 6 × 20</text>
+<path d="M365.0,115.0 L404.0,115.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M365.0,273.0 L404.0,273.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<line x1="618" y1="128" x2="618" y2="236" stroke="#9AA5AE" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="626.0" y="176.0" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1F2933" fill-opacity="0.75">shared conv</text>
+<text x="626.0" y="191.0" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1F2933" fill-opacity="0.75">weights</text>
+<rect x="700" y="62" width="200" height="112" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="700.7" y="62.7" width="198.6" height="7" fill="#F3D7A7"/>
+<rect x="700.7" y="69.7" width="198.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="800.0" y="94.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Align cell readout</text>
+<text x="800.0" y="113.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">mask-weighted mean</text>
+<text x="800.0" y="130.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">over the cells in view</text>
+<rect x="767" y="140" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="778" y="140" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="789" y="140" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.42" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="800" y="140" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.38" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="811" y="140" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="822" y="140" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="767" y="151" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="778" y="151" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.29" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="789" y="151" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.93" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="800" y="151" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="811" y="151" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.25" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="822" y="151" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="767" y="162" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="778" y="162" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="789" y="162" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.38" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="800" y="162" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.33" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="811" y="162" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="822" y="162" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<text x="800.0" y="196.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">256 cells × 4</text>
+<rect x="700" y="226" width="200" height="112" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="700.7" y="226.7" width="198.6" height="7" fill="#F3D7A7"/>
+<rect x="700.7" y="233.7" width="198.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="800.0" y="258.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Align cell readout</text>
+<text x="800.0" y="277.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">mask-weighted mean</text>
+<text x="800.0" y="294.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">over the cells in view</text>
+<rect x="767" y="304" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="778" y="304" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="789" y="304" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.42" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="800" y="304" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.38" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="811" y="304" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="822" y="304" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="767" y="315" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="778" y="315" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.29" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="789" y="315" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.93" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="800" y="315" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="811" y="315" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.25" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="822" y="315" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="767" y="326" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="778" y="326" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="789" y="326" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.38" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="800" y="326" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.33" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="811" y="326" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="822" y="326" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<text x="800.0" y="360.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">160 far cells × 4</text>
+<path d="M610.0,118.0 L694.0,118.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M610.0,282.0 L694.0,282.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="398" y="50" width="514" height="318" rx="6" fill="none" stroke="#C66A12" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="906.0" y="44.0" font-family="Arial, Helvetica, sans-serif" font-size="13.9" font-weight="700" text-anchor="end" fill="#C66A12" fill-opacity="1.0">(b) Align branch, one per view</text>
+<circle cx="985" cy="200" r="18.5" fill="#DDEBD8" fill-opacity="0.70" stroke="#2F3B45" stroke-width="1.41"/>
+<text x="985.0" y="206.5" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Σ</text>
+<path d="M900.0,118.0 L985.0,118.0 L985.0,175.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M900.0,282.0 L985.0,282.0 L985.0,225.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="997.0" y="262.0" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#1F2933" fill-opacity="0.75">per-cell view blend</text>
+<text x="997.0" y="279.0" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1F2933" fill-opacity="0.6">a = softmax(view_logit)</text>
+<rect x="1035" y="160" width="110" height="80" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="1035.7" y="160.7" width="108.6" height="7" fill="#DDEBD8"/>
+<rect x="1035.7" y="167.7" width="108.6" height="3" fill="#DDEBD8" fill-opacity="0.45"/>
+<text x="1090.0" y="192.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">+ bias</text>
+<text x="1090.0" y="211.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">sigmoid</text>
+<path d="M1004.0,200.0 L1029.0,200.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1240.0" y="128.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Cell hazards</text>
+<rect x="1195.2" y="149.8" width="110" height="68" rx="2" fill="#E8F0E4" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="1191.8" y="153.2" width="110" height="68" rx="2" fill="#E8F0E4" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="1188.4" y="156.6" width="110" height="68" rx="2" fill="#E8F0E4" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="1185.0" y="160.0" width="110" height="68" rx="2" fill="#E8F0E4" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="1194" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1203" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1212" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1221" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1230" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1239" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1248" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1257" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1266" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1275" y="176" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1194" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1203" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1212" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1221" y="185" width="8" height="8" fill="#DCEAF7" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1230" y="185" width="8" height="8" fill="#DCEAF7" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1239" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1248" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1257" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1266" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1275" y="185" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1194" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1203" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1212" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1221" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1230" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1239" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1248" y="194" width="8" height="8" fill="#F3D7A7" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1257" y="194" width="8" height="8" fill="#F3D7A7" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1266" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1275" y="194" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1194" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1203" y="203" width="8" height="8" fill="#DCEAF7" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1212" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1221" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1230" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1239" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1248" y="203" width="8" height="8" fill="#F3D7A7" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1257" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1266" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<rect x="1275" y="203" width="8" height="8" fill="#FFFFFF" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.55"/>
+<path d="M1145.0,200.0 L1179.0,200.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1240.0" y="258.0" font-family="Arial, Helvetica, sans-serif" font-size="13.9" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">256 × 4</text>
+<text x="1240.0" y="276.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">People · Vehicle</text>
+<text x="1240.0" y="292.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">Other · Road</text>
+<rect x="40" y="372" width="1250" height="44" rx="3" fill="#E8F0E4" fill-opacity="0.55" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.4"/>
+<text x="665.0" y="399.0" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">2.28 M parameters (YOLIC 3.54 M) · 359 M MACs (1.14× YOLIC) · 9.8 ms on one CPU thread · Cityscapes People+Vehicle F1 86.9 (YOLIC 78.0, YOLOv8-N@640 86.9)</text>
+<line x1="18" y1="448" x2="1302" y2="448" stroke="#2F3B45" stroke-width="0.6" stroke-opacity="0.25"/>
+<text x="18.0" y="482.0" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="650" text-anchor="start" fill="#1F2933" fill-opacity="1.0">(b) Detailed structure of one Align branch (view v): backbone, lateral fusion and cell readout</text>
+<text x="95.0" y="560.0" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">View input</text>
+<rect x="55.2" y="571.8" width="100" height="60" rx="2" fill="#DCEAF7" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="51.8" y="575.2" width="100" height="60" rx="2" fill="#DCEAF7" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="48.4" y="578.6" width="100" height="60" rx="2" fill="#DCEAF7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="45.0" y="582.0" width="100" height="60" rx="2" fill="#DCEAF7" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="57.5" y1="582" x2="57.5" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="70.0" y1="582" x2="70.0" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="82.5" y1="582" x2="82.5" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="95.0" y1="582" x2="95.0" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="107.5" y1="582" x2="107.5" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="120.0" y1="582" x2="120.0" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="132.5" y1="582" x2="132.5" y2="642" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="45" y1="597.0" x2="145" y2="597.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="45" y1="612.0" x2="145" y2="612.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="45" y1="627.0" x2="145" y2="627.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<text x="95.0" y="670.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">3 × H × W</text>
+<rect x="200" y="558" width="210" height="100" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="200.7" y="558.7" width="208.6" height="7" fill="#F3D7A7"/>
+<rect x="200.7" y="565.7" width="208.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="305.0" y="590.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">MobileNetV2 0–13</text>
+<text x="305.0" y="609.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">stride 16</text>
+<text x="305.0" y="626.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">96 × H/16 × W/16</text>
+<path d="M150.0,612.0 L194.0,612.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="480" y="510" width="200" height="90" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="480.7" y="510.7" width="198.6" height="7" fill="#F3D7A7"/>
+<rect x="480.7" y="517.7" width="198.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="580.0" y="542.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">MobileNetV2 14–18</text>
+<text x="580.0" y="561.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">stride 32 · 1280 ch</text>
+<rect x="735" y="510" width="170" height="90" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="735.7" y="510.7" width="168.6" height="7" fill="#DCEFEA"/>
+<rect x="735.7" y="517.7" width="168.6" height="3" fill="#DCEFEA" fill-opacity="0.45"/>
+<text x="820.0" y="542.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Bilinear ↑2</text>
+<text x="820.0" y="561.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">to stride 16</text>
+<rect x="480" y="640" width="200" height="100" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="480.7" y="640.7" width="198.6" height="7" fill="#DCEFEA"/>
+<rect x="480.7" y="647.7" width="198.6" height="3" fill="#DCEFEA" fill-opacity="0.45"/>
+<text x="580.0" y="672.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Lateral 1×1 conv</text>
+<text x="580.0" y="691.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">96 → 128, BN, ReLU6</text>
+<text x="580.0" y="708.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">needed: −2.2 F1 without</text>
+<path d="M410.0,590.0 L445.0,590.0 L445.0,555.0 L474.0,555.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M410.0,630.0 L445.0,630.0 L445.0,690.0 L474.0,690.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M680.0,555.0 L729.0,555.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="965" cy="620" r="18.5" fill="#DDEBD8" fill-opacity="0.70" stroke="#2F3B45" stroke-width="1.41"/>
+<text x="965.0" y="626.5" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">C</text>
+<path d="M905.0,555.0 L965.0,555.0 L965.0,595.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M680.0,690.0 L965.0,690.0 L965.0,645.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1005.0" y="600.0" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#1F2933" fill-opacity="0.75">concat</text>
+<text x="1005.0" y="616.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="start" fill="#1F2933" fill-opacity="0.68">1408 × H/16 × W/16</text>
+<rect x="1065" y="655" width="200" height="100" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="1065.7" y="655.7" width="198.6" height="7" fill="#F3D7A7"/>
+<rect x="1065.7" y="662.7" width="198.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="1165.0" y="687.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">1×1 classifier</text>
+<text x="1165.0" y="706.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">1408 → 4 bits</text>
+<text x="1165.0" y="723.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">shared by all views</text>
+<path d="M984.0,620.0 L1165.0,620.0 L1165.0,649.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="855.0" y="800.0" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Logit map z</text>
+<rect x="815.2" y="811.8" width="100" height="54" rx="2" fill="#DDEBD8" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="811.8" y="815.2" width="100" height="54" rx="2" fill="#DDEBD8" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="808.4" y="818.6" width="100" height="54" rx="2" fill="#DDEBD8" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="805.0" y="822.0" width="100" height="54" rx="2" fill="#DDEBD8" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="817.5" y1="822" x2="817.5" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="830.0" y1="822" x2="830.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="842.5" y1="822" x2="842.5" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="855.0" y1="822" x2="855.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="867.5" y1="822" x2="867.5" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="880.0" y1="822" x2="880.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="892.5" y1="822" x2="892.5" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="805" y1="835.5" x2="905" y2="835.5" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="805" y1="849.0" x2="905" y2="849.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="805" y1="862.5" x2="905" y2="862.5" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<text x="855.0" y="902.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">4 × P_v  (P_v = H/16 · W/16)</text>
+<path d="M1165.0,755.0 L1165.0,849.0 L911.0,849.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="470" y="795" width="230" height="112" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="470.7" y="795.7" width="228.6" height="7" fill="#F3D7A7"/>
+<rect x="470.7" y="802.7" width="228.6" height="3" fill="#F3D7A7" fill-opacity="0.45"/>
+<text x="585.0" y="827.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Mask-weighted mean</text>
+<text x="585.0" y="846.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">per cell n, per bit k</text>
+<text x="585.0" y="863.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">r = Σ_p w_v[n,p] · z[k,p]</text>
+<rect x="552" y="870" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="563" y="870" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="574" y="870" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.42" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="585" y="870" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.38" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="596" y="870" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="607" y="870" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="552" y="881" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="563" y="881" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.29" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="574" y="881" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.93" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="585" y="881" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="596" y="881" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.25" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<rect x="607" y="881" width="9.5" height="9.5" fill="#F3D7A7" fill-opacity="0.12" stroke="#2F3B45" stroke-width="0.45" stroke-opacity="0.5"/>
+<path d="M799.0,849.0 L706.0,849.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="470" y="965" width="230" height="100" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41"/>
+<rect x="470.7" y="965.7" width="228.6" height="7" fill="#DCEFEA"/>
+<rect x="470.7" y="972.7" width="228.6" height="3" fill="#DCEFEA" fill-opacity="0.45"/>
+<text x="585.0" y="997.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Cell masks w_v</text>
+<text x="585.0" y="1016.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">exact cell coverage → bilinear</text>
+<text x="585.0" y="1033.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">stride-16 grid, from layout + crop</text>
+<path d="M585.0,965.0 L585.0,913.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="190" y="965" width="230" height="100" rx="3" fill="#FFFFFF" stroke="#2F3B45" stroke-width="1.41" stroke-dasharray="5 3"/>
+<rect x="190.7" y="965.7" width="228.6" height="7" fill="#EEF1F3"/>
+<rect x="190.7" y="972.7" width="228.6" height="3" fill="#EEF1F3" fill-opacity="0.45"/>
+<text x="305.0" y="997.0" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="650" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">LSE soft max + mix</text>
+<text x="305.0" y="1016.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">optional (YOLIC-Align)</text>
+<text x="305.0" y="1033.0" font-family="Arial, Helvetica, sans-serif" font-size="13.2" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">not needed: +0.2 F1 without</text>
+<path d="M305.0,965.0 L305.0,885.0 L464.0,885.0" fill="none" stroke="#9AA5AE" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+<text x="110.0" y="800.0" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="620" text-anchor="middle" fill="#1F2933" fill-opacity="1.0">Block output r_v</text>
+<rect x="70.2" y="811.8" width="100" height="54" rx="2" fill="#E8F0E4" fill-opacity="0.48" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="66.8" y="815.2" width="100" height="54" rx="2" fill="#E8F0E4" fill-opacity="0.62" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="63.4" y="818.6" width="100" height="54" rx="2" fill="#E8F0E4" fill-opacity="0.76" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<rect x="60.0" y="822.0" width="100" height="54" rx="2" fill="#E8F0E4" fill-opacity="0.90" stroke="#2F3B45" stroke-width="0.8" stroke-opacity="0.55"/>
+<line x1="70.0" y1="822" x2="70.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="80.0" y1="822" x2="80.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="90.0" y1="822" x2="90.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="100.0" y1="822" x2="100.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="110.0" y1="822" x2="110.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="120.0" y1="822" x2="120.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="130.0" y1="822" x2="130.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="140.0" y1="822" x2="140.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="150.0" y1="822" x2="150.0" y2="876" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="60" y1="840.0" x2="160" y2="840.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<line x1="60" y1="858.0" x2="160" y2="858.0" stroke="#2F3B45" stroke-width="0.63" stroke-opacity="0.23"/>
+<text x="110.0" y="902.0" font-family="Arial, Helvetica, sans-serif" font-size="12.8" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.68">N_v cells × 4</text>
+<text x="110.0" y="920.0" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" text-anchor="middle" fill="#1F2933" fill-opacity="0.6">→ per-cell view blend in (a)</text>
+<path d="M464.0,849.0 L166.0,849.0" fill="none" stroke="#36454F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>
